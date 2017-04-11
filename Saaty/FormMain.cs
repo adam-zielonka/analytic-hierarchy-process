@@ -110,7 +110,7 @@ namespace Saaty
                 else value = "Im większa tym lepiej";
                 dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i], value, dataSatty.ListCriteriaPrecision[i]);
             }
-            if (dataSatty.ListCriteria.Count > 0) tabManage.ShowTab(2);
+            //if (dataSatty.ListCriteria.Count > 0) tabManage.ShowTab(2);
         }
 
         private void buttonAddCriteria_Click(object sender, EventArgs e)
