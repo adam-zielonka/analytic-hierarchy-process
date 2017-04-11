@@ -38,6 +38,7 @@
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.polishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonMatrixWeight = new System.Windows.Forms.Button();
             this.buttonWeightAlternative = new System.Windows.Forms.Button();
             this.buttonMatrixWeightAlternative = new System.Windows.Forms.Button();
@@ -56,13 +57,14 @@
             this.tabPageResults = new System.Windows.Forms.TabPage();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonResults = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageCriteria.SuspendLayout();
             this.tabPageAlternative.SuspendLayout();
             this.tabPageWeightCriteria.SuspendLayout();
             this.tabPageWeightAlternative.SuspendLayout();
+            this.tabPageResults.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonWeightCriteria
@@ -127,6 +129,11 @@
             this.polishToolStripMenuItem.Name = "polishToolStripMenuItem";
             resources.ApplyResources(this.polishToolStripMenuItem, "polishToolStripMenuItem");
             this.polishToolStripMenuItem.Click += new System.EventHandler(this.polishToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             // 
             // buttonMatrixWeight
             // 
@@ -240,6 +247,7 @@
             // 
             // tabPageResults
             // 
+            this.tabPageResults.Controls.Add(this.buttonResults);
             resources.ApplyResources(this.tabPageResults, "tabPageResults");
             this.tabPageResults.Name = "tabPageResults";
             this.tabPageResults.UseVisualStyleBackColor = true;
@@ -259,10 +267,12 @@
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
-            // helpToolStripMenuItem
+            // buttonResults
             // 
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.buttonResults, "buttonResults");
+            this.buttonResults.Name = "buttonResults";
+            this.buttonResults.UseVisualStyleBackColor = true;
+            this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
             // 
             // FormMain
             // 
@@ -283,6 +293,7 @@
             this.tabPageAlternative.PerformLayout();
             this.tabPageWeightCriteria.ResumeLayout(false);
             this.tabPageWeightAlternative.ResumeLayout(false);
+            this.tabPageResults.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,5 +328,6 @@
         private System.Windows.Forms.TabPage tabPageWeightAlternative;
         private System.Windows.Forms.TabPage tabPageResults;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.Button buttonResults;
     }
 }

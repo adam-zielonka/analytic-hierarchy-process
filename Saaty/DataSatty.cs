@@ -12,6 +12,9 @@ namespace Saaty
         public List<string> ListAlternative { get; set; }
         public List<List<float>> MatrixCriteria { get; set; }
         public List<List<List<float>>> MatrixAlternative { get; set; }
+        public List<float> ListFactorCriteria { get; set; }
+        public List<List<float>> ListFactorAlternative { get; set; }
+        public List<float> ListResult { get; set; }
 
         public DataSatty()
         {
@@ -79,6 +82,90 @@ namespace Saaty
                 MatrixAlternative[i].RemoveAt(_id);
             }
             ListAlternative.RemoveAt(_id);
+        }
+
+        public int Calculate()
+        {
+            CalculateFactorCriteria();
+            CalculateFactorAlternative();
+            CalculateResult();
+            float max = ListResult.Max();
+            int id = 0;
+            for(;id<ListResult.Count;id++)
+            {
+                if (ListResult[id] == max)
+                    break;
+            }
+            return id;
+        }
+
+        private void CalculateFactorCriteria()
+        {
+            ListFactorCriteria.Clear();
+            for (int i = 0; i < ListCriteria.Count; i++)
+                ListFactorCriteria.Add(1);
+
+            float denominator = 0;
+
+            for (int i = 0; i < ListCriteria.Count; i++)
+            {
+                for (int j = 0; j < ListCriteria.Count; j++)
+                {
+                    ListFactorCriteria[i] *= MatrixCriteria[i][j];
+                }
+                ListFactorCriteria[i] = (float)Math.Pow(ListFactorCriteria[i], 1.0 / ListCriteria.Count);
+                denominator += ListFactorCriteria[i];
+            }
+
+            for (int i = 0; i < ListCriteria.Count; i++)
+            {
+                ListFactorCriteria[i] /= denominator;
+                ListFactorCriteria[i] *= ListCriteria.Count;
+            }
+        }
+
+        private void CalculateFactorAlternative()
+        {
+            ListFactorAlternative.Clear();
+            for (int k = 0; k < ListCriteria.Count; k++)
+            {
+                ListFactorAlternative.Add(new List<float>());
+                for (int i = 0; i < ListAlternative.Count; i++)
+                    ListFactorAlternative[k].Add(1);
+            }
+
+            for (int k = 0; k < ListCriteria.Count; k++)
+            {
+                float denominator = 0;
+                for (int i = 0; i < ListAlternative.Count; i++)
+                {
+                    for (int j = 0; j < ListAlternative.Count; j++)
+                    {
+                        ListFactorAlternative[k][i] *= MatrixAlternative[k][i][j];
+                    }
+                    ListFactorAlternative[k][i] = (float)Math.Pow(ListFactorAlternative[k][i], 1.0 / ListAlternative.Count);
+                    denominator += ListFactorAlternative[k][i];
+                }
+
+                for (int i = 0; i < ListAlternative.Count; i++)
+                {
+                    ListFactorAlternative[k][i] /= denominator;
+                    ListFactorAlternative[k][i] *= ListAlternative.Count;
+                }
+            }
+        }
+
+        private void CalculateResult()
+        {
+            ListResult.Clear();
+            for (int i = 0; i < ListAlternative.Count; i++)
+                ListResult.Add(0);
+
+            for (int k = 0; k < ListAlternative.Count; k++)
+                for (int j = 0; j < ListCriteria.Count; j++)
+                {
+                    ListResult[k] += ListFactorAlternative[j][k] * ListFactorCriteria[j];
+                }
         }
 
         #endregion

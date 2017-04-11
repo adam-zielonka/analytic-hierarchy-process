@@ -229,6 +229,11 @@ namespace Saaty
 
         #endregion
 
+        private void buttonResults_Click(object sender, EventArgs e)
+        {
+            int id = dataSatty.Calculate();
+            MessageBox.Show(dataSatty.ListAlternative[id], "Wynik", MessageBoxButtons.OK);
+        }
     }
 
     public class TabManage
