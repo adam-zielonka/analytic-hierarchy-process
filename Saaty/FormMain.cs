@@ -12,144 +12,109 @@ using System.Xml.Serialization;
 
 namespace Saaty
 {
+
     public partial class FormMain : Form
     {
-        public List<String> ListCriteria { get; set; }
-        public List<String> ListAlternative { get; set; }
-        public List<List<float>> MatrixCriteria { get; set; }
-        public List<List<List<float>>> MatrixAlternative { get; set; }
-
-
+        DataSatty dataSatty;
         public FormMain()
         {
             InitializeComponent();
-            ListCriteria = new List<string>();
-            ListAlternative = new List<string>();
-
-
-            ////TETS DATA
-            ListAlternative.Add("mBank");
-            ListAlternative.Add("Bank Milenium");
-            ListAlternative.Add("Bank BPH");
-
-            ListCriteria.Add("Sieć placówek");
-            ListCriteria.Add("Oprocentowanie kredytu");
-            ListCriteria.Add("Opłaty");
-            ListCriteria.Add("Sieć bankomatów");
-            ListCriteria.Add("Okres nieoprocentowanego kredytu");
-
-            ////ENDTEST
-
+            dataSatty = new DataSatty();
         }
 
-        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        #region Strip Menu
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //oknoZapis.ShowDialog();
-           // if (oknoZapis.FileName != "")
-          //  {
-           //     XmlSerializer writer = new XmlSerializer(typeof(FormMain));
-          //      StreamWriter file = new StreamWriter("save.file");
-         //       writer.Serialize(file, proj);
-         //       file.Close();
-           // }
-        }
-
-        /*SAVE TO FILE
-        w konstruktorze:
-oknoZapis.Filter = "AHP|*.ahp";
-            oknoZapis.Title = "Zapisz projekt do pliku";
-
-            oknoOtworz.Filter = "AHP|*.ahp";
-            oknoOtworz.Title = "Otwórz projekt z pliku";
-
-
-private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            oknoZapis.ShowDialog();
-            if (oknoZapis.FileName != "")
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Analytic Hierarchy Process File|*.ahp";
+            saveFileDialog.Title = "Zapisz projekt do pliku";
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName != "")
             {
-                XmlSerializer writer = new XmlSerializer(typeof(Projekt));
-                System.IO.StreamWriter file = new StreamWriter(oknoZapis.FileName);
-                writer.Serialize(file, proj);
+                XmlSerializer writer = new XmlSerializer(typeof(DataSatty));
+                StreamWriter file = new StreamWriter(saveFileDialog.FileName);
+                writer.Serialize(file, dataSatty);
                 file.Close();
             }
         }
 
-        private void otwórzToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            oknoOtworz.ShowDialog();
-            if (oknoOtworz.FileName != "")
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Analytic Hierarchy Process File|*.ahp";
+            openFileDialog.Title = "Otwórz projekt z pliku";
+            openFileDialog.ShowDialog();
+            if (openFileDialog.FileName != "")
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Projekt));
-                StreamReader reader = new StreamReader(oknoOtworz.FileName);
-                proj = (Projekt)serializer.Deserialize(reader);
+                XmlSerializer serializer = new XmlSerializer(typeof(DataSatty));
+                StreamReader reader = new StreamReader(openFileDialog.FileName);
+                dataSatty = (DataSatty)serializer.Deserialize(reader);
                 reader.Close();
-                pokazGrid();
             }
-        }    
-    */
+        }
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataSatty.Clear();
+        }
 
+        #endregion
 
         private void buttonCriteria_Click(object sender, EventArgs e)
         {
             buttonCriteria.Enabled = false;
-            FormCriteria formCriteria = new FormCriteria(ListCriteria, buttonCriteria);
+            FormCriteria formCriteria = new FormCriteria(dataSatty.ListCriteria, buttonCriteria);
             formCriteria.Show();
+        }
+
+        private void buttonCriteria_EnabledChanged(object sender, EventArgs e)
+        {
+            if (buttonCriteria.Enabled == true)
+            {
+                dataSatty.setMatrixCriteria();
+            }
         }
 
         private void buttonAlternative_Click(object sender, EventArgs e)
         {
             buttonAlternative.Enabled = false;
-            FormCriteria formCriteria = new FormCriteria(ListAlternative, buttonAlternative, "Alternatywy");
+            FormCriteria formCriteria = new FormCriteria(dataSatty.ListAlternative, buttonAlternative, "Alternatywy");
             formCriteria.Text = "Zarządaj Alternatywami";
             formCriteria.Show();
         }
 
+        private void buttonAlternative_EnabledChanged(object sender, EventArgs e)
+        {
+            if (buttonAlternative.Enabled == true)
+            {
+                dataSatty.setMatrixAlternative();
+            }
+        }
+
         private void buttonWeightCriteria_Click(object sender, EventArgs e)
         {
-            //buttonCriteria.Enabled = false;
-            MatrixCriteria = new List<List<float>>();
-            for (int i = 0; i < ListCriteria.Count; i++)
-            {
-                MatrixCriteria.Add(new List<float>());
-                for (int j = 0; j < ListCriteria.Count; j++)
-                    MatrixCriteria[i].Add(1);
-            }
-            FormWeight formWeight = new FormWeight(ListCriteria, MatrixCriteria);
+            FormWeight formWeight = new FormWeight(dataSatty.ListCriteria, dataSatty.MatrixCriteria);
             formWeight.Show();
-
         }
 
         private void buttonMatrixWeight_Click(object sender, EventArgs e)
         {
-            FormMatrix formMatrix = new FormMatrix(ListCriteria, MatrixCriteria);
+            FormMatrix formMatrix = new FormMatrix(dataSatty.ListCriteria, dataSatty.MatrixCriteria);
             formMatrix.Show();
         }
 
         private void buttonWeightAlternative_Click(object sender, EventArgs e)
         {
-            MatrixAlternative = new List<List<List<float>>>();
-            for (int i = 0; i < ListCriteria.Count; i++)
-            {
-                MatrixAlternative.Add(new List<List<float>>());
-                for (int j = 0; j < ListAlternative.Count; j++)
-                {
-                    MatrixAlternative[i].Add(new List<float>());
-                    for (int k = 0; k < ListAlternative.Count; k++)
-                        MatrixAlternative[i][j].Add(1);
-                }
-            }
-            FormWeight formWeight = new FormWeight(ListCriteria, ListAlternative, MatrixAlternative);
+            FormWeight formWeight = new FormWeight(dataSatty.ListCriteria, dataSatty.ListAlternative, dataSatty.MatrixAlternative);
             formWeight.Show();
         }
 
         private void buttonMatrixWeightAlternative_Click(object sender, EventArgs e)
         {
-            FormMatrix formMatrix = new FormMatrix(ListCriteria, ListAlternative, MatrixAlternative);
+            FormMatrix formMatrix = new FormMatrix(dataSatty.ListCriteria, dataSatty.ListAlternative, dataSatty.MatrixAlternative);
             formMatrix.Show();
         }
-
 
     }
 }

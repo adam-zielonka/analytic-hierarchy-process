@@ -31,15 +31,15 @@
             this.buttonCriteria = new System.Windows.Forms.Button();
             this.buttonAlternative = new System.Windows.Forms.Button();
             this.buttonWeightCriteria = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonMatrixWeight = new System.Windows.Forms.Button();
             this.buttonWeightAlternative = new System.Windows.Forms.Button();
             this.buttonMatrixWeightAlternative = new System.Windows.Forms.Button();
-            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCriteria
@@ -50,6 +50,7 @@
             this.buttonCriteria.TabIndex = 1;
             this.buttonCriteria.Text = "Zarządzaj Kryteriami";
             this.buttonCriteria.UseVisualStyleBackColor = true;
+            this.buttonCriteria.EnabledChanged += new System.EventHandler(this.buttonCriteria_EnabledChanged);
             this.buttonCriteria.Click += new System.EventHandler(this.buttonCriteria_Click);
             // 
             // buttonAlternative
@@ -60,6 +61,7 @@
             this.buttonAlternative.TabIndex = 2;
             this.buttonAlternative.Text = "Zarządaj Alternatywami";
             this.buttonAlternative.UseVisualStyleBackColor = true;
+            this.buttonAlternative.EnabledChanged += new System.EventHandler(this.buttonAlternative_EnabledChanged);
             this.buttonAlternative.Click += new System.EventHandler(this.buttonAlternative_Click);
             // 
             // buttonWeightCriteria
@@ -72,37 +74,46 @@
             this.buttonWeightCriteria.UseVisualStyleBackColor = true;
             this.buttonWeightCriteria.Click += new System.EventHandler(this.buttonWeightCriteria_Click);
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(407, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(407, 24);
+            this.menuStrip.TabIndex = 4;
+            this.menuStrip.Text = "menuStrip";
             // 
-            // SaveToolStripMenuItem
+            // fileToolStripMenuItem
             // 
-            this.SaveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem1});
-            this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
-            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.SaveToolStripMenuItem.Text = "Plik";
+            this.saveToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.fileToolStripMenuItem.Text = "Plik";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "Nowy";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Otwórz";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Zapisz";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // buttonMatrixWeight
             // 
@@ -134,13 +145,6 @@
             this.buttonMatrixWeightAlternative.UseVisualStyleBackColor = true;
             this.buttonMatrixWeightAlternative.Click += new System.EventHandler(this.buttonMatrixWeightAlternative_Click);
             // 
-            // saveToolStripMenuItem1
-            // 
-            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem1.Text = "Zapisz";
-            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,12 +156,12 @@
             this.Controls.Add(this.buttonWeightCriteria);
             this.Controls.Add(this.buttonAlternative);
             this.Controls.Add(this.buttonCriteria);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "FormMain";
             this.Text = "Metoda analizy hierarchii Saaty’ego";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,13 +171,13 @@
         private System.Windows.Forms.Button buttonCriteria;
         private System.Windows.Forms.Button buttonAlternative;
         private System.Windows.Forms.Button buttonWeightCriteria;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.Button buttonMatrixWeight;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.Button buttonWeightAlternative;
         private System.Windows.Forms.Button buttonMatrixWeightAlternative;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }

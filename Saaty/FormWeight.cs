@@ -58,6 +58,7 @@ namespace Saaty
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma bardzo silną przewagę nad pierwszym");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma bardzo silną, ale nie absolutną przewagę nad pierwszym");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma absolutną przewagę nad pierwszym");
+                    comboBoxWeightList[comboBoxWeightList.Count - 1].Text = loadWeightCriteria(i,j);
 
                     Controls.Add(comboBoxWeightList[comboBoxWeightList.Count - 1]);
 
@@ -68,7 +69,6 @@ namespace Saaty
                 }
             }
         }
-
         public FormWeight(List<string> listCriteria, List<string> listAlternative, List<List<List<float>>> matrixAlternative)
         {
             InitializeComponent();
@@ -117,6 +117,7 @@ namespace Saaty
                         comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma bardzo silną przewagę nad pierwszym");
                         comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma bardzo silną, ale nie absolutną przewagę nad pierwszym");
                         comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma absolutną przewagę nad pierwszym");
+                        comboBoxWeightList[comboBoxWeightList.Count - 1].Text = loadWeightAlternative(k, i, j);
 
                         Controls.Add(comboBoxWeightList[comboBoxWeightList.Count - 1]);
 
@@ -128,7 +129,6 @@ namespace Saaty
                 }
             }
         }
-
         private void saveWeightCriteria()
         {
             int number = 0;
@@ -215,7 +215,27 @@ namespace Saaty
                 }
             }
         }
-
+        private string loadWeightCriteria(int i, int j)
+        {
+            if (_matrix[i][j] == 1) return "Oba elementy są równoznaczne";
+            if (_matrix[i][j] == 2) return "Pierwszy element ma niewielką przewagę nad drugim";
+            if (_matrix[i][j] == 3) return "Pierwszy element ma umiarkowaną przewagę nad drugim";
+            if (_matrix[i][j] == 4) return "Pierwszy element ma umiarkowanie silną przewagę nad drugim";
+            if (_matrix[i][j] == 5) return "Pierwszy element ma znaczną przewagę nad drugim";
+            if (_matrix[i][j] == 6) return "Pierwszy element ma silną przewagę nad drugim";
+            if (_matrix[i][j] == 7) return "Pierwszy element ma bardzo silną przewagę nad drugim";
+            if (_matrix[i][j] == 8) return "Pierwszy element ma bardzo silną, ale nie absolutną przewagę nad drugim";
+            if (_matrix[i][j] == 9) return "Pierwszy element ma absolutną przewagę nad drugim";
+            if (_matrix[i][j] == (float)1 / 2) return "Drugi element ma niewielką przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 3) return "Drugi element ma umiarkowaną przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 4) return "Drugi element ma umiarkowanie silną przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 5) return "Drugi element ma znaczną przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 6) return "Drugi element ma silną przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 7) return "Drugi element ma bardzo silną przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 8) return "Drugi element ma bardzo silną, ale nie absolutną przewagę nad pierwszym";
+            if (_matrix[i][j] == (float)1 / 9) return "Drugi element ma absolutną przewagę nad pierwszym";
+            return "";
+        }
         private void saveWeightAlternative()
         {
             int number = 0;
@@ -304,6 +324,27 @@ namespace Saaty
                     }
                 }
             }
+        }
+        private string loadWeightAlternative(int k,int i, int j)
+        {
+            if (_matrixAlternative[k][i][j] == 1) return "Oba elementy są równoznaczne";
+            if (_matrixAlternative[k][i][j] == 2) return "Pierwszy element ma niewielką przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 3) return "Pierwszy element ma umiarkowaną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 4) return "Pierwszy element ma umiarkowanie silną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 5) return "Pierwszy element ma znaczną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 6) return "Pierwszy element ma silną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 7) return "Pierwszy element ma bardzo silną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 8) return "Pierwszy element ma bardzo silną, ale nie absolutną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == 9) return "Pierwszy element ma absolutną przewagę nad drugim";
+            if (_matrixAlternative[k][i][j] == (float)1 / 2) return "Drugi element ma niewielką przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 3) return "Drugi element ma umiarkowaną przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 4) return "Drugi element ma umiarkowanie silną przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 5) return "Drugi element ma znaczną przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 6) return "Drugi element ma silną przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 7) return "Drugi element ma bardzo silną przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 8) return "Drugi element ma bardzo silną, ale nie absolutną przewagę nad pierwszym";
+            if (_matrixAlternative[k][i][j] == (float)1 / 9) return "Drugi element ma absolutną przewagę nad pierwszym";
+            return "";
         }
         private void buttonSaveWeight_Click(object sender, EventArgs e)
         {
