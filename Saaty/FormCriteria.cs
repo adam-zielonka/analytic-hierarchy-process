@@ -23,6 +23,7 @@ namespace Saaty
             editMode = false;
             dataSatty = _dataSatty;
             formMain = _formMain;
+            id = _dataSatty.ListCriteria.Count();
             comboBoxValueCriteria.SelectedIndex = 0;
             comboBoxPrecisionCriteria.SelectedIndex = 4;
         }
@@ -55,6 +56,7 @@ namespace Saaty
                 dataSatty.AddCriteria(textBoxNameCriteria.Text, value, double.Parse(comboBoxPrecisionCriteria.Text));
             }
             formMain.tabPageStep1_Enter(sender, e);
+            formMain.dataGridViewCriteria.Rows[id].Selected = true;
             formMain.Save();
             this.Close();
         }

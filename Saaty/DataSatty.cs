@@ -11,6 +11,7 @@ namespace Saaty
         public List<string> ListCriteria { get; set; }
         public List<bool> ListCriteriaValueType { get; set; }
         public List<double> ListCriteriaPrecision { get; set; }
+        public List<int> ListCriteriaWeight { get; set; }
         public List<string> ListAlternative { get; set; }
         public List<List<double>> MatrixCriteria { get; set; }
         public List<List<List<double>>> MatrixAlternative { get; set; }
@@ -25,6 +26,7 @@ namespace Saaty
             ListCriteria = new List<string>();
             ListCriteriaValueType = new List<bool>();
             ListCriteriaPrecision = new List<double>();
+            ListCriteriaWeight = new List<int>();
             ListAlternative = new List<string>();
             MatrixAlternative = new List<List<List<double>>>();
             MatrixCriteria = new List<List<double>>();
@@ -39,6 +41,7 @@ namespace Saaty
             ListCriteria.Clear();
             ListCriteriaValueType.Clear();
             ListCriteriaPrecision.Clear();
+            ListCriteriaWeight.Clear();
             ListAlternative.Clear();
             MatrixCriteria.Clear();
             MatrixAlternative.Clear();
@@ -52,6 +55,7 @@ namespace Saaty
             ListCriteria.Add(_name);
             ListCriteriaValueType.Add(_value);
             ListCriteriaPrecision.Add(_precision);
+            ListCriteriaWeight.Add(1);
             MatrixCriteria.Add(new List<double>());
             for (int i = 0; i < ListCriteria.Count; i++)
                 MatrixCriteria[ListCriteria.Count - 1].Add(1);
@@ -75,6 +79,7 @@ namespace Saaty
             ListCriteria.RemoveAt(_id);
             ListCriteriaValueType.RemoveAt(_id);
             ListCriteriaPrecision.RemoveAt(_id);
+            ListCriteriaWeight.RemoveAt(_id);
         }
 
         public void AddAlternative(string _name)
@@ -99,6 +104,57 @@ namespace Saaty
                 MatrixAlternative[i].RemoveAt(_id);
             }
             ListAlternative.RemoveAt(_id);
+        }
+
+        #endregion
+
+        #region Wieght Criteria
+
+        public void UpCriteria(int _id)
+        {
+            ListCriteriaWeight[_id]++;
+            if (ListCriteriaWeight[_id] > 9)
+            {
+                ListCriteriaWeight[_id]--;
+            }
+            if (ListCriteriaWeight[_id] == -1)
+            {
+                ListCriteriaWeight[_id]++;
+            }
+            if (ListCriteriaWeight[_id] == 0)
+            {
+                ListCriteriaWeight[_id]++;
+            }
+        }
+
+        public void DownCriteria(int _id)
+        {
+            ListCriteriaWeight[_id]--;
+            if (ListCriteriaWeight[_id] < -9)
+            {
+                ListCriteriaWeight[_id]++;
+            }
+            if (ListCriteriaWeight[_id] == 0)
+            {
+                ListCriteriaWeight[_id]--;
+            }
+            if (ListCriteriaWeight[_id] == -1)
+            {
+                ListCriteriaWeight[_id]--;
+            }
+        }
+
+        #endregion
+
+        #region Matrix
+
+        public void Matrix()
+        {
+            //for (int i = 0; i < ListCriteria.Count; i++)
+            //    for (int j = 1+i; j < ListCriteria.Count; j++)
+            //    {
+            //        MatrixCriteria[i][j] = ListCriteriaWeight[j];
+            //    }
         }
 
         #endregion

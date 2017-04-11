@@ -110,6 +110,12 @@ namespace Saaty
                 else value = "Im większa tym lepiej";
                 dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i], value, dataSatty.ListCriteriaPrecision[i]);
             }
+            if (dataGridViewCriteria.Rows.Count > 0)
+            {
+                if (tabManage.Index == 0) tabManage.SetIndex(1);
+                tabManage.ShowTab(2);
+                tabManage.ShowTab(3);
+            }
         }
 
         private void buttonAddCriteria_Click(object sender, EventArgs e)
@@ -140,8 +146,11 @@ namespace Saaty
             }
             else
             {
-                dataSatty.RemoveCriteria(dataGridViewCriteria.SelectedRows[0].Index);
+                int id = dataGridViewCriteria.SelectedRows[0].Index;
+                dataSatty.RemoveCriteria(id);
+                id--;
                 tabPageStep1_Enter(sender, e);
+                if (id > 0) dataGridViewCriteria.Rows[id].Selected = true;
                 Save();
             }
         }
@@ -152,15 +161,69 @@ namespace Saaty
 
         private void tabPageStep2_Enter(object sender, EventArgs e)
         {
-            dataGridViewCriteria.Rows.Clear();
-            dataGridViewCriteria.Columns.Clear();
-            dataGridViewCriteria.Columns.Add("name", "Nazwa");
-            for (int i = 0; i < dataGridViewCriteria.Columns.Count; i++)
-                dataGridViewCriteria.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridViewCriteriaWeight.Rows.Clear();
+            dataGridViewCriteriaWeight.Columns.Clear();
+            dataGridViewCriteriaWeight.Columns.Add("id", "ID");
+            dataGridViewCriteriaWeight.Columns.Add("name", "Nazwa");
+            dataGridViewCriteriaWeight.Columns.Add("wight", "Ważność");
+            dataGridViewCriteriaWeight.Columns.Add("wightInt", "Ważność");
+            dataGridViewCriteriaWeight.Columns[0].Visible = false;
+            dataGridViewCriteriaWeight.Columns[3].Visible = false;
+            for (int i = 0; i < dataGridViewCriteriaWeight.Columns.Count; i++)
+                dataGridViewCriteriaWeight.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             for (int i = 0; i < dataSatty.ListCriteria.Count; i++)
             {
-                dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i]);
+                string weight = "";
+                if (dataSatty.ListCriteriaWeight[i] > 0) weight += dataSatty.ListCriteriaWeight[i];
+                else weight += "1/" + Math.Abs(dataSatty.ListCriteriaWeight[i]);
+                dataGridViewCriteriaWeight.Rows.Add(i, dataSatty.ListCriteria[i], weight, dataSatty.ListCriteriaWeight[i]);
             }
+            dataGridViewCriteriaWeight.Sort(dataGridViewCriteriaWeight.Columns[3], ListSortDirection.Descending);
+        }
+
+        private void buttonUpCriteria_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCriteriaWeight.Rows.Count != 0)
+            {
+                int id = int.Parse(dataGridViewCriteriaWeight.Rows[dataGridViewCriteriaWeight.SelectedRows[0].Index].Cells[0].Value.ToString());
+                dataSatty.UpCriteria(id);
+                tabPageStep2_Enter(sender, e);
+                for (int i = 0; i < dataGridViewCriteriaWeight.RowCount; i++)
+                {
+                    if (int.Parse(dataGridViewCriteriaWeight.Rows[i].Cells[0].Value.ToString()) == id)
+                    {
+                        dataGridViewCriteriaWeight.Rows[i].Selected = true;
+                        break;
+                    }
+                }
+                Save();
+            }
+        }
+
+        private void buttonDownCriteria_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCriteriaWeight.Rows.Count != 0)
+            {
+                int id = int.Parse(dataGridViewCriteriaWeight.Rows[dataGridViewCriteriaWeight.SelectedRows[0].Index].Cells[0].Value.ToString());
+                dataSatty.DownCriteria(id);
+                tabPageStep2_Enter(sender, e);
+                for (int i = 0; i < dataGridViewCriteriaWeight.RowCount; i++)
+                {
+                    if (int.Parse(dataGridViewCriteriaWeight.Rows[i].Cells[0].Value.ToString()) == id)
+                    {
+                        dataGridViewCriteriaWeight.Rows[i].Selected = true;
+                        break;
+                    }
+                }
+                Save();
+            }
+        }
+
+        private void buttonMatrix_Click(object sender, EventArgs e)
+        {
+            dataSatty.Matrix();
+            FormMatrix formMatrix = new FormMatrix(dataSatty);
+            formMatrix.Show();
         }
 
         #endregion
@@ -173,8 +236,8 @@ namespace Saaty
             MessageBox.Show(dataSatty.ResultName, "Wynik", MessageBoxButtons.OK);
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

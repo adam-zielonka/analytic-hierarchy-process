@@ -59,6 +59,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMatrix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMatrix.Designer.cs">
+      <DependentUpon>FormMatrix.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpenAndSave.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +74,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatrix.resx">
+      <DependentUpon>FormMatrix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
