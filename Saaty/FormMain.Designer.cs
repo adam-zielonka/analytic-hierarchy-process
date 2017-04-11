@@ -35,9 +35,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.polishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonMatrixWeight = new System.Windows.Forms.Button();
             this.buttonWeightAlternative = new System.Windows.Forms.Button();
@@ -55,11 +52,13 @@
             this.tabPageWeightCriteria = new System.Windows.Forms.TabPage();
             this.tabPageWeightAlternative = new System.Windows.Forms.TabPage();
             this.tabPageResults = new System.Windows.Forms.TabPage();
+            this.buttonResults = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
-            this.buttonResults = new System.Windows.Forms.Button();
+            this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
+            this.tabPageStart.SuspendLayout();
             this.tabPageCriteria.SuspendLayout();
             this.tabPageAlternative.SuspendLayout();
             this.tabPageWeightCriteria.SuspendLayout();
@@ -78,7 +77,6 @@
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.languageToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
@@ -109,26 +107,6 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // languageToolStripMenuItem
-            // 
-            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.englishToolStripMenuItem,
-            this.polishToolStripMenuItem});
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
-            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            // 
-            // englishToolStripMenuItem
-            // 
-            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
-            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
-            // 
-            // polishToolStripMenuItem
-            // 
-            this.polishToolStripMenuItem.Name = "polishToolStripMenuItem";
-            resources.ApplyResources(this.polishToolStripMenuItem, "polishToolStripMenuItem");
-            this.polishToolStripMenuItem.Click += new System.EventHandler(this.polishToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -171,6 +149,7 @@
             // 
             // tabPageStart
             // 
+            this.tabPageStart.Controls.Add(this.richTextBoxStart);
             resources.ApplyResources(this.tabPageStart, "tabPageStart");
             this.tabPageStart.Name = "tabPageStart";
             this.tabPageStart.UseVisualStyleBackColor = true;
@@ -252,6 +231,13 @@
             this.tabPageResults.Name = "tabPageResults";
             this.tabPageResults.UseVisualStyleBackColor = true;
             // 
+            // buttonResults
+            // 
+            resources.ApplyResources(this.buttonResults, "buttonResults");
+            this.buttonResults.Name = "buttonResults";
+            this.buttonResults.UseVisualStyleBackColor = true;
+            this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
+            // 
             // buttonBack
             // 
             resources.ApplyResources(this.buttonBack, "buttonBack");
@@ -267,12 +253,13 @@
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
-            // buttonResults
+            // richTextBoxStart
             // 
-            resources.ApplyResources(this.buttonResults, "buttonResults");
-            this.buttonResults.Name = "buttonResults";
-            this.buttonResults.UseVisualStyleBackColor = true;
-            this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
+            this.richTextBoxStart.BackColor = System.Drawing.Color.White;
+            this.richTextBoxStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.richTextBoxStart, "richTextBoxStart");
+            this.richTextBoxStart.Name = "richTextBoxStart";
+            this.richTextBoxStart.ReadOnly = true;
             // 
             // FormMain
             // 
@@ -287,6 +274,7 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
+            this.tabPageStart.ResumeLayout(false);
             this.tabPageCriteria.ResumeLayout(false);
             this.tabPageCriteria.PerformLayout();
             this.tabPageAlternative.ResumeLayout(false);
@@ -309,9 +297,6 @@
         private System.Windows.Forms.Button buttonWeightAlternative;
         private System.Windows.Forms.Button buttonMatrixWeightAlternative;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem polishToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageStart;
         private System.Windows.Forms.TabPage tabPageCriteria;
@@ -329,5 +314,6 @@
         private System.Windows.Forms.TabPage tabPageResults;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Button buttonResults;
+        private System.Windows.Forms.RichTextBox richTextBoxStart;
     }
 }

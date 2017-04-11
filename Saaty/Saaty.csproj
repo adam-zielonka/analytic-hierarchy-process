@@ -73,9 +73,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMain.en.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="TabManage.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

@@ -15,6 +15,8 @@ namespace Saaty
         public List<float> ListFactorCriteria { get; set; }
         public List<List<float>> ListFactorAlternative { get; set; }
         public List<float> ListResult { get; set; }
+        public int ResultID { get; set; }
+        public string ResultName { get; set; }
 
         public DataSatty()
         {
@@ -22,6 +24,10 @@ namespace Saaty
             ListAlternative = new List<string>();
             MatrixAlternative = new List<List<List<float>>>();
             MatrixCriteria = new List<List<float>>();
+            ListFactorCriteria = new List<float>();
+            ListFactorAlternative = new List<List<float>>();
+            ListResult = new List<float>();
+            ClearCalculate();
         }
 
         public void Clear()
@@ -30,6 +36,7 @@ namespace Saaty
             ListAlternative.Clear();
             MatrixCriteria.Clear();
             MatrixAlternative.Clear();
+            ClearCalculate();
         }
 
         #region Manage Criteria & Alternative
@@ -84,19 +91,43 @@ namespace Saaty
             ListAlternative.RemoveAt(_id);
         }
 
-        public int Calculate()
+        #endregion
+
+        #region Calculate
+
+        public void Calculate()
         {
-            CalculateFactorCriteria();
-            CalculateFactorAlternative();
-            CalculateResult();
-            float max = ListResult.Max();
-            int id = 0;
-            for(;id<ListResult.Count;id++)
+            if (ListCriteria.Count == 0 || ListAlternative.Count == 0)
             {
-                if (ListResult[id] == max)
+                ClearCalculate();
+            }
+            else
+            {
+                CalculateFactorCriteria();
+                CalculateFactorAlternative();
+                CalculateResult();
+                SetResult();
+            }
+        }
+
+        private void ClearCalculate()
+        {
+            ListFactorCriteria.Clear();
+            ListFactorAlternative.Clear();
+            ListResult.Clear();
+            ResultID = -1;
+            ResultName = "No data to calculate";
+        }
+
+        private void SetResult()
+        {
+            float max = ListResult.Max();
+            for (ResultID = 0; ResultID < ListResult.Count; ResultID++)
+            {
+                if (ListResult[ResultID] == max)
                     break;
             }
-            return id;
+            ResultName = ListAlternative[ResultID];
         }
 
         private void CalculateFactorCriteria()
