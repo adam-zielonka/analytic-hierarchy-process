@@ -23,7 +23,7 @@ namespace Saaty
             editMode = false;
             dataSatty = _dataSatty;
             formMain = _formMain;
-            id = _dataSatty.ListCriteria.Count();
+            id = _dataSatty.criteria.Name.Count();
             comboBoxValueCriteria.SelectedIndex = 0;
             comboBoxPrecisionCriteria.SelectedIndex = 4;
         }
@@ -36,10 +36,10 @@ namespace Saaty
             formMain = _formMain;
             id = _id;
             int value = 0;
-            if (dataSatty.ListCriteriaValueType[_id]) value = 1;
-            textBoxNameCriteria.Text = dataSatty.ListCriteria[_id];
+            if (dataSatty.criteria.ValueType[_id]) value = 1;
+            textBoxNameCriteria.Text = dataSatty.criteria.Name[_id];
             comboBoxValueCriteria.SelectedIndex = value;
-            comboBoxPrecisionCriteria.Text = dataSatty.ListCriteriaPrecision[_id].ToString();
+            comboBoxPrecisionCriteria.Text = dataSatty.criteria.Precision[_id].ToString();
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
@@ -47,9 +47,9 @@ namespace Saaty
             bool value = comboBoxValueCriteria.SelectedIndex == 1;
             if (editMode)
             {
-                dataSatty.ListCriteria[id] = textBoxNameCriteria.Text;
-                dataSatty.ListCriteriaValueType[id] = value;
-                dataSatty.ListCriteriaPrecision[id] = double.Parse(comboBoxPrecisionCriteria.Text);
+                dataSatty.criteria.Name[id] = textBoxNameCriteria.Text;
+                dataSatty.criteria.ValueType[id] = value;
+                dataSatty.criteria.Precision[id] = double.Parse(comboBoxPrecisionCriteria.Text);
             }
             else
             {

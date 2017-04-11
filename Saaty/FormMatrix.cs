@@ -15,16 +15,16 @@ namespace Saaty
         public FormMatrix(DataSatty _dataSatty)
         {
             InitializeComponent();
-            for (int i = 0; i < _dataSatty.ListCriteria.Count; i++)
-                dataGridView1.Columns.Add(i.ToString(), _dataSatty.ListCriteria[i].ToString());
-            for (int i = 0; i < _dataSatty.ListCriteria.Count; i++)
+            for (int i = 0; i < _dataSatty.criteria.Name.Count; i++)
+                dataGridView1.Columns.Add(i.ToString(), _dataSatty.criteria.Name[i].ToString());
+            for (int i = 0; i < _dataSatty.criteria.Name.Count; i++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].HeaderCell.Value = _dataSatty.ListCriteria[i].ToString();
+                dataGridView1.Rows[i].HeaderCell.Value = _dataSatty.criteria.Name[i].ToString();
             }
-            for (int i = 0; i < _dataSatty.ListCriteria.Count; i++)
-                for (int j = 0; j < _dataSatty.ListCriteria.Count; j++)
-                    dataGridView1.Rows[i].Cells[j].Value = _dataSatty.MatrixCriteria[i][j];
+            for (int i = 0; i < _dataSatty.criteria.Name.Count; i++)
+                for (int j = 0; j < _dataSatty.criteria.Name.Count; j++)
+                    dataGridView1.Rows[i].Cells[j].Value = _dataSatty.matrix.Criteria[i][j];
 
         }
     }

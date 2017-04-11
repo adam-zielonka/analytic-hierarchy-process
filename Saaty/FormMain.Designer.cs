@@ -50,6 +50,7 @@
             this.dataGridViewCriteriaWeight = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewAlternative = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
             this.tabPageResults = new System.Windows.Forms.TabPage();
@@ -61,7 +62,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridViewAlternative = new System.Windows.Forms.DataGridView();
             this.tabControlMain.SuspendLayout();
             this.tabPageStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,9 +70,9 @@
             this.tabPageStep2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriaWeight)).BeginInit();
             this.tabPageStep3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).BeginInit();
             this.tabPageResults.SuspendLayout();
             this.menuStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -312,8 +312,8 @@
             this.label2.Size = new System.Drawing.Size(474, 32);
             this.label2.TabIndex = 0;
             this.label2.Text = "Teraz musisz ustalić, które kryteria są dla ciebie ważniejsze. Im wyższa waga tym" +
-    " kryterium jest ważniejsze, im mniejsza tym mniej ważne. Zakres od 1 (najmniejwa" +
-    "żne) do 9 (najważniejsze).\r\n\r\n\r\n\r\n";
+    " kryterium jest ważniejsze, im mniejsza tym mniej ważne. Zakres od 1 (najmniej w" +
+    "ażne) do 9 (najważniejsze).\r\n\r\n\r\n\r\n";
             // 
             // tabPageStep3
             // 
@@ -327,6 +327,14 @@
             this.tabPageStep3.Text = "Krok 3.";
             this.tabPageStep3.UseVisualStyleBackColor = true;
             this.tabPageStep3.Enter += new System.EventHandler(this.tabPageStep3_Enter);
+            // 
+            // dataGridViewAlternative
+            // 
+            this.dataGridViewAlternative.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlternative.Location = new System.Drawing.Point(9, 21);
+            this.dataGridViewAlternative.Name = "dataGridViewAlternative";
+            this.dataGridViewAlternative.Size = new System.Drawing.Size(471, 289);
+            this.dataGridViewAlternative.TabIndex = 2;
             // 
             // label3
             // 
@@ -433,14 +441,6 @@
             this.saveToolStripMenuItem.Text = "Zapisz";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // dataGridViewAlternative
-            // 
-            this.dataGridViewAlternative.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAlternative.Location = new System.Drawing.Point(9, 21);
-            this.dataGridViewAlternative.Name = "dataGridViewAlternative";
-            this.dataGridViewAlternative.Size = new System.Drawing.Size(471, 289);
-            this.dataGridViewAlternative.TabIndex = 2;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,10 +464,10 @@
             this.tabPageStep2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriaWeight)).EndInit();
             this.tabPageStep3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).EndInit();
             this.tabPageResults.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

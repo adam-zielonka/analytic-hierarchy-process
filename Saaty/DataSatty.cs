@@ -8,46 +8,74 @@ namespace Saaty
 {
     public class DataSatty
     {
-        public List<string> ListCriteria { get; set; }
-        public List<bool> ListCriteriaValueType { get; set; }
-        public List<double> ListCriteriaPrecision { get; set; }
-        public List<int> ListCriteriaWeight { get; set; }
-        public List<string> ListAlternative { get; set; }
-        public List<List<double>> MatrixCriteria { get; set; }
-        public List<List<double>> MatrixData { get; set; }
-        public List<List<List<double>>> MatrixAlternative { get; set; }
-        public List<double> ListFactorCriteria { get; set; }
-        public List<List<double>> ListFactorAlternative { get; set; }
-        public List<double> ListResult { get; set; }
-        public int ResultId { get; set; }
-        public string ResultName { get; set; }
+        public class Criteria
+        {
+            public List<string> Name { get; set; }
+            public List<bool> ValueType { get; set; }
+            public List<double> Precision { get; set; }
+            public List<int> Weight { get; set; }
+        }
+
+        public class Alternative
+        {
+            public List<string> Name { get; set; }
+        }
+
+        public class Result
+        {
+            public List<double> FactorCriteria { get; set; }
+            public List<List<double>> FactorAlternative { get; set; }
+            public List<double> Results { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class Matrix
+        {
+            public List<List<double>> Criteria { get; set; }
+            public List<List<double>> Data { get; set; }
+            public List<List<List<double>>> Alternative { get; set; }
+        }
+
+        public Criteria criteria { get; set; }
+        public Alternative alternative { get; set; }
+        public Matrix matrix { get; set; }
+        public Result result { get; set; }
 
         public DataSatty()
         {
-            ListCriteria = new List<string>();
-            ListCriteriaValueType = new List<bool>();
-            ListCriteriaPrecision = new List<double>();
-            ListCriteriaWeight = new List<int>();
-            ListAlternative = new List<string>();
-            MatrixAlternative = new List<List<List<double>>>();
-            MatrixCriteria = new List<List<double>>();
-            MatrixData = new List<List<double>>();
-            ListFactorCriteria = new List<double>();
-            ListFactorAlternative = new List<List<double>>();
-            ListResult = new List<double>();
+            criteria = new Criteria();
+            criteria.Name = new List<string>();
+            criteria.ValueType = new List<bool>();
+            criteria.Precision = new List<double>();
+            criteria.Weight = new List<int>();
+
+            alternative = new Alternative();
+            alternative.Name = new List<string>();
+
+            matrix = new Matrix();
+            matrix.Alternative = new List<List<List<double>>>();
+            matrix.Criteria = new List<List<double>>();
+            matrix.Data = new List<List<double>>();
+
+            result = new Result();
+            result.FactorCriteria = new List<double>();
+            result.FactorAlternative = new List<List<double>>();
+            result.Results = new List<double>();
+
             ClearCalculate();
         }
 
         public void Clear()
         {
-            ListCriteria.Clear();
-            ListCriteriaValueType.Clear();
-            ListCriteriaPrecision.Clear();
-            ListCriteriaWeight.Clear();
-            ListAlternative.Clear();
-            MatrixCriteria.Clear();
-            MatrixAlternative.Clear();
-            MatrixData.Clear();
+            criteria.Name.Clear();
+            criteria.ValueType.Clear();
+            criteria.Precision.Clear();
+            criteria.Weight.Clear();
+            alternative.Name.Clear();
+            matrix.Criteria.Clear();
+            matrix.Alternative.Clear();
+            matrix.Data.Clear();
             ClearCalculate();
         }
 
@@ -55,58 +83,58 @@ namespace Saaty
 
         public void AddCriteria(string _name, bool _value, double _precision)
         {
-            ListCriteria.Add(_name);
-            ListCriteriaValueType.Add(_value);
-            ListCriteriaPrecision.Add(_precision);
-            ListCriteriaWeight.Add(1);
-            MatrixCriteria.Add(new List<double>());
-            for (int i = 0; i < ListCriteria.Count; i++)
-                MatrixCriteria[ListCriteria.Count - 1].Add(1);
-            for (int i = 0; i < ListCriteria.Count - 1; i++)
-                MatrixCriteria[i].Add(1);
-            MatrixAlternative.Add(new List<List<double>>());
-            for (int j = 0; j < ListAlternative.Count; j++)
+            criteria.Name.Add(_name);
+            criteria.ValueType.Add(_value);
+            criteria.Precision.Add(_precision);
+            criteria.Weight.Add(1);
+            matrix.Criteria.Add(new List<double>());
+            for (int i = 0; i < criteria.Name.Count; i++)
+                matrix.Criteria[criteria.Name.Count - 1].Add(1);
+            for (int i = 0; i < criteria.Name.Count - 1; i++)
+                matrix.Criteria[i].Add(1);
+            matrix.Alternative.Add(new List<List<double>>());
+            for (int j = 0; j < alternative.Name.Count; j++)
             {
-                MatrixAlternative[ListCriteria.Count - 1].Add(new List<double>());
-                for (int k = 0; k < ListAlternative.Count; k++)
-                    MatrixAlternative[ListCriteria.Count - 1][j].Add(1);
+                matrix.Alternative[criteria.Name.Count - 1].Add(new List<double>());
+                for (int k = 0; k < alternative.Name.Count; k++)
+                    matrix.Alternative[criteria.Name.Count - 1][j].Add(1);
             }
         }
 
         public void RemoveCriteria(int _id)
         {
-            MatrixAlternative.RemoveAt(_id);
-            for (int i = 0; i < ListCriteria.Count; i++)
-                MatrixCriteria[i].RemoveAt(_id);
-            MatrixCriteria.RemoveAt(_id);
-            ListCriteria.RemoveAt(_id);
-            ListCriteriaValueType.RemoveAt(_id);
-            ListCriteriaPrecision.RemoveAt(_id);
-            ListCriteriaWeight.RemoveAt(_id);
+            matrix.Alternative.RemoveAt(_id);
+            for (int i = 0; i < criteria.Name.Count; i++)
+                matrix.Criteria[i].RemoveAt(_id);
+            matrix.Criteria.RemoveAt(_id);
+            criteria.Name.RemoveAt(_id);
+            criteria.ValueType.RemoveAt(_id);
+            criteria.Precision.RemoveAt(_id);
+            criteria.Weight.RemoveAt(_id);
         }
 
         public void AddAlternative(string _name)
         {
-            ListAlternative.Add(_name);
-            for (int i = 0; i < ListCriteria.Count; i++)
+            alternative.Name.Add(_name);
+            for (int i = 0; i < criteria.Name.Count; i++)
             {
-                MatrixAlternative[i].Add(new List<double>());
-                for (int k = 0; k < ListAlternative.Count; k++)
-                    MatrixAlternative[i][ListAlternative.Count - 1].Add(1);
-                for (int k = 0; k < ListAlternative.Count - 1; k++)
-                    MatrixAlternative[i][k].Add(1);
+                matrix.Alternative[i].Add(new List<double>());
+                for (int k = 0; k < alternative.Name.Count; k++)
+                    matrix.Alternative[i][alternative.Name.Count - 1].Add(1);
+                for (int k = 0; k < alternative.Name.Count - 1; k++)
+                    matrix.Alternative[i][k].Add(1);
             }
         }
 
         public void RemoveAlternative(int _id)
         {
-            for (int i = 0; i < ListCriteria.Count; i++)
+            for (int i = 0; i < criteria.Name.Count; i++)
             {
-                for (int k = 0; k < ListAlternative.Count; k++)
-                    MatrixAlternative[i][k].RemoveAt(_id);
-                MatrixAlternative[i].RemoveAt(_id);
+                for (int k = 0; k < alternative.Name.Count; k++)
+                    matrix.Alternative[i][k].RemoveAt(_id);
+                matrix.Alternative[i].RemoveAt(_id);
             }
-            ListAlternative.RemoveAt(_id);
+            alternative.Name.RemoveAt(_id);
         }
 
         #endregion
@@ -115,19 +143,19 @@ namespace Saaty
 
         public void UpCriteria(int _id)
         {
-            ListCriteriaWeight[_id]++;
-            if (ListCriteriaWeight[_id] > 9)
+            criteria.Weight[_id]++;
+            if (criteria.Weight[_id] > 9)
             {
-                ListCriteriaWeight[_id]--;
+                criteria.Weight[_id]--;
             }
         }
 
         public void DownCriteria(int _id)
         {
-            ListCriteriaWeight[_id]--;
-            if (ListCriteriaWeight[_id] < 1)
+            criteria.Weight[_id]--;
+            if (criteria.Weight[_id] < 1)
             {
-                ListCriteriaWeight[_id]++;
+                criteria.Weight[_id]++;
             }
         }
 
@@ -137,32 +165,32 @@ namespace Saaty
 
         public void ZeroMatrix()
         {
-            for (int i = 0; i < ListCriteria.Count; i++)
+            for (int i = 0; i < criteria.Name.Count; i++)
             {
-                for (int j = 0; j < ListCriteria.Count; j++)
+                for (int j = 0; j < criteria.Name.Count; j++)
                 {
-                        MatrixCriteria[i][j] = 0;
+                    matrix.Criteria[i][j] = 0;
                 }
             }
         }
 
         public void GenerateMatrix()
         {
-            for (int i = 0; i < ListCriteria.Count; i++)
+            for (int i = 0; i < criteria.Name.Count; i++)
             {
-                for (int j = 0; j < ListCriteria.Count; j++)
+                for (int j = 0; j < criteria.Name.Count; j++)
                 {
                     if (j != i)
                     {
-                        if (ListCriteriaWeight[i] - ListCriteriaWeight[j] >= 0)
-                            MatrixCriteria[i][j] = ListCriteriaWeight[i] - ListCriteriaWeight[j] + 1;
+                        if (criteria.Weight[i] - criteria.Weight[j] >= 0)
+                            matrix.Criteria[i][j] = criteria.Weight[i] - criteria.Weight[j] + 1;
                         else
-                            MatrixCriteria[i][j] = 1.0 / ((ListCriteriaWeight[i] - ListCriteriaWeight[j]) * (-1.0) + 1.0);
+                            matrix.Criteria[i][j] = 1.0 / ((criteria.Weight[i] - criteria.Weight[j]) * (-1.0) + 1.0);
 
                     }
                     else
                     {
-                        MatrixCriteria[i][j] = 1;
+                        matrix.Criteria[i][j] = 1;
                     }
                 }
             }
@@ -174,7 +202,7 @@ namespace Saaty
 
         public void Calculate()
         {
-            if (ListCriteria.Count == 0 || ListAlternative.Count == 0)
+            if (criteria.Name.Count == 0 || alternative.Name.Count == 0)
             {
                 ClearCalculate();
             }
@@ -189,90 +217,90 @@ namespace Saaty
 
         private void ClearCalculate()
         {
-            ListFactorCriteria.Clear();
-            ListFactorAlternative.Clear();
-            ListResult.Clear();
-            ResultId = -1;
-            ResultName = "No data to calculate";
+            result.FactorCriteria.Clear();
+            result.FactorAlternative.Clear();
+            result.Results.Clear();
+            result.Id = -1;
+            result.Name = "No data to calculate";
         }
 
         private void SetResult()
         {
-            ResultId = 0;
-            for (int i = 1; i < ListResult.Count; i++)
+            result.Id = 0;
+            for (int i = 1; i < result.Results.Count; i++)
             {
-                if (ListResult[i] > ListResult[ResultId])
-                    ResultId = i;
+                if (result.Results[i] > result.Results[result.Id])
+                    result.Id = i;
             }
-            ResultName = ListAlternative[ResultId];
+            result.Name = alternative.Name[result.Id];
         }
 
         private void CalculateFactorCriteria()
         {
-            ListFactorCriteria.Clear();
-            for (int i = 0; i < ListCriteria.Count; i++)
-                ListFactorCriteria.Add(1);
+            result.FactorCriteria.Clear();
+            for (int i = 0; i < criteria.Name.Count; i++)
+                result.FactorCriteria.Add(1);
 
             double denominator = 0;
 
-            for (int i = 0; i < ListCriteria.Count; i++)
+            for (int i = 0; i < criteria.Name.Count; i++)
             {
-                for (int j = 0; j < ListCriteria.Count; j++)
+                for (int j = 0; j < criteria.Name.Count; j++)
                 {
-                    ListFactorCriteria[i] *= MatrixCriteria[i][j];
+                    result.FactorCriteria[i] *= matrix.Criteria[i][j];
                 }
-                ListFactorCriteria[i] = Math.Pow(ListFactorCriteria[i], 1.0 / ListCriteria.Count);
-                denominator += ListFactorCriteria[i];
+                result.FactorCriteria[i] = Math.Pow(result.FactorCriteria[i], 1.0 / criteria.Name.Count);
+                denominator += result.FactorCriteria[i];
             }
 
-            for (int i = 0; i < ListCriteria.Count; i++)
+            for (int i = 0; i < criteria.Name.Count; i++)
             {
-                ListFactorCriteria[i] /= denominator;
-                ListFactorCriteria[i] *= ListCriteria.Count;
+                result.FactorCriteria[i] /= denominator;
+                result.FactorCriteria[i] *= criteria.Name.Count;
             }
         }
 
         private void CalculateFactorAlternative()
         {
-            ListFactorAlternative.Clear();
-            for (int k = 0; k < ListCriteria.Count; k++)
+            result.FactorAlternative.Clear();
+            for (int k = 0; k < criteria.Name.Count; k++)
             {
-                ListFactorAlternative.Add(new List<double>());
-                for (int i = 0; i < ListAlternative.Count; i++)
-                    ListFactorAlternative[k].Add(1);
+                result.FactorAlternative.Add(new List<double>());
+                for (int i = 0; i < alternative.Name.Count; i++)
+                    result.FactorAlternative[k].Add(1);
             }
 
-            for (int k = 0; k < ListCriteria.Count; k++)
+            for (int k = 0; k < criteria.Name.Count; k++)
             {
                 double denominator = 0;
-                for (int i = 0; i < ListAlternative.Count; i++)
+                for (int i = 0; i < alternative.Name.Count; i++)
                 {
-                    for (int j = 0; j < ListAlternative.Count; j++)
+                    for (int j = 0; j < alternative.Name.Count; j++)
                     {
-                        ListFactorAlternative[k][i] *= MatrixAlternative[k][i][j];
+                        result.FactorAlternative[k][i] *= matrix.Alternative[k][i][j];
                     }
-                    ListFactorAlternative[k][i] = Math.Pow(ListFactorAlternative[k][i], 1.0 / ListAlternative.Count);
-                    denominator += ListFactorAlternative[k][i];
+                    result.FactorAlternative[k][i] = Math.Pow(result.FactorAlternative[k][i], 1.0 / alternative.Name.Count);
+                    denominator += result.FactorAlternative[k][i];
                 }
 
-                for (int i = 0; i < ListAlternative.Count; i++)
+                for (int i = 0; i < alternative.Name.Count; i++)
                 {
-                    ListFactorAlternative[k][i] /= denominator;
-                    ListFactorAlternative[k][i] *= ListAlternative.Count;
+                    result.FactorAlternative[k][i] /= denominator;
+                    result.FactorAlternative[k][i] *= alternative.Name.Count;
                 }
             }
         }
 
         private void CalculateResult()
         {
-            ListResult.Clear();
-            for (int i = 0; i < ListAlternative.Count; i++)
-                ListResult.Add(0);
+            result.Results.Clear();
+            for (int i = 0; i < alternative.Name.Count; i++)
+                result.Results.Add(0);
 
-            for (int k = 0; k < ListAlternative.Count; k++)
-                for (int j = 0; j < ListCriteria.Count; j++)
+            for (int k = 0; k < alternative.Name.Count; k++)
+                for (int j = 0; j < criteria.Name.Count; j++)
                 {
-                    ListResult[k] += ListFactorAlternative[j][k] * ListFactorCriteria[j];
+                    result.Results[k] += result.FactorAlternative[j][k] * result.FactorCriteria[j];
                 }
         }
 

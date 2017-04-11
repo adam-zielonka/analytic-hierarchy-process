@@ -104,11 +104,11 @@ namespace Saaty
             for (int i = 0; i < dataGridViewCriteria.Columns.Count; i++)
                 dataGridViewCriteria.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             string value;
-            for (int i = 0; i < dataSatty.ListCriteria.Count; i++)
+            for (int i = 0; i < dataSatty.criteria.Name.Count; i++)
             {
-                if (dataSatty.ListCriteriaValueType[i]) value = "Im mniejsza tym lepiej";
+                if (dataSatty.criteria.ValueType[i]) value = "Im mniejsza tym lepiej";
                 else value = "Im większa tym lepiej";
-                dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i], value, dataSatty.ListCriteriaPrecision[i]);
+                dataGridViewCriteria.Rows.Add(dataSatty.criteria.Name[i], value, dataSatty.criteria.Precision[i]);
             }
             if (dataGridViewCriteria.Rows.Count > 0)
             {
@@ -126,7 +126,7 @@ namespace Saaty
 
         private void buttonEditCriteria_Click(object sender, EventArgs e)
         {
-            if (dataSatty.ListCriteria.Count != 0)
+            if (dataSatty.criteria.Name.Count != 0)
             {
                 FormCriteria formCriteria = new FormCriteria(dataSatty, this, dataGridViewCriteria.SelectedRows[0].Index);
                 formCriteria.Text = "Edytuj kryterium";
@@ -136,11 +136,11 @@ namespace Saaty
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (dataSatty.ListCriteria.Count == 1)
+            if (dataSatty.criteria.Name.Count == 1)
             {
                 MessageBox.Show("Nie możesz usunąć wszystkich kryteriów.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (dataSatty.ListCriteria.Count == 0)
+            else if (dataSatty.criteria.Name.Count == 0)
             {
 
             }
@@ -171,12 +171,12 @@ namespace Saaty
             dataGridViewCriteriaWeight.Columns[3].Visible = false;
             for (int i = 0; i < dataGridViewCriteriaWeight.Columns.Count; i++)
                 dataGridViewCriteriaWeight.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            for (int i = 0; i < dataSatty.ListCriteria.Count; i++)
+            for (int i = 0; i < dataSatty.criteria.Name.Count; i++)
             {
                 string weight = "";
-                if (dataSatty.ListCriteriaWeight[i] > 0) weight += dataSatty.ListCriteriaWeight[i];
-                else weight += "1/" + Math.Abs(dataSatty.ListCriteriaWeight[i]);
-                dataGridViewCriteriaWeight.Rows.Add(i, dataSatty.ListCriteria[i], weight, dataSatty.ListCriteriaWeight[i]);
+                if (dataSatty.criteria.Weight[i] > 0) weight += dataSatty.criteria.Weight[i];
+                else weight += "1/" + Math.Abs(dataSatty.criteria.Weight[i]);
+                dataGridViewCriteriaWeight.Rows.Add(i, dataSatty.criteria.Name[i], weight, dataSatty.criteria.Weight[i]);
             }
             dataGridViewCriteriaWeight.Sort(dataGridViewCriteriaWeight.Columns[3], ListSortDirection.Descending);
         }
@@ -236,15 +236,15 @@ namespace Saaty
             dataGridViewAlternative.Rows.Clear();
             dataGridViewAlternative.Columns.Clear();
 
-            for (int i = 0; i < dataSatty.ListCriteria.Count; i++)
+            for (int i = 0; i < dataSatty.criteria.Name.Count; i++)
             {
-                dataGridViewAlternative.Columns.Add(dataSatty.ListCriteria[i], dataSatty.ListCriteria[i]);
+                dataGridViewAlternative.Columns.Add(dataSatty.criteria.Name[i], dataSatty.criteria.Name[i]);
             }
 
-            for (int j = 0; j < dataSatty.ListAlternative.Count; j++)
+            for (int j = 0; j < dataSatty.alternative.Name.Count; j++)
             {
                 dataGridViewAlternative.Rows.Add();
-                dataGridViewAlternative.Rows[j].HeaderCell.Value = dataSatty.ListAlternative[j];
+                dataGridViewAlternative.Rows[j].HeaderCell.Value = dataSatty.alternative.Name[j];
             }
         }
 
@@ -256,7 +256,7 @@ namespace Saaty
         private void buttonResults_Click(object sender, EventArgs e)
         {
             dataSatty.Calculate();
-            MessageBox.Show(dataSatty.ResultName, "Wynik", MessageBoxButtons.OK);
+            MessageBox.Show(dataSatty.result.Name, "Wynik", MessageBoxButtons.OK);
         }
 
 
