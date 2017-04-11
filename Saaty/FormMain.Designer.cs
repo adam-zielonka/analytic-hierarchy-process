@@ -50,7 +50,6 @@
             this.buttonCriteria.TabIndex = 1;
             this.buttonCriteria.Text = "Zarządzaj Kryteriami";
             this.buttonCriteria.UseVisualStyleBackColor = true;
-            this.buttonCriteria.EnabledChanged += new System.EventHandler(this.buttonCriteria_EnabledChanged);
             this.buttonCriteria.Click += new System.EventHandler(this.buttonCriteria_Click);
             // 
             // buttonAlternative
@@ -61,7 +60,6 @@
             this.buttonAlternative.TabIndex = 2;
             this.buttonAlternative.Text = "Zarządaj Alternatywami";
             this.buttonAlternative.UseVisualStyleBackColor = true;
-            this.buttonAlternative.EnabledChanged += new System.EventHandler(this.buttonAlternative_EnabledChanged);
             this.buttonAlternative.Click += new System.EventHandler(this.buttonAlternative_Click);
             // 
             // buttonWeightCriteria

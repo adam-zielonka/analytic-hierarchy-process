@@ -64,32 +64,17 @@ namespace Saaty
         private void buttonCriteria_Click(object sender, EventArgs e)
         {
             buttonCriteria.Enabled = false;
-            FormCriteria formCriteria = new FormCriteria(dataSatty.ListCriteria, buttonCriteria);
+            FormCriteria formCriteria = new FormCriteria(dataSatty.ListCriteria, dataSatty, buttonCriteria);
             formCriteria.Show();
         }
 
-        private void buttonCriteria_EnabledChanged(object sender, EventArgs e)
-        {
-            if (buttonCriteria.Enabled == true)
-            {
-                dataSatty.setMatrixCriteria();
-            }
-        }
 
         private void buttonAlternative_Click(object sender, EventArgs e)
         {
             buttonAlternative.Enabled = false;
-            FormCriteria formCriteria = new FormCriteria(dataSatty.ListAlternative, buttonAlternative, "Alternatywy");
+            FormCriteria formCriteria = new FormCriteria(dataSatty.ListAlternative, dataSatty, buttonAlternative, "Alternatywy");
             formCriteria.Text = "Zarządaj Alternatywami";
             formCriteria.Show();
-        }
-
-        private void buttonAlternative_EnabledChanged(object sender, EventArgs e)
-        {
-            if (buttonAlternative.Enabled == true)
-            {
-                dataSatty.setMatrixAlternative();
-            }
         }
 
         private void buttonWeightCriteria_Click(object sender, EventArgs e)

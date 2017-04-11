@@ -13,13 +13,15 @@ namespace Saaty
     public partial class FormCriteria : Form
     {
         private List<string> _listCriteria;
+        private DataSatty _dataSatty;
         private Button _button;
-        public FormCriteria(List<string> listCriteria, Button button, string text = "Kryteria")
+        public FormCriteria(List<string> listCriteria,DataSatty dataSatty, Button button, string text = "Kryteria")
         {
             InitializeComponent();
             dataGridViewCriteria.Columns[0].HeaderText = text;
             buttonSaveCriteria.Text = "Zapisz " + text;
             _listCriteria = listCriteria;
+            _dataSatty = dataSatty;
             _button = button;
             loadCriteria();
         }
@@ -41,6 +43,8 @@ namespace Saaty
         private void buttonSaveCriteria_Click(object sender, EventArgs e)
         {
             saveCriteria();
+            _dataSatty.setMatrixAlternative();
+            _dataSatty.setMatrixCriteria();
             this.Close();
         }
 

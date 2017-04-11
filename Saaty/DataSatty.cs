@@ -8,8 +8,8 @@ namespace Saaty
 {
     public class DataSatty
     {
-        public List<String> ListCriteria { get; set; }
-        public List<String> ListAlternative { get; set; }
+        public List<string> ListCriteria { get; set; }
+        public List<string> ListAlternative { get; set; }
         public List<List<float>> MatrixCriteria { get; set; }
         public List<List<List<float>>> MatrixAlternative { get; set; }
 
@@ -17,11 +17,13 @@ namespace Saaty
         {
             ListCriteria = new List<string>();
             ListAlternative = new List<string>();
+            MatrixAlternative = new List<List<List<float>>>();
+            MatrixCriteria = new List<List<float>>();
         }
 
         public void setMatrixAlternative()
         {
-            MatrixAlternative = new List<List<List<float>>>();
+            MatrixAlternative.Clear();
             for (int i = 0; i < ListCriteria.Count; i++)
             {
                 MatrixAlternative.Add(new List<List<float>>());
@@ -36,7 +38,7 @@ namespace Saaty
 
         public void setMatrixCriteria()
         {
-            MatrixCriteria = new List<List<float>>();
+            MatrixCriteria.Clear();
             for (int i = 0; i < ListCriteria.Count; i++)
             {
                 MatrixCriteria.Add(new List<float>());
