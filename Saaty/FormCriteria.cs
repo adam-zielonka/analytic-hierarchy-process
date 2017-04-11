@@ -39,20 +39,28 @@ namespace Saaty
         private void buttonAccept_Click(object sender, EventArgs e)
         {
             bool value = comboBoxValueCriteria.SelectedIndex == 1;
-            if (_editMode)
+            if(textBoxNameCriteria.Text != "")
             {
-                _satty.Criteria.Name[_id] = textBoxNameCriteria.Text;
-                _satty.Criteria.ValueType[_id] = value;
-                _satty.Criteria.Precision[_id] = double.Parse(comboBoxPrecisionCriteria.Text);
+                if (_editMode)
+                {
+                    _satty.Criteria.Name[_id] = textBoxNameCriteria.Text;
+                    _satty.Criteria.ValueType[_id] = value;
+                    _satty.Criteria.Precision[_id] = double.Parse(comboBoxPrecisionCriteria.Text);
+                }
+                else
+                {
+                    _satty.AddCriteria(textBoxNameCriteria.Text, value, double.Parse(comboBoxPrecisionCriteria.Text));
+                }
+                _formMain.tabPageStep1_Enter(sender, e);
+                _formMain.dataGridViewCriteria.Rows[_id].Selected = true;
+                _formMain.Save();
+                Close();
             }
             else
             {
-                _satty.AddCriteria(textBoxNameCriteria.Text, value, double.Parse(comboBoxPrecisionCriteria.Text));
+                MessageBox.Show(@"Nazwa kryterium jest wymagana.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            _formMain.tabPageStep1_Enter(sender, e);
-            _formMain.dataGridViewCriteria.Rows[_id].Selected = true;
-            _formMain.Save();
-            Close();
+
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

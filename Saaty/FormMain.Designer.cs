@@ -37,6 +37,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageResults = new System.Windows.Forms.TabPage();
+            this.labelResults = new System.Windows.Forms.Label();
             this.dataGridViewResults = new System.Windows.Forms.DataGridView();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
             this.buttonMatrixAlternative = new System.Windows.Forms.Button();
@@ -64,7 +65,7 @@
             this.buttonNewProject = new System.Windows.Forms.Button();
             this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.labelResults = new System.Windows.Forms.Label();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.tabPageResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
@@ -157,6 +158,15 @@
             this.tabPageResults.UseVisualStyleBackColor = true;
             this.tabPageResults.Enter += new System.EventHandler(this.tabPageResults_Enter);
             // 
+            // labelResults
+            // 
+            this.labelResults.Location = new System.Drawing.Point(7, 3);
+            this.labelResults.Name = "labelResults";
+            this.labelResults.Size = new System.Drawing.Size(473, 35);
+            this.labelResults.TabIndex = 2;
+            this.labelResults.Text = "Teraz podziwiaj wyniki. Ta alternatywa z największą liczbą jest najlepszym wybore" +
+    "m według tego programu. Pamiętaj: Program to tylko program!\r\n";
+            // 
             // dataGridViewResults
             // 
             this.dataGridViewResults.AllowUserToAddRows = false;
@@ -175,6 +185,7 @@
             // 
             // tabPageStep3
             // 
+            this.tabPageStep3.Controls.Add(this.buttonDel);
             this.tabPageStep3.Controls.Add(this.buttonMatrixAlternative);
             this.tabPageStep3.Controls.Add(this.buttonEditAlternative);
             this.tabPageStep3.Controls.Add(this.buttonAddAlternative);
@@ -191,7 +202,7 @@
             // 
             // buttonMatrixAlternative
             // 
-            this.buttonMatrixAlternative.Location = new System.Drawing.Point(168, 21);
+            this.buttonMatrixAlternative.Location = new System.Drawing.Point(250, 21);
             this.buttonMatrixAlternative.Name = "buttonMatrixAlternative";
             this.buttonMatrixAlternative.Size = new System.Drawing.Size(75, 23);
             this.buttonMatrixAlternative.TabIndex = 5;
@@ -228,6 +239,7 @@
             this.dataGridViewAlternative.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAlternative.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAlternative.Location = new System.Drawing.Point(6, 50);
+            this.dataGridViewAlternative.MultiSelect = false;
             this.dataGridViewAlternative.Name = "dataGridViewAlternative";
             this.dataGridViewAlternative.ReadOnly = true;
             this.dataGridViewAlternative.RowHeadersVisible = false;
@@ -481,14 +493,15 @@
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
-            // labelResults
+            // buttonDel
             // 
-            this.labelResults.Location = new System.Drawing.Point(7, 3);
-            this.labelResults.Name = "labelResults";
-            this.labelResults.Size = new System.Drawing.Size(473, 35);
-            this.labelResults.TabIndex = 2;
-            this.labelResults.Text = "Teraz podziwiaj wyniki. Ta alternatywa z największą liczbą jest najlepszym wybore" +
-    "m według tego programu. Pamiętaj: Program to tylko program!\r\n";
+            this.buttonDel.Location = new System.Drawing.Point(169, 21);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(75, 23);
+            this.buttonDel.TabIndex = 6;
+            this.buttonDel.Text = "Usuń";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // FormMain
             // 
@@ -559,6 +572,7 @@
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.DataGridView dataGridViewResults;
         private System.Windows.Forms.Label labelResults;
+        private System.Windows.Forms.Button buttonDel;
     }
 }
 

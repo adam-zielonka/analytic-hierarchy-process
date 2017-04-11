@@ -58,15 +58,34 @@ namespace Saaty
         {
             if (!_editMode)
             {
+                bool error = false;
                 List<double> criteriaList = new List<double>();
+
+                if (textBoxAlternative.Text == "")
+                    error = true;
+
                 for (int i = 0; i < _satty.Criteria.Count; i++)
                 {
-                    criteriaList.Add(double.Parse(dataGridView.Rows[i].Cells[1].Value.ToString()));
+                    double value;
+                    string s = dataGridView.Rows[i].Cells[1].Value?.ToString();
+                    if (double.TryParse(s, out value))
+                    {
+                        criteriaList.Add(value);
+                    }
+                    else
+                        error = true;
                 }
-                _satty.AddAlternative(textBoxAlternative.Text, criteriaList);
-                _formMain.tabPageStep3_Enter(sender, e);
-                _formMain.Save();
-                Close();
+                if (!error)
+                {
+                    _satty.AddAlternative(textBoxAlternative.Text, criteriaList);
+                    _formMain.tabPageStep3_Enter(sender, e);
+                    _formMain.Save();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(@"Nie wszystkie dane są wprowadzone dobrze.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

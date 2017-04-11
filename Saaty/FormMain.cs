@@ -243,6 +243,32 @@ namespace Saaty
             }
         }
 
+        private void buttonDel_Click(object sender, EventArgs e)
+        {
+            int id;
+            switch (Satty.Alternative.Count)
+            {
+                case 1:
+                    //MessageBox.Show(@"Nie możesz usunąć wszystkich alternatyw.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    id = dataGridViewAlternative.SelectedRows[0].Index;
+                    Satty.RemoveAlternative(id);
+                    TabManage.HideTab(4);
+                    tabPageStep3_Enter(sender, e);
+                    Save();
+                    break;
+                case 0:
+                    break;
+                default:
+                    id = dataGridViewAlternative.SelectedRows[0].Index;
+                    Satty.RemoveAlternative(id);
+                    id--;
+                    tabPageStep3_Enter(sender, e);
+                    if (id > 0) dataGridViewAlternative.Rows[id].Selected = true;
+                    Save();
+                    break;
+            }
+        }
+
         private void buttonMatrixAlternative_Click(object sender, EventArgs e)
         {
             Satty.ZeroMatrix();
@@ -279,5 +305,6 @@ namespace Saaty
 
 
         #endregion
+
     }
 }
