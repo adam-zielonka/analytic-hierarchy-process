@@ -19,7 +19,7 @@ namespace Saaty
             fileName = "";
         }
 
-        public object New()
+        public void New()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Analytic Hierarchy Process File|*.ahp";
@@ -33,7 +33,6 @@ namespace Saaty
                 writer.Serialize(file, projectObject);
                 file.Close();
             }
-            return projectObject;
         }
 
         public object Open()

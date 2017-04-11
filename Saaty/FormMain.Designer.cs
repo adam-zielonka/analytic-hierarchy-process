@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageStart = new System.Windows.Forms.TabPage();
+            this.richTextBoxFileName = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonOpenProject = new System.Windows.Forms.Button();
             this.buttonNewProject = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
             this.tabPageResults = new System.Windows.Forms.TabPage();
+            this.buttonResults = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
@@ -47,8 +49,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBoxFileName = new System.Windows.Forms.RichTextBox();
-            this.buttonResults = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,10 +85,22 @@
             this.tabPageStart.Text = "Start";
             this.tabPageStart.UseVisualStyleBackColor = true;
             // 
+            // richTextBoxFileName
+            // 
+            this.richTextBoxFileName.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.richTextBoxFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxFileName.Location = new System.Drawing.Point(176, 175);
+            this.richTextBoxFileName.Name = "richTextBoxFileName";
+            this.richTextBoxFileName.ReadOnly = true;
+            this.richTextBoxFileName.Size = new System.Drawing.Size(304, 135);
+            this.richTextBoxFileName.TabIndex = 7;
+            this.richTextBoxFileName.Text = "";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox1.Location = new System.Drawing.Point(7, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(162, 304);
@@ -98,6 +110,7 @@
             // 
             // buttonOpenProject
             // 
+            this.buttonOpenProject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonOpenProject.Location = new System.Drawing.Point(336, 145);
             this.buttonOpenProject.Name = "buttonOpenProject";
             this.buttonOpenProject.Size = new System.Drawing.Size(144, 23);
@@ -108,6 +121,7 @@
             // 
             // buttonNewProject
             // 
+            this.buttonNewProject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonNewProject.Location = new System.Drawing.Point(175, 145);
             this.buttonNewProject.Name = "buttonNewProject";
             this.buttonNewProject.Size = new System.Drawing.Size(144, 23);
@@ -181,8 +195,20 @@
             this.tabPageResults.Text = "Wyniki";
             this.tabPageResults.UseVisualStyleBackColor = true;
             // 
+            // buttonResults
+            // 
+            this.buttonResults.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.buttonResults.Location = new System.Drawing.Point(7, 7);
+            this.buttonResults.Name = "buttonResults";
+            this.buttonResults.Size = new System.Drawing.Size(75, 23);
+            this.buttonResults.TabIndex = 0;
+            this.buttonResults.Text = "Wyniki";
+            this.buttonResults.UseVisualStyleBackColor = true;
+            this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
+            // 
             // buttonBack
             // 
+            this.buttonBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonBack.Location = new System.Drawing.Point(346, 375);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(75, 23);
@@ -192,6 +218,7 @@
             // 
             // buttonNext
             // 
+            this.buttonNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonNext.Location = new System.Drawing.Point(427, 375);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(75, 23);
@@ -244,27 +271,6 @@
             this.saveToolStripMenuItem.Text = "Zapisz";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // richTextBoxFileName
-            // 
-            this.richTextBoxFileName.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.richTextBoxFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxFileName.Location = new System.Drawing.Point(176, 175);
-            this.richTextBoxFileName.Name = "richTextBoxFileName";
-            this.richTextBoxFileName.ReadOnly = true;
-            this.richTextBoxFileName.Size = new System.Drawing.Size(304, 135);
-            this.richTextBoxFileName.TabIndex = 7;
-            this.richTextBoxFileName.Text = "";
-            // 
-            // buttonResults
-            // 
-            this.buttonResults.Location = new System.Drawing.Point(7, 7);
-            this.buttonResults.Name = "buttonResults";
-            this.buttonResults.Size = new System.Drawing.Size(75, 23);
-            this.buttonResults.TabIndex = 0;
-            this.buttonResults.Text = "Wyniki";
-            this.buttonResults.UseVisualStyleBackColor = true;
-            this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,7 +280,9 @@
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.menuStripMain);
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MainMenuStrip = this.menuStripMain;
+            this.MaximizeBox = false;
             this.Name = "FormMain";
             this.Text = "Metoda analizy hierarchii Saaty’ego";
             this.tabControlMain.ResumeLayout(false);
