@@ -16,11 +16,13 @@ namespace Saaty
     {
         DataSatty dataSatty;
         TabManage tabManage;
+        OpenAndSave openAndSave;
         public FormMain()
         {
             InitializeComponent();
             dataSatty = new DataSatty();
             tabManage = new TabManage(tabControlMain, buttonNext, buttonBack);
+            openAndSave = new OpenAndSave(dataSatty);
         }
 
         #region Menu Strip
@@ -29,38 +31,42 @@ namespace Saaty
         {
             dataSatty.Clear();
             tabManage.SetIndex(0);
+            dataSatty = (DataSatty)openAndSave.New();
+            richTextBoxFileName.Text = openAndSave.GetFileName();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Analytic Hierarchy Process File|*.ahp";
-            openFileDialog.Title = "Otwórz projekt z pliku";
-            openFileDialog.ShowDialog();
-            if (openFileDialog.FileName != "")
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(DataSatty));
-                StreamReader reader = new StreamReader(openFileDialog.FileName);
-                dataSatty = (DataSatty)serializer.Deserialize(reader);
-                reader.Close();
-            }
+            dataSatty = (DataSatty)openAndSave.Open();
+            richTextBoxFileName.Text = openAndSave.GetFileName();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Analytic Hierarchy Process File|*.ahp";
-            saveFileDialog.Title = "Zapisz projekt do pliku";
-            saveFileDialog.ShowDialog();
-            if (saveFileDialog.FileName != "")
-            {
-                XmlSerializer writer = new XmlSerializer(typeof(DataSatty));
-                StreamWriter file = new StreamWriter(saveFileDialog.FileName);
-                writer.Serialize(file, dataSatty);
-                file.Close();
-            }
+            openAndSave.Save();
         }
 
         #endregion
+
+        #region Start Tab
+        private void buttonNewProject_Click(object sender, EventArgs e)
+        {
+            dataSatty = (DataSatty)openAndSave.New();
+            richTextBoxFileName.Text = openAndSave.GetFileName();
+        }
+
+        private void buttonOpenProject_Click(object sender, EventArgs e)
+        {
+            dataSatty = (DataSatty)openAndSave.Open();
+            richTextBoxFileName.Text = openAndSave.GetFileName();
+        }
+
+        #endregion
+
+        private void buttonResults_Click(object sender, EventArgs e)
+        {
+            dataSatty.Calculate();
+            MessageBox.Show(dataSatty.ResultName, "Wynik", MessageBoxButtons.OK);
+        }
     }
 }

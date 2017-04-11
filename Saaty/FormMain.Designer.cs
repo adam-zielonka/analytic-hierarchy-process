@@ -31,7 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageStart = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonOpenProject = new System.Windows.Forms.Button();
             this.buttonNewProject = new System.Windows.Forms.Button();
             this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
             this.tabPageStep1 = new System.Windows.Forms.TabPage();
@@ -46,11 +47,13 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBoxFileName = new System.Windows.Forms.RichTextBox();
+            this.buttonResults = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageStart.SuspendLayout();
-            this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPageResults.SuspendLayout();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -69,8 +72,9 @@
             // 
             // tabPageStart
             // 
+            this.tabPageStart.Controls.Add(this.richTextBoxFileName);
             this.tabPageStart.Controls.Add(this.pictureBox1);
-            this.tabPageStart.Controls.Add(this.button1);
+            this.tabPageStart.Controls.Add(this.buttonOpenProject);
             this.tabPageStart.Controls.Add(this.buttonNewProject);
             this.tabPageStart.Controls.Add(this.richTextBoxStart);
             this.tabPageStart.Location = new System.Drawing.Point(4, 22);
@@ -81,14 +85,26 @@
             this.tabPageStart.Text = "Start";
             this.tabPageStart.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // pictureBox1
             // 
-            this.button1.Location = new System.Drawing.Point(336, 145);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Otwórz istniejący projekt";
-            this.button1.UseVisualStyleBackColor = true;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(162, 304);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // buttonOpenProject
+            // 
+            this.buttonOpenProject.Location = new System.Drawing.Point(336, 145);
+            this.buttonOpenProject.Name = "buttonOpenProject";
+            this.buttonOpenProject.Size = new System.Drawing.Size(144, 23);
+            this.buttonOpenProject.TabIndex = 5;
+            this.buttonOpenProject.Text = "Otwórz istniejący projekt";
+            this.buttonOpenProject.UseVisualStyleBackColor = true;
+            this.buttonOpenProject.Click += new System.EventHandler(this.buttonOpenProject_Click);
             // 
             // buttonNewProject
             // 
@@ -98,6 +114,7 @@
             this.buttonNewProject.TabIndex = 4;
             this.buttonNewProject.Text = "Utwórz nowy projekt";
             this.buttonNewProject.UseVisualStyleBackColor = true;
+            this.buttonNewProject.Click += new System.EventHandler(this.buttonNewProject_Click);
             // 
             // richTextBoxStart
             // 
@@ -155,6 +172,7 @@
             // 
             // tabPageResults
             // 
+            this.tabPageResults.Controls.Add(this.buttonResults);
             this.tabPageResults.Location = new System.Drawing.Point(4, 22);
             this.tabPageResults.Name = "tabPageResults";
             this.tabPageResults.Padding = new System.Windows.Forms.Padding(3);
@@ -226,15 +244,26 @@
             this.saveToolStripMenuItem.Text = "Zapisz";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // pictureBox1
+            // richTextBoxFileName
             // 
-            this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(162, 304);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.richTextBoxFileName.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.richTextBoxFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxFileName.Location = new System.Drawing.Point(176, 175);
+            this.richTextBoxFileName.Name = "richTextBoxFileName";
+            this.richTextBoxFileName.ReadOnly = true;
+            this.richTextBoxFileName.Size = new System.Drawing.Size(304, 135);
+            this.richTextBoxFileName.TabIndex = 7;
+            this.richTextBoxFileName.Text = "";
+            // 
+            // buttonResults
+            // 
+            this.buttonResults.Location = new System.Drawing.Point(7, 7);
+            this.buttonResults.Name = "buttonResults";
+            this.buttonResults.Size = new System.Drawing.Size(75, 23);
+            this.buttonResults.TabIndex = 0;
+            this.buttonResults.Text = "Wyniki";
+            this.buttonResults.UseVisualStyleBackColor = true;
+            this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
             // 
             // FormMain
             // 
@@ -250,9 +279,10 @@
             this.Text = "Metoda analizy hierarchii Saaty’ego";
             this.tabControlMain.ResumeLayout(false);
             this.tabPageStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPageResults.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,9 +305,11 @@
         private System.Windows.Forms.TabPage tabPageStep4;
         private System.Windows.Forms.TabPage tabPageResults;
         private System.Windows.Forms.RichTextBox richTextBoxStart;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonOpenProject;
         private System.Windows.Forms.Button buttonNewProject;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxFileName;
+        private System.Windows.Forms.Button buttonResults;
     }
 }
 
