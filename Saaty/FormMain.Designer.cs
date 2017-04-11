@@ -43,7 +43,19 @@
             this.buttonMatrixWeight = new System.Windows.Forms.Button();
             this.buttonWeightAlternative = new System.Windows.Forms.Button();
             this.buttonMatrixWeightAlternative = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPageStart = new System.Windows.Forms.TabPage();
+            this.tabPageCriteria = new System.Windows.Forms.TabPage();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.labelAdd = new System.Windows.Forms.Label();
+            this.textBoxAdd = new System.Windows.Forms.TextBox();
+            this.tabPageAlternative = new System.Windows.Forms.TabPage();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.buttonNext = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPageStart.SuspendLayout();
+            this.tabPageCriteria.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCriteria
@@ -143,21 +155,92 @@
             this.buttonMatrixWeightAlternative.UseVisualStyleBackColor = true;
             this.buttonMatrixWeightAlternative.Click += new System.EventHandler(this.buttonMatrixWeightAlternative_Click);
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabPageStart);
+            this.tabControl.Controls.Add(this.tabPageCriteria);
+            this.tabControl.Controls.Add(this.tabPageAlternative);
+            resources.ApplyResources(this.tabControl, "tabControl");
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
+            // 
+            // tabPageStart
+            // 
+            this.tabPageStart.Controls.Add(this.buttonCriteria);
+            this.tabPageStart.Controls.Add(this.buttonMatrixWeightAlternative);
+            this.tabPageStart.Controls.Add(this.buttonAlternative);
+            this.tabPageStart.Controls.Add(this.buttonMatrixWeight);
+            this.tabPageStart.Controls.Add(this.buttonWeightAlternative);
+            this.tabPageStart.Controls.Add(this.buttonWeightCriteria);
+            resources.ApplyResources(this.tabPageStart, "tabPageStart");
+            this.tabPageStart.Name = "tabPageStart";
+            this.tabPageStart.UseVisualStyleBackColor = true;
+            // 
+            // tabPageCriteria
+            // 
+            resources.ApplyResources(this.tabPageCriteria, "tabPageCriteria");
+            this.tabPageCriteria.Controls.Add(this.buttonAdd);
+            this.tabPageCriteria.Controls.Add(this.labelAdd);
+            this.tabPageCriteria.Controls.Add(this.textBoxAdd);
+            this.tabPageCriteria.Name = "tabPageCriteria";
+            this.tabPageCriteria.UseVisualStyleBackColor = true;
+            // 
+            // buttonAdd
+            // 
+            resources.ApplyResources(this.buttonAdd, "buttonAdd");
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // labelAdd
+            // 
+            resources.ApplyResources(this.labelAdd, "labelAdd");
+            this.labelAdd.Name = "labelAdd";
+            // 
+            // textBoxAdd
+            // 
+            resources.ApplyResources(this.textBoxAdd, "textBoxAdd");
+            this.textBoxAdd.Name = "textBoxAdd";
+            this.textBoxAdd.Enter += new System.EventHandler(this.textBoxAdd_Enter);
+            // 
+            // tabPageAlternative
+            // 
+            resources.ApplyResources(this.tabPageAlternative, "tabPageAlternative");
+            this.tabPageAlternative.Name = "tabPageAlternative";
+            this.tabPageAlternative.UseVisualStyleBackColor = true;
+            // 
+            // buttonBack
+            // 
+            resources.ApplyResources(this.buttonBack, "buttonBack");
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // buttonNext
+            // 
+            this.buttonNext.AutoEllipsis = true;
+            resources.ApplyResources(this.buttonNext, "buttonNext");
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.buttonMatrixWeightAlternative);
-            this.Controls.Add(this.buttonWeightAlternative);
-            this.Controls.Add(this.buttonMatrixWeight);
-            this.Controls.Add(this.buttonWeightCriteria);
-            this.Controls.Add(this.buttonAlternative);
-            this.Controls.Add(this.buttonCriteria);
+            this.Controls.Add(this.buttonNext);
+            this.Controls.Add(this.buttonBack);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FormMain";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.tabPageStart.ResumeLayout(false);
+            this.tabPageCriteria.ResumeLayout(false);
+            this.tabPageCriteria.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +261,14 @@
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem polishToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPageStart;
+        private System.Windows.Forms.TabPage tabPageCriteria;
+        private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Button buttonNext;
+        private System.Windows.Forms.TabPage tabPageAlternative;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label labelAdd;
+        private System.Windows.Forms.TextBox textBoxAdd;
     }
 }

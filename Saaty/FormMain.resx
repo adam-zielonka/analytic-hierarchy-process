@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCriteria.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 27</value>
+    <value>6, 6</value>
   </data>
   <data name="buttonCriteria.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 23</value>
@@ -138,13 +138,13 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonCriteria.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageStart</value>
   </data>
   <data name="&gt;&gt;buttonCriteria.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="buttonAlternative.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 56</value>
+    <value>6, 35</value>
   </data>
   <data name="buttonAlternative.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 23</value>
@@ -162,13 +162,13 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonAlternative.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageStart</value>
   </data>
   <data name="&gt;&gt;buttonAlternative.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="buttonWeightCriteria.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 27</value>
+    <value>157, 6</value>
   </data>
   <data name="buttonWeightCriteria.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 23</value>
@@ -186,28 +186,41 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonWeightCriteria.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageStart</value>
   </data>
   <data name="&gt;&gt;buttonWeightCriteria.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <metadata name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="newToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="newToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+N</value>
+  </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>155, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>Nowy</value>
   </data>
+  <data name="openToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+O</value>
+  </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>155, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>Otwórz</value>
   </data>
+  <data name="saveToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+S</value>
+  </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>155, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>Zapisz</value>
@@ -217,18 +230,6 @@
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>Plik</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>Angielski</value>
-  </data>
-  <data name="polishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="polishToolStripMenuItem.Text" xml:space="preserve">
-    <value>Polski</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 20</value>
@@ -240,7 +241,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>407, 24</value>
+    <value>570, 24</value>
   </data>
   <data name="menuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -258,10 +259,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
+  </data>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>Angielski</value>
+  </data>
+  <data name="polishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 22</value>
+  </data>
+  <data name="polishToolStripMenuItem.Text" xml:space="preserve">
+    <value>Polski</value>
   </data>
   <data name="buttonMatrixWeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>245, 27</value>
+    <value>239, 6</value>
   </data>
   <data name="buttonMatrixWeight.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 23</value>
@@ -279,13 +292,13 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonMatrixWeight.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageStart</value>
   </data>
   <data name="&gt;&gt;buttonMatrixWeight.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="buttonWeightAlternative.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 56</value>
+    <value>157, 35</value>
   </data>
   <data name="buttonWeightAlternative.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 23</value>
@@ -303,13 +316,13 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonWeightAlternative.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageStart</value>
   </data>
   <data name="&gt;&gt;buttonWeightAlternative.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="buttonMatrixWeightAlternative.Location" type="System.Drawing.Point, System.Drawing">
-    <value>245, 56</value>
+    <value>239, 35</value>
   </data>
   <data name="buttonMatrixWeightAlternative.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 23</value>
@@ -327,9 +340,306 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonMatrixWeightAlternative.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>tabPageStart</value>
   </data>
   <data name="&gt;&gt;buttonMatrixWeightAlternative.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.Name" xml:space="preserve">
+    <value>tabPageStart</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.Name" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.Name" xml:space="preserve">
+    <value>tabPageAlternative</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 27</value>
+  </data>
+  <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 358</value>
+  </data>
+  <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Name" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageStart.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>537, 332</value>
+  </data>
+  <data name="tabPageStart.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPageStart.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.Name" xml:space="preserve">
+    <value>tabPageStart</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageStart.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageCriteria.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Name" xml:space="preserve">
+    <value>buttonAdd</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Parent" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.Name" xml:space="preserve">
+    <value>labelAdd</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.Parent" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.Name" xml:space="preserve">
+    <value>textBoxAdd</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.Parent" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageCriteria.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageCriteria.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageCriteria.Size" type="System.Drawing.Size, System.Drawing">
+    <value>537, 332</value>
+  </data>
+  <data name="tabPageCriteria.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPageCriteria.Text" xml:space="preserve">
+    <value>Kryteria</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.Name" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageCriteria.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>419, 10</value>
+  </data>
+  <data name="buttonAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonAdd.Text" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Name" xml:space="preserve">
+    <value>buttonAdd</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.Parent" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;buttonAdd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelAdd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 15</value>
+  </data>
+  <data name="labelAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="labelAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="labelAdd.Text" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.Name" xml:space="preserve">
+    <value>labelAdd</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.Parent" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;labelAdd.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBoxAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="textBoxAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 20</value>
+  </data>
+  <data name="textBoxAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.Name" xml:space="preserve">
+    <value>textBoxAdd</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.Parent" xml:space="preserve">
+    <value>tabPageCriteria</value>
+  </data>
+  <data name="&gt;&gt;textBoxAdd.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageAlternative.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageAlternative.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPageAlternative.Size" type="System.Drawing.Size, System.Drawing">
+    <value>537, 332</value>
+  </data>
+  <data name="tabPageAlternative.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPageAlternative.Text" xml:space="preserve">
+    <value>Alternatywy</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.Name" xml:space="preserve">
+    <value>tabPageAlternative</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageAlternative.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonBack.Location" type="System.Drawing.Point, System.Drawing">
+    <value>398, 391</value>
+  </data>
+  <data name="buttonBack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonBack.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="buttonBack.Text" xml:space="preserve">
+    <value>Cofnij</value>
+  </data>
+  <data name="&gt;&gt;buttonBack.Name" xml:space="preserve">
+    <value>buttonBack</value>
+  </data>
+  <data name="&gt;&gt;buttonBack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonBack.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonBack.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonNext.Location" type="System.Drawing.Point, System.Drawing">
+    <value>479, 391</value>
+  </data>
+  <data name="buttonNext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="buttonNext.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="buttonNext.Text" xml:space="preserve">
+    <value>Dalej</value>
+  </data>
+  <data name="&gt;&gt;buttonNext.Name" xml:space="preserve">
+    <value>buttonNext</value>
+  </data>
+  <data name="&gt;&gt;buttonNext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonNext.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonNext.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -339,7 +649,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>407, 288</value>
+    <value>570, 425</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Metoda analizy hierarchii Saaty’ego</value>

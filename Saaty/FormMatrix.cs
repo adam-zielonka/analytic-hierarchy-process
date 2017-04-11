@@ -52,21 +52,17 @@ namespace Saaty
         {
             dataGridView1.Columns.Clear();
             dataGridView1.Rows.Clear();
-            for (int k = 0; k < _listCriteria.Count; k++)
-                if (comboBoxCriteria.Text == _listCriteria[k])
-                {
-                    for (int i = 0; i < _listAlternative.Count; i++)
-                        dataGridView1.Columns.Add(i.ToString(), _listAlternative[i].ToString());
-                    for (int i = 0; i < _listAlternative.Count; i++)
-                    {
-                        dataGridView1.Rows.Add();
-                        dataGridView1.Rows[i].HeaderCell.Value = _listAlternative[i].ToString();
-                    }
+            for (int i = 0; i < _listAlternative.Count; i++)
+                dataGridView1.Columns.Add(i.ToString(), _listAlternative[i].ToString());
+            for (int i = 0; i < _listAlternative.Count; i++)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].HeaderCell.Value = _listAlternative[i].ToString();
+            }
 
-                    for (int i = 0; i < _listAlternative.Count; i++)
-                        for (int j = 0; j < _listAlternative.Count; j++)
-                            dataGridView1.Rows[i].Cells[j].Value = _matrixAlternative[k][i][j];
-                }
+            for (int i = 0; i < _listAlternative.Count; i++)
+                for (int j = 0; j < _listAlternative.Count; j++)
+                    dataGridView1.Rows[i].Cells[j].Value = _matrixAlternative[comboBoxCriteria.SelectedIndex][i][j];
         }
     }
 }

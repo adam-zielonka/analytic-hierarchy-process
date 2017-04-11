@@ -18,16 +18,22 @@ namespace Saaty
     public partial class FormMain : Form
     {
         DataSatty dataSatty;
+        TabManage tabManage;
+
+        List<TextBox> listTextBox;
+        List<Button> listButtonDel;
         public FormMain()
         {
             InitializeComponent();
             dataSatty = new DataSatty();
+            tabManage = new TabManage(3, tabControl, buttonNext, buttonBack);
+            listTextBox = new List<TextBox>();
+            listButtonDel = new List<Button>();
         }
-
-        public FormMain(DataSatty _dataSatty,FormMain _formMainBasic)
+        
+        private void LoadData()
         {
-            InitializeComponent();
-            dataSatty = _dataSatty;
+            LoadList(dataSatty.ListCriteria);
         }
 
         #region Strip Menu
@@ -45,6 +51,7 @@ namespace Saaty
                 writer.Serialize(file, dataSatty);
                 file.Close();
             }
+            LoadData();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,11 +67,13 @@ namespace Saaty
                 dataSatty = (DataSatty)serializer.Deserialize(reader);
                 reader.Close();
             }
+            LoadData();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataSatty.Clear();
+            LoadData();
         }
 
         #endregion
@@ -86,7 +95,8 @@ namespace Saaty
         }
 
         #endregion
-        
+
+        #region Start Tab
         private void buttonCriteria_Click(object sender, EventArgs e)
         {
             FormManage formManage = new FormManage(dataSatty, buttonCriteria);
@@ -125,6 +135,182 @@ namespace Saaty
             FormMatrix formMatrix = new FormMatrix(dataSatty.ListCriteria, dataSatty.ListAlternative, dataSatty.MatrixAlternative);
             formMatrix.Show();
         }
+        #endregion
+
+        #region Add Criteria Tab
+
+        private void LoadList(List<string> _list)
+        {
+            for (int i = 0; i < listTextBox.Count; i++)
+            {
+                tabPageCriteria.Controls.Remove(listTextBox[i]);
+                tabPageCriteria.Controls.Remove(listButtonDel[i]);
+            }
+            listTextBox.Clear();
+            listButtonDel.Clear();
+            for (int i = 0; i < _list.Count; i++)
+            {
+                listTextBox.Add(new TextBox());
+                listTextBox[listTextBox.Count - 1].Location = new Point(53, 37 + 25 * (listTextBox.Count - 1));
+                listTextBox[listTextBox.Count - 1].Size = new Size(360, 20);
+                listTextBox[listTextBox.Count - 1].Text = _list[i];
+                listTextBox[listTextBox.Count - 1].Enabled = false;
+                tabPageCriteria.Controls.Add(listTextBox[listTextBox.Count - 1]);
+
+                listButtonDel.Add(new Button());
+                listButtonDel[listButtonDel.Count - 1].Location = new Point(419, 35 + 25 * (listButtonDel.Count - 1));
+                listButtonDel[listButtonDel.Count - 1].Size = new Size(75, 23);
+                listButtonDel[listButtonDel.Count - 1].Text = "Usuń";
+                listButtonDel[listButtonDel.Count - 1].Click += new EventHandler(listButtonDel_Click);
+                tabPageCriteria.Controls.Add(listButtonDel[listButtonDel.Count - 1]);
+            }
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            if (textBoxAdd.Text != "")
+            {
+                dataSatty.AddCriteria(textBoxAdd.Text);
+                textBoxAdd.Text = "";
+                LoadList(dataSatty.ListCriteria);
+            }
+        }
+
+        private void textBoxAdd_Enter(object sender, EventArgs e)
+        {
+            ActiveForm.AcceptButton = buttonAdd;
+        }
+
+        private void listButtonDel_Click(object sender, EventArgs e)
+        {
+            Button buttonDel = (Button)sender;
+            Point point = buttonDel.Location;
+
+            dataSatty.RemoveCriteria((point.Y - 35) / 25);
+            LoadList(dataSatty.ListCriteria);
+        }
+
+        #endregion
+
+        #region ManageTab
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            tabManage.Next();
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            tabManage.Back();
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabManage.IndexChanged();
+        }
+        #endregion
+    }
+
+    public class TabManage
+    {
+        public int Index { get; set; }
+        public int Size { get; set; }
+        TabControl tabControl;
+        Button buttonNext;
+        Button buttonBack;
+        public TabManage(int _size, TabControl _tabControl, Button _next, Button _back)
+        {
+            Index = 0;
+            Size = _size;
+            tabControl = _tabControl;
+            buttonNext = _next;
+            buttonBack = _back;
+
+            buttonBack.Enabled = false;
+        }
+
+        public void SetIndex(int _index)
+        {
+            Index = _index;
+            if (Index == Size - 1)
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = false;
+                tabControl.SelectTab(Index);
+            }
+            else if (Index == 0)
+            {
+                buttonBack.Enabled = false;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+            else
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+
+        }
+
+        public void IndexChanged()
+        {
+            Index = int.Parse(tabControl.SelectedIndex.ToString());
+            if (Index == Size - 1)
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = false;
+                tabControl.SelectTab(Index);
+            }
+            else if (Index == 0)
+            {
+                buttonBack.Enabled = false;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+            else
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+
+        }
+
+        public void Next()
+        {
+            Index++;
+            if (Index == Size - 1)
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = false;
+                tabControl.SelectTab(Index);
+            }
+            else
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+
+        }
+
+        public void Back()
+        {
+            Index--;
+            if (Index == 0)
+            {
+                buttonBack.Enabled = false;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+            else
+            {
+                buttonBack.Enabled = true;
+                buttonNext.Enabled = true;
+                tabControl.SelectTab(Index);
+            }
+        }
+
 
     }
 }
