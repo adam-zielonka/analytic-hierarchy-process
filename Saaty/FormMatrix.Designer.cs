@@ -51,6 +51,7 @@
             // comboBoxCriteria
             // 
             this.comboBoxCriteria.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.comboBoxCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCriteria.FormattingEnabled = true;
             this.comboBoxCriteria.Location = new System.Drawing.Point(0, 413);
             this.comboBoxCriteria.Name = "comboBoxCriteria";

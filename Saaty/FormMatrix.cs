@@ -51,5 +51,22 @@ namespace Saaty
                             dataGridView1.Rows[i].Cells[j].Value = _satty.Matrix.Alternative[k][i][j];
                 }
         }
+
+        public FormMatrix(SattyClass satty,int nop)
+        {
+            InitializeComponent();
+            comboBoxCriteria.Hide();
+            for (int i = 0; i < satty.Criteria.Count; i++)
+                dataGridView1.Columns.Add(i.ToString(), satty.Criteria.Name[i]);
+            for (int i = 0; i < satty.Alternative.Count; i++)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].HeaderCell.Value = satty.Alternative.Name[i];
+            }
+            for (int i = 0; i < satty.Criteria.Count; i++)
+                for (int j = 0; j < satty.Alternative.Count; j++)
+                    dataGridView1.Rows[j].Cells[i].Value = (satty.Matrix.Data[i][j] != double.MaxValue) ? satty.Matrix.Data[i][j].ToString() : "";
+        }
+
     }
 }

@@ -200,6 +200,10 @@ namespace Saaty
                 Matrix.Alternative[i].RemoveAt(id);
             }
             Alternative.RemoveAt(id);
+            for (int i = 0; i < Criteria.Count; i++)
+            {
+                Matrix.Data[i].RemoveAt(id);
+            }
         }
 
         #endregion

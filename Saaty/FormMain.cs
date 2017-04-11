@@ -201,7 +201,10 @@ namespace Saaty
         {
             Satty.ZeroMatrix();
             Satty.GenerateMatrixCriteria();
-            FormMatrix formMatrix = new FormMatrix(Satty);
+            FormMatrix formMatrix = new FormMatrix(Satty)
+            {
+                Text = @"Macierz Kryteriów"
+            };
             formMatrix.Show();
         }
 
@@ -288,7 +291,20 @@ namespace Saaty
         {
             Satty.ZeroMatrix();
             Satty.GenerateMatrixAlternative();
-            FormMatrix formMatrix = new FormMatrix(Satty, true);
+            FormMatrix formMatrix = new FormMatrix(Satty, true)
+            {
+                Text = @"Macierze Alternatyw"
+            };
+            formMatrix.Show();
+        }
+
+        private void buttonDataAlternative_Click(object sender, EventArgs e)
+        {
+            FormMatrix formMatrix = new FormMatrix(Satty, 123)
+            {
+                Text = @"Dane Alternatyw"
+            };
+
             formMatrix.Show();
         }
 

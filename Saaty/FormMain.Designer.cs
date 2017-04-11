@@ -66,6 +66,7 @@
             this.buttonNewProject = new System.Windows.Forms.Button();
             this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.buttonDataAlternative = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.tabPageResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
@@ -185,6 +186,7 @@
             // 
             // tabPageStep3
             // 
+            this.tabPageStep3.Controls.Add(this.buttonDataAlternative);
             this.tabPageStep3.Controls.Add(this.buttonDel);
             this.tabPageStep3.Controls.Add(this.buttonMatrixAlternative);
             this.tabPageStep3.Controls.Add(this.buttonEditAlternative);
@@ -503,6 +505,16 @@
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
+            // buttonDataAlternative
+            // 
+            this.buttonDataAlternative.Location = new System.Drawing.Point(331, 21);
+            this.buttonDataAlternative.Name = "buttonDataAlternative";
+            this.buttonDataAlternative.Size = new System.Drawing.Size(146, 23);
+            this.buttonDataAlternative.TabIndex = 7;
+            this.buttonDataAlternative.Text = "Tabela z danymi";
+            this.buttonDataAlternative.UseVisualStyleBackColor = true;
+            this.buttonDataAlternative.Click += new System.EventHandler(this.buttonDataAlternative_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -573,6 +585,7 @@
         private System.Windows.Forms.Label labelResults;
         private System.Windows.Forms.Button buttonDel;
         public System.Windows.Forms.DataGridView dataGridViewAlternative;
+        private System.Windows.Forms.Button buttonDataAlternative;
     }
 }
 
