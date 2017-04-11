@@ -14,6 +14,7 @@ namespace Saaty
     {
         public List<String> ListCriteria { get; set; }
         public List<String> ListAlternative { get; set; }
+        public float [][] Matrix;
 
         public FormMain()
         {
@@ -24,15 +25,25 @@ namespace Saaty
 
         private void buttonCriteria_Click(object sender, EventArgs e)
         {
-            FormCriteria formCriteria = new FormCriteria(ListCriteria);
+            buttonCriteria.Enabled = false;
+            FormCriteria formCriteria = new FormCriteria(ListCriteria,buttonCriteria);
             formCriteria.Show();
         }
 
         private void buttonAlternative_Click(object sender, EventArgs e)
         {
-            FormCriteria formCriteria = new FormCriteria(ListAlternative,"Alternatywy");
+            buttonAlternative.Enabled = false;
+            FormCriteria formCriteria = new FormCriteria(ListAlternative,buttonAlternative,"Alternatywy");
             formCriteria.Text = "Zarządaj Alternatywami";
             formCriteria.Show();
+        }
+
+        private void buttonWeightCriteria_Click(object sender, EventArgs e)
+        {
+            buttonCriteria.Enabled = false;
+            FormWeight formWeight = new FormWeight(ListCriteria,Matrix);
+            formWeight.Show();
+
         }
     }
 }

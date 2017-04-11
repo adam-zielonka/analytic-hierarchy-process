@@ -69,6 +69,7 @@
             this.Controls.Add(this.dataGridViewCriteria);
             this.Name = "FormCriteria";
             this.Text = "Zarządzaj Kryteriami";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCriteria_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteria)).EndInit();
             this.ResumeLayout(false);
 
