@@ -32,11 +32,11 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageStart = new System.Windows.Forms.TabPage();
             this.richTextBoxFileName = new System.Windows.Forms.RichTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonOpenProject = new System.Windows.Forms.Button();
             this.buttonNewProject = new System.Windows.Forms.Button();
             this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
             this.tabPageStep1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewCriteria = new System.Windows.Forms.DataGridView();
             this.tabPageStep2 = new System.Windows.Forms.TabPage();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
@@ -49,11 +49,18 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonAddCriteria = new System.Windows.Forms.Button();
+            this.buttonEditCriteria = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageStart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPageStep1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteria)).BeginInit();
             this.tabPageResults.SuspendLayout();
             this.menuStripMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -96,18 +103,6 @@
             this.richTextBoxFileName.TabIndex = 7;
             this.richTextBoxFileName.Text = "";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
-            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(162, 304);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
             // buttonOpenProject
             // 
             this.buttonOpenProject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -146,6 +141,11 @@
             // 
             // tabPageStep1
             // 
+            this.tabPageStep1.Controls.Add(this.label1);
+            this.tabPageStep1.Controls.Add(this.buttonDelete);
+            this.tabPageStep1.Controls.Add(this.buttonEditCriteria);
+            this.tabPageStep1.Controls.Add(this.buttonAddCriteria);
+            this.tabPageStep1.Controls.Add(this.dataGridViewCriteria);
             this.tabPageStep1.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep1.Name = "tabPageStep1";
             this.tabPageStep1.Padding = new System.Windows.Forms.Padding(3);
@@ -153,6 +153,25 @@
             this.tabPageStep1.TabIndex = 2;
             this.tabPageStep1.Text = "Krok 1.";
             this.tabPageStep1.UseVisualStyleBackColor = true;
+            this.tabPageStep1.Enter += new System.EventHandler(this.tabPageStep1_Enter);
+            // 
+            // dataGridViewCriteria
+            // 
+            this.dataGridViewCriteria.AllowUserToAddRows = false;
+            this.dataGridViewCriteria.AllowUserToDeleteRows = false;
+            this.dataGridViewCriteria.AllowUserToResizeColumns = false;
+            this.dataGridViewCriteria.AllowUserToResizeRows = false;
+            this.dataGridViewCriteria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCriteria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCriteria.EnableHeadersVisualStyles = false;
+            this.dataGridViewCriteria.Location = new System.Drawing.Point(6, 48);
+            this.dataGridViewCriteria.MultiSelect = false;
+            this.dataGridViewCriteria.Name = "dataGridViewCriteria";
+            this.dataGridViewCriteria.ReadOnly = true;
+            this.dataGridViewCriteria.RowHeadersVisible = false;
+            this.dataGridViewCriteria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCriteria.Size = new System.Drawing.Size(474, 262);
+            this.dataGridViewCriteria.TabIndex = 0;
             // 
             // tabPageStep2
             // 
@@ -271,6 +290,57 @@
             this.saveToolStripMenuItem.Text = "Zapisz";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // buttonAddCriteria
+            // 
+            this.buttonAddCriteria.Location = new System.Drawing.Point(6, 19);
+            this.buttonAddCriteria.Name = "buttonAddCriteria";
+            this.buttonAddCriteria.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddCriteria.TabIndex = 1;
+            this.buttonAddCriteria.Text = "Dodaj";
+            this.buttonAddCriteria.UseVisualStyleBackColor = true;
+            this.buttonAddCriteria.Click += new System.EventHandler(this.buttonAddCriteria_Click);
+            // 
+            // buttonEditCriteria
+            // 
+            this.buttonEditCriteria.Location = new System.Drawing.Point(87, 19);
+            this.buttonEditCriteria.Name = "buttonEditCriteria";
+            this.buttonEditCriteria.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditCriteria.TabIndex = 2;
+            this.buttonEditCriteria.Text = "Edytuj";
+            this.buttonEditCriteria.UseVisualStyleBackColor = true;
+            this.buttonEditCriteria.Click += new System.EventHandler(this.buttonEditCriteria_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(168, 19);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.TabIndex = 3;
+            this.buttonDelete.Text = "Usuń";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(162, 304);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(392, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Teraz musisz dodać kryteria, dla których będziesz porównywać swoje alternatywy.";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,17 +350,20 @@
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.menuStripMain);
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStripMain;
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.Text = "Metoda analizy hierarchii Saaty’ego";
             this.tabControlMain.ResumeLayout(false);
             this.tabPageStart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPageStep1.ResumeLayout(false);
+            this.tabPageStep1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteria)).EndInit();
             this.tabPageResults.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,6 +391,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RichTextBox richTextBoxFileName;
         private System.Windows.Forms.Button buttonResults;
+        private System.Windows.Forms.DataGridView dataGridViewCriteria;
+        private System.Windows.Forms.Button buttonAddCriteria;
+        private System.Windows.Forms.Button buttonEditCriteria;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Label label1;
     }
 }
 

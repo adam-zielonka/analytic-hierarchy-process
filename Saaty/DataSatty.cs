@@ -9,6 +9,8 @@ namespace Saaty
     public class DataSatty
     {
         public List<string> ListCriteria { get; set; }
+        public List<bool> ListCriteriaValueType { get; set; }
+        public List<double> ListCriteriaPrecision { get; set; }
         public List<string> ListAlternative { get; set; }
         public List<List<double>> MatrixCriteria { get; set; }
         public List<List<List<double>>> MatrixAlternative { get; set; }
@@ -21,6 +23,8 @@ namespace Saaty
         public DataSatty()
         {
             ListCriteria = new List<string>();
+            ListCriteriaValueType = new List<bool>();
+            ListCriteriaPrecision = new List<double>();
             ListAlternative = new List<string>();
             MatrixAlternative = new List<List<List<double>>>();
             MatrixCriteria = new List<List<double>>();
@@ -33,6 +37,8 @@ namespace Saaty
         public void Clear()
         {
             ListCriteria.Clear();
+            ListCriteriaValueType.Clear();
+            ListCriteriaPrecision.Clear();
             ListAlternative.Clear();
             MatrixCriteria.Clear();
             MatrixAlternative.Clear();
@@ -41,9 +47,11 @@ namespace Saaty
 
         #region Manage Criteria & Alternative
 
-        public void AddCriteria(string _name)
+        public void AddCriteria(string _name, bool _value, double _precision)
         {
             ListCriteria.Add(_name);
+            ListCriteriaValueType.Add(_value);
+            ListCriteriaPrecision.Add(_precision);
             MatrixCriteria.Add(new List<double>());
             for (int i = 0; i < ListCriteria.Count; i++)
                 MatrixCriteria[ListCriteria.Count - 1].Add(1);
@@ -65,6 +73,8 @@ namespace Saaty
                 MatrixCriteria[i].RemoveAt(_id);
             MatrixCriteria.RemoveAt(_id);
             ListCriteria.RemoveAt(_id);
+            ListCriteriaValueType.RemoveAt(_id);
+            ListCriteriaPrecision.RemoveAt(_id);
         }
 
         public void AddAlternative(string _name)
