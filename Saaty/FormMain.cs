@@ -17,16 +17,13 @@ namespace Saaty
         DataSatty dataSatty;
         TabManage tabManage;
         OpenAndSave openAndSave;
-        List<bool> listSteps;
+
         public FormMain()
         {
             InitializeComponent();
             dataSatty = new DataSatty();
             tabManage = new TabManage(tabControlMain, buttonNext, buttonBack);
             openAndSave = new OpenAndSave(dataSatty);
-            listSteps = new List<bool>();
-            for (int i = 0; i < 5; i++)
-                listSteps.Add(false);
         }
 
         public void Save()
@@ -41,13 +38,13 @@ namespace Saaty
             dataSatty.Clear();
             tabManage.SetIndex(0);
             openAndSave.New();
-            richTextBoxFileName.Text = fileMessage(openAndSave.GetFileName(), false);
+            labelFileName.Text = fileMessage(openAndSave.GetFileName(), false);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataSatty = (DataSatty)openAndSave.Open();
-            richTextBoxFileName.Text = fileMessage(openAndSave.GetFileName(), true);
+            labelFileName.Text = fileMessage(openAndSave.GetFileName(), true);
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,6 +67,8 @@ namespace Saaty
                 fileMessageText += "\n\nTwoje postępy będą autoamtycznie zapisywane w pliku:\n";
                 fileMessageText += openAndSave.GetFileName();
                 fileMessageText += "\n\nMożesz spokojnie przejść dalej.";
+                tabManage.HideTabs();
+                tabManage.ShowTab(1);
             }
             else
             {
@@ -82,18 +81,18 @@ namespace Saaty
         {
             dataSatty.Clear();
             openAndSave.New();
-            richTextBoxFileName.Text = fileMessage(openAndSave.GetFileName(), false);
+            labelFileName.Text = fileMessage(openAndSave.GetFileName(), false);
         }
 
         private void buttonOpenProject_Click(object sender, EventArgs e)
         {
             dataSatty = (DataSatty)openAndSave.Open();
-            richTextBoxFileName.Text = fileMessage(openAndSave.GetFileName(), true);
+            labelFileName.Text = fileMessage(openAndSave.GetFileName(), true);
         }
 
         #endregion
 
-        #region Step 1 Tab
+        #region Step 1 Tab : Add Criteria
 
         public void tabPageStep1_Enter(object sender, EventArgs e)
         {
@@ -111,7 +110,7 @@ namespace Saaty
                 else value = "Im większa tym lepiej";
                 dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i], value, dataSatty.ListCriteriaPrecision[i]);
             }
-
+            if (dataSatty.ListCriteria.Count > 0) tabManage.ShowTab(2);
         }
 
         private void buttonAddCriteria_Click(object sender, EventArgs e)
@@ -122,17 +121,37 @@ namespace Saaty
 
         private void buttonEditCriteria_Click(object sender, EventArgs e)
         {
-            FormCriteria formCriteria = new FormCriteria(dataSatty, this, dataGridViewCriteria.SelectedRows[0].Index);
-            formCriteria.Text = "Edytuj kryterium";
-            formCriteria.Show();
+            if (dataSatty.ListCriteria.Count != 0)
+            {
+                FormCriteria formCriteria = new FormCriteria(dataSatty, this, dataGridViewCriteria.SelectedRows[0].Index);
+                formCriteria.Text = "Edytuj kryterium";
+                formCriteria.Show();
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            dataSatty.RemoveCriteria(dataGridViewCriteria.SelectedRows[0].Index);
-            tabPageStep1_Enter(sender, e);
-            Save();
+            if (dataSatty.ListCriteria.Count == 1)
+            {
+                MessageBox.Show("Nie możesz usunąć wszystkich kryteriów.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (dataSatty.ListCriteria.Count == 0)
+            {
+
+            }
+            else
+            {
+                dataSatty.RemoveCriteria(dataGridViewCriteria.SelectedRows[0].Index);
+                tabPageStep1_Enter(sender, e);
+                Save();
+            }
         }
+
+        #endregion
+
+        #region Step 2 Tab : Wieght Criteria
+
+
 
         #endregion
 

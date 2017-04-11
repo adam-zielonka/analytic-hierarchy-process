@@ -140,6 +140,7 @@
             this.Controls.Add(this.textBoxNameCriteria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormCriteria";
             this.Text = "Dodaj kryterium";
             this.ResumeLayout(false);

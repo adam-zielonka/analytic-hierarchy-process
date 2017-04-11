@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBoxStart.Text" xml:space="preserve">
+  <data name="labelStart.Text" xml:space="preserve">
     <value>Witam w najlepszym programie we wszechświecie. 
 Program pozwoli ci podjąć decyzje wykorzystując analizę hierarchii Satty’ego. 
 
