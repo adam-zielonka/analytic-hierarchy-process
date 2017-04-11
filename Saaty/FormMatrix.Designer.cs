@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBoxCriteria = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,11 +48,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(555, 434);
             this.dataGridView1.TabIndex = 0;
             // 
+            // comboBoxCriteria
+            // 
+            this.comboBoxCriteria.Dock = System.Windows.Forms.DockStyle.Top;
+            this.comboBoxCriteria.FormattingEnabled = true;
+            this.comboBoxCriteria.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxCriteria.Name = "comboBoxCriteria";
+            this.comboBoxCriteria.Size = new System.Drawing.Size(555, 21);
+            this.comboBoxCriteria.TabIndex = 1;
+            this.comboBoxCriteria.SelectedIndexChanged += new System.EventHandler(this.comboBoxCriteria_SelectedIndexChanged);
+            // 
             // FormMatrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 434);
+            this.Controls.Add(this.comboBoxCriteria);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormMatrix";
             this.Text = "FormMatrix";
@@ -63,5 +75,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBoxCriteria;
     }
 }

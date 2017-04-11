@@ -44,7 +44,6 @@ namespace Saaty
         public class AlternativeClass
         {
             public List<string> Name { get; set; }
-
             public int Count => Name.Count;
 
             public void Clear()
@@ -68,16 +67,12 @@ namespace Saaty
             public List<double> FactorCriteria { get; set; }
             public List<List<double>> FactorAlternative { get; set; }
             public List<double> Results { get; set; }
-            public int Id { get; set; }
-            public string Name { get; set; }
 
             public void Clear()
             {
                 FactorCriteria.Clear();
                 FactorAlternative.Clear();
                 Results.Clear();
-                Id = -1;
-                Name = "No data to calculate";
             }
         }
 
@@ -129,8 +124,6 @@ namespace Saaty
                 FactorCriteria = new List<double>(),
                 FactorAlternative = new List<List<double>>(),
                 Results = new List<double>(),
-                Id = -1,
-                Name = "No data to calculate",
             };
 
         }
@@ -161,6 +154,10 @@ namespace Saaty
                     Matrix.Alternative[Criteria.Count - 1][j].Add(1);
             }
             Matrix.Data.Add(new List<double>());
+            for (int j = 0; j < Alternative.Count; j++)
+            {
+                Matrix.Data[Criteria.Count - 1].Add(1);
+            }
         }
 
         public void RemoveCriteria(int id)
@@ -173,7 +170,7 @@ namespace Saaty
             Matrix.Data.RemoveAt(id);
         }
 
-        public void AddAlternative(string name,List<double> criteriaList)
+        public void AddAlternative(string name, List<double> criteriaList)
         {
             Alternative.Add(name);
             for (int i = 0; i < Criteria.Count; i++)
@@ -236,6 +233,16 @@ namespace Saaty
                     Matrix.Criteria[i][j] = 0;
                 }
             }
+            for (int i = 0; i < Criteria.Count; i++)
+            {
+                for (int j = 0; j < Alternative.Count; j++)
+                {
+                    for (int k = 0; k < Alternative.Count; k++)
+                    {
+                        Matrix.Alternative[i][j][k] = 0;
+                    }
+                }
+            }
         }
 
         public void GenerateMatrix()
@@ -260,6 +267,80 @@ namespace Saaty
             }
         }
 
+        public void GenerateMatrixAlternative()
+        {
+            for (int i = 0; i < Criteria.Count; i++)
+            {
+
+                List<double> data = new List<double>();
+                for (int j = 0; j < Alternative.Count; j++)
+                {
+                    data.Add(Matrix.Data[i][j]);
+                }
+
+
+                double min = data[0], max = data[0];
+                for (int j = 1; j < Alternative.Count; j++)
+                {
+                    if (data[j] < min) min = data[j];
+                    if (data[j] > max) max = data[j];
+                }
+
+                List<int> weight = new List<int>();
+                for (int j = 0; j < Alternative.Count; j++)
+                {
+                    weight.Add(1);
+                }
+
+                double point = max - min;
+                if (point != 0)
+                {
+                    point /= 8;
+                    for (int j = 0; j < Alternative.Count; j++)
+                    {
+                        double value = point;
+                        for (int k = 1; ; k++)
+                        {
+                            if (data[j] < value)
+                            {
+                                weight[j] = k;
+                                break;
+                            }
+                            value += point;
+                        }
+                    }
+                }
+
+                for (int j = 0; j < Alternative.Count; j++)
+                {
+                    for (int k = 0; k < Alternative.Count; k++)
+                    {
+                        if (k != j)
+                        {
+                            if (Criteria.ValueType[i])
+                            {
+                                if (weight[j] - weight[k] >= 0)
+                                    Matrix.Alternative[i][k][j] = weight[j] - weight[k] + 1;
+                                else
+                                    Matrix.Alternative[i][k][j] = 1.0 / ((weight[j] - weight[k]) * (-1.0) + 1.0);
+                            }
+                            else
+                            {
+                                if (weight[j] - weight[k] >= 0)
+                                    Matrix.Alternative[i][j][k] = weight[j] - weight[k] + 1;
+                                else
+                                    Matrix.Alternative[i][j][k] = 1.0 / ((weight[j] - weight[k]) * (-1.0) + 1.0);
+                            }
+                        }
+                        else
+                        {
+                            Matrix.Alternative[i][j][k] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Calculate
@@ -275,19 +356,7 @@ namespace Saaty
                 CalculateFactorCriteria();
                 CalculateFactorAlternative();
                 CalculateResult();
-                SetResult();
             }
-        }
-
-        private void SetResult()
-        {
-            Result.Id = 0;
-            for (int i = 1; i < Result.Results.Count; i++)
-            {
-                if (Result.Results[i] > Result.Results[Result.Id])
-                    Result.Id = i;
-            }
-            Result.Name = Alternative.Name[Result.Id];
         }
 
         private void CalculateFactorCriteria()

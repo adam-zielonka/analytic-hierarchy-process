@@ -88,13 +88,12 @@ namespace Saaty
             dataGridViewCriteria.Columns.Clear();
             dataGridViewCriteria.Columns.Add("name", "Nazwa");
             dataGridViewCriteria.Columns.Add("value", "Wartość");
-            dataGridViewCriteria.Columns.Add("precision", "Dokładność");
             for (int i = 0; i < dataGridViewCriteria.Columns.Count; i++)
                 dataGridViewCriteria.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             for (int i = 0; i < Satty.Criteria.Count; i++)
             {
                 string value = Satty.Criteria.ValueType[i] ? "Im mniejsza tym lepiej" : "Im większa tym lepiej";
-                dataGridViewCriteria.Rows.Add(Satty.Criteria.Name[i], value, Satty.Criteria.Precision[i]);
+                dataGridViewCriteria.Rows.Add(Satty.Criteria.Name[i], value);
             }
             if (dataGridViewCriteria.Rows.Count > 0)
             {
@@ -215,11 +214,14 @@ namespace Saaty
             dataGridViewAlternative.Rows.Clear();
             dataGridViewAlternative.Columns.Clear();
             dataGridViewAlternative.Columns.Add("name", "Nazwa");
-            dataGridViewAlternative.Columns.Add("data", "Dane");
             dataGridViewCriteria.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
             for (int j = 0; j < Satty.Alternative.Count; j++)
             {
                 dataGridViewAlternative.Rows.Add(Satty.Alternative.Name[j]);
+            }
+            if (dataGridViewAlternative.Rows.Count > 0)
+            {
+                TabManage.ShowTab(4, 3);
             }
         }
 
@@ -231,26 +233,51 @@ namespace Saaty
 
         private void buttonEditAlternative_Click(object sender, EventArgs e)
         {
-            FormAlternative formAlternative = new FormAlternative(Satty, this)
+            if (Satty.Alternative.Count != 0)
             {
-                Text = @"Edytuj alternatywę"
-            };
-            formAlternative.Show();
+                FormAlternative formAlternative = new FormAlternative(Satty, this, dataGridViewAlternative.SelectedRows[0].Index)
+                {
+                    Text = @"Edytuj alternatywę"
+                };
+                formAlternative.Show();
+            }
+        }
+
+        private void buttonMatrixAlternative_Click(object sender, EventArgs e)
+        {
+            Satty.ZeroMatrix();
+            Satty.GenerateMatrixAlternative();
+            FormMatrix formMatrix = new FormMatrix(Satty, true);
+            formMatrix.Show();
         }
 
         #endregion
 
         #region Results Tab
 
-        private void buttonResults_Click(object sender, EventArgs e)
+        private void tabPageResults_Enter(object sender, EventArgs e)
         {
+            Satty.ZeroMatrix();
+            Satty.GenerateMatrix();
+            Satty.GenerateMatrixAlternative();
             Satty.Calculate();
-            MessageBox.Show(Satty.Result.Name, @"Wynik", MessageBoxButtons.OK);
+
+            dataGridViewResults.Rows.Clear();
+            dataGridViewResults.Columns.Clear();
+            dataGridViewResults.Columns.Add("name", "Nazwa");
+            dataGridViewResults.Columns.Add("value", "Wartosć");
+            dataGridViewResults.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridViewResults.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
+            for (int j = 0; j < Satty.Alternative.Count; j++)
+            {
+                dataGridViewResults.Rows.Add(Satty.Alternative.Name[j], Satty.Result.Results[j]);
+            }
+            dataGridViewResults.Sort(dataGridViewResults.Columns[1], ListSortDirection.Descending);
+            dataGridViewResults.Rows[0].Selected = true;
         }
 
 
 
         #endregion
-
     }
 }

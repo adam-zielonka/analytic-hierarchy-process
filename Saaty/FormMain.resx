@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="labelStart.Text" xml:space="preserve">
     <value>Witam w najlepszym programie we wszechświecie. 
 Program pozwoli ci podjąć decyzje wykorzystując analizę hierarchii Satty’ego. 
@@ -124,9 +127,6 @@ Program pozwoli ci podjąć decyzje wykorzystując analizę hierarchii Satty’e
 
 Pierwsze co musisz zrobić to utworzyć nowy projekt, lub otworzyć już istnejący, klikając odpowiedni przycisk znajdujący się poniżej:</value>
   </data>
-  <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
