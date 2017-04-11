@@ -33,6 +33,7 @@
             this.tabPageStart = new System.Windows.Forms.TabPage();
             this.labelFileName = new System.Windows.Forms.Label();
             this.labelStart = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonOpenProject = new System.Windows.Forms.Button();
             this.buttonNewProject = new System.Windows.Forms.Button();
             this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
@@ -43,9 +44,13 @@
             this.buttonAddCriteria = new System.Windows.Forms.Button();
             this.dataGridViewCriteria = new System.Windows.Forms.DataGridView();
             this.tabPageStep2 = new System.Windows.Forms.TabPage();
+            this.buttonMatrix = new System.Windows.Forms.Button();
+            this.buttonDownCriteria = new System.Windows.Forms.Button();
+            this.buttonUpCriteria = new System.Windows.Forms.Button();
             this.dataGridViewCriteriaWeight = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
             this.tabPageResults = new System.Windows.Forms.TabPage();
             this.buttonResults = new System.Windows.Forms.Button();
@@ -56,13 +61,10 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonUpCriteria = new System.Windows.Forms.Button();
-            this.buttonDownCriteria = new System.Windows.Forms.Button();
-            this.buttonMatrix = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridViewAlternative = new System.Windows.Forms.DataGridView();
             this.tabControlMain.SuspendLayout();
             this.tabPageStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPageStep1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteria)).BeginInit();
             this.tabPageStep2.SuspendLayout();
@@ -70,7 +72,7 @@
             this.tabPageStep3.SuspendLayout();
             this.tabPageResults.SuspendLayout();
             this.menuStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -118,6 +120,18 @@
             this.labelStart.Size = new System.Drawing.Size(305, 113);
             this.labelStart.TabIndex = 8;
             this.labelStart.Text = resources.GetString("labelStart.Text");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(162, 304);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // buttonOpenProject
             // 
@@ -244,6 +258,36 @@
             this.tabPageStep2.UseVisualStyleBackColor = true;
             this.tabPageStep2.Enter += new System.EventHandler(this.tabPageStep2_Enter);
             // 
+            // buttonMatrix
+            // 
+            this.buttonMatrix.Location = new System.Drawing.Point(406, 97);
+            this.buttonMatrix.Name = "buttonMatrix";
+            this.buttonMatrix.Size = new System.Drawing.Size(75, 23);
+            this.buttonMatrix.TabIndex = 4;
+            this.buttonMatrix.Text = "MATRIX";
+            this.buttonMatrix.UseVisualStyleBackColor = true;
+            this.buttonMatrix.Click += new System.EventHandler(this.buttonMatrix_Click);
+            // 
+            // buttonDownCriteria
+            // 
+            this.buttonDownCriteria.Location = new System.Drawing.Point(405, 67);
+            this.buttonDownCriteria.Name = "buttonDownCriteria";
+            this.buttonDownCriteria.Size = new System.Drawing.Size(75, 23);
+            this.buttonDownCriteria.TabIndex = 3;
+            this.buttonDownCriteria.Text = "DOWN";
+            this.buttonDownCriteria.UseVisualStyleBackColor = true;
+            this.buttonDownCriteria.Click += new System.EventHandler(this.buttonDownCriteria_Click);
+            // 
+            // buttonUpCriteria
+            // 
+            this.buttonUpCriteria.Location = new System.Drawing.Point(405, 38);
+            this.buttonUpCriteria.Name = "buttonUpCriteria";
+            this.buttonUpCriteria.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpCriteria.TabIndex = 2;
+            this.buttonUpCriteria.Text = "UP";
+            this.buttonUpCriteria.UseVisualStyleBackColor = true;
+            this.buttonUpCriteria.Click += new System.EventHandler(this.buttonUpCriteria_Click);
+            // 
             // dataGridViewCriteriaWeight
             // 
             this.dataGridViewCriteriaWeight.AllowUserToAddRows = false;
@@ -268,11 +312,12 @@
             this.label2.Size = new System.Drawing.Size(474, 32);
             this.label2.TabIndex = 0;
             this.label2.Text = "Teraz musisz ustalić, które kryteria są dla ciebie ważniejsze. Im wyższa waga tym" +
-    " kryterium jest ważniejsze, im mniejsza tym mniej ważne. Zakres od 9 do 1/9.\r\n\r\n" +
-    "\r\n\r\n";
+    " kryterium jest ważniejsze, im mniejsza tym mniej ważne. Zakres od 1 (najmniejwa" +
+    "żne) do 9 (najważniejsze).\r\n\r\n\r\n\r\n";
             // 
             // tabPageStep3
             // 
+            this.tabPageStep3.Controls.Add(this.dataGridViewAlternative);
             this.tabPageStep3.Controls.Add(this.label3);
             this.tabPageStep3.Location = new System.Drawing.Point(4, 22);
             this.tabPageStep3.Name = "tabPageStep3";
@@ -281,6 +326,15 @@
             this.tabPageStep3.TabIndex = 3;
             this.tabPageStep3.Text = "Krok 3.";
             this.tabPageStep3.UseVisualStyleBackColor = true;
+            this.tabPageStep3.Enter += new System.EventHandler(this.tabPageStep3_Enter);
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(6, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(474, 67);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Teraz musisz dodać alternatywy, które program porówna.\r\n\r\n";
             // 
             // tabPageStep4
             // 
@@ -379,55 +433,13 @@
             this.saveToolStripMenuItem.Text = "Zapisz";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // buttonUpCriteria
+            // dataGridViewAlternative
             // 
-            this.buttonUpCriteria.Location = new System.Drawing.Point(405, 38);
-            this.buttonUpCriteria.Name = "buttonUpCriteria";
-            this.buttonUpCriteria.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpCriteria.TabIndex = 2;
-            this.buttonUpCriteria.Text = "UP";
-            this.buttonUpCriteria.UseVisualStyleBackColor = true;
-            this.buttonUpCriteria.Click += new System.EventHandler(this.buttonUpCriteria_Click);
-            // 
-            // buttonDownCriteria
-            // 
-            this.buttonDownCriteria.Location = new System.Drawing.Point(405, 67);
-            this.buttonDownCriteria.Name = "buttonDownCriteria";
-            this.buttonDownCriteria.Size = new System.Drawing.Size(75, 23);
-            this.buttonDownCriteria.TabIndex = 3;
-            this.buttonDownCriteria.Text = "DOWN";
-            this.buttonDownCriteria.UseVisualStyleBackColor = true;
-            this.buttonDownCriteria.Click += new System.EventHandler(this.buttonDownCriteria_Click);
-            // 
-            // buttonMatrix
-            // 
-            this.buttonMatrix.Location = new System.Drawing.Point(406, 97);
-            this.buttonMatrix.Name = "buttonMatrix";
-            this.buttonMatrix.Size = new System.Drawing.Size(75, 23);
-            this.buttonMatrix.TabIndex = 4;
-            this.buttonMatrix.Text = "MATRIX";
-            this.buttonMatrix.UseVisualStyleBackColor = true;
-            this.buttonMatrix.Click += new System.EventHandler(this.buttonMatrix_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Saaty.Properties.Resources.p1;
-            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(162, 304);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(6, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(474, 67);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Teraz musisz dodać alternatywy, które program porówna.\r\n\r\n";
+            this.dataGridViewAlternative.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlternative.Location = new System.Drawing.Point(9, 21);
+            this.dataGridViewAlternative.Name = "dataGridViewAlternative";
+            this.dataGridViewAlternative.Size = new System.Drawing.Size(471, 289);
+            this.dataGridViewAlternative.TabIndex = 2;
             // 
             // FormMain
             // 
@@ -445,6 +457,7 @@
             this.Text = "Metoda analizy hierarchii Saaty’ego";
             this.tabControlMain.ResumeLayout(false);
             this.tabPageStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPageStep1.ResumeLayout(false);
             this.tabPageStep1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteria)).EndInit();
@@ -454,7 +467,7 @@
             this.tabPageResults.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,6 +507,7 @@
         public System.Windows.Forms.DataGridView dataGridViewCriteriaWeight;
         public System.Windows.Forms.DataGridView dataGridViewCriteria;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridViewAlternative;
     }
 }
 

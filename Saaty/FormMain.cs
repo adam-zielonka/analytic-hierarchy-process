@@ -221,12 +221,35 @@ namespace Saaty
 
         private void buttonMatrix_Click(object sender, EventArgs e)
         {
-            dataSatty.Matrix();
+            dataSatty.ZeroMatrix();
+            dataSatty.GenerateMatrix();
             FormMatrix formMatrix = new FormMatrix(dataSatty);
             formMatrix.Show();
         }
 
         #endregion
+
+        #region Step 3: 
+
+        private void tabPageStep3_Enter(object sender, EventArgs e)
+        {
+            dataGridViewAlternative.Rows.Clear();
+            dataGridViewAlternative.Columns.Clear();
+
+            for (int i = 0; i < dataSatty.ListCriteria.Count; i++)
+            {
+                dataGridViewAlternative.Columns.Add(dataSatty.ListCriteria[i], dataSatty.ListCriteria[i]);
+            }
+
+            for (int j = 0; j < dataSatty.ListAlternative.Count; j++)
+            {
+                dataGridViewAlternative.Rows.Add();
+                dataGridViewAlternative.Rows[j].HeaderCell.Value = dataSatty.ListAlternative[j];
+            }
+        }
+
+        #endregion
+
 
         #region Results Tab
 
@@ -238,6 +261,7 @@ namespace Saaty
 
 
         #endregion
+
 
     }
 }

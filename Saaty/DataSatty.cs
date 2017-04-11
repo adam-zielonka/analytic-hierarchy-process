@@ -14,6 +14,7 @@ namespace Saaty
         public List<int> ListCriteriaWeight { get; set; }
         public List<string> ListAlternative { get; set; }
         public List<List<double>> MatrixCriteria { get; set; }
+        public List<List<double>> MatrixData { get; set; }
         public List<List<List<double>>> MatrixAlternative { get; set; }
         public List<double> ListFactorCriteria { get; set; }
         public List<List<double>> ListFactorAlternative { get; set; }
@@ -30,6 +31,7 @@ namespace Saaty
             ListAlternative = new List<string>();
             MatrixAlternative = new List<List<List<double>>>();
             MatrixCriteria = new List<List<double>>();
+            MatrixData = new List<List<double>>();
             ListFactorCriteria = new List<double>();
             ListFactorAlternative = new List<List<double>>();
             ListResult = new List<double>();
@@ -45,6 +47,7 @@ namespace Saaty
             ListAlternative.Clear();
             MatrixCriteria.Clear();
             MatrixAlternative.Clear();
+            MatrixData.Clear();
             ClearCalculate();
         }
 
@@ -117,30 +120,14 @@ namespace Saaty
             {
                 ListCriteriaWeight[_id]--;
             }
-            if (ListCriteriaWeight[_id] == -1)
-            {
-                ListCriteriaWeight[_id]++;
-            }
-            if (ListCriteriaWeight[_id] == 0)
-            {
-                ListCriteriaWeight[_id]++;
-            }
         }
 
         public void DownCriteria(int _id)
         {
             ListCriteriaWeight[_id]--;
-            if (ListCriteriaWeight[_id] < -9)
+            if (ListCriteriaWeight[_id] < 1)
             {
                 ListCriteriaWeight[_id]++;
-            }
-            if (ListCriteriaWeight[_id] == 0)
-            {
-                ListCriteriaWeight[_id]--;
-            }
-            if (ListCriteriaWeight[_id] == -1)
-            {
-                ListCriteriaWeight[_id]--;
             }
         }
 
@@ -148,13 +135,37 @@ namespace Saaty
 
         #region Matrix
 
-        public void Matrix()
+        public void ZeroMatrix()
         {
-            //for (int i = 0; i < ListCriteria.Count; i++)
-            //    for (int j = 1+i; j < ListCriteria.Count; j++)
-            //    {
-            //        MatrixCriteria[i][j] = ListCriteriaWeight[j];
-            //    }
+            for (int i = 0; i < ListCriteria.Count; i++)
+            {
+                for (int j = 0; j < ListCriteria.Count; j++)
+                {
+                        MatrixCriteria[i][j] = 0;
+                }
+            }
+        }
+
+        public void GenerateMatrix()
+        {
+            for (int i = 0; i < ListCriteria.Count; i++)
+            {
+                for (int j = 0; j < ListCriteria.Count; j++)
+                {
+                    if (j != i)
+                    {
+                        if (ListCriteriaWeight[i] - ListCriteriaWeight[j] >= 0)
+                            MatrixCriteria[i][j] = ListCriteriaWeight[i] - ListCriteriaWeight[j] + 1;
+                        else
+                            MatrixCriteria[i][j] = 1.0 / ((ListCriteriaWeight[i] - ListCriteriaWeight[j]) * (-1.0) + 1.0);
+
+                    }
+                    else
+                    {
+                        MatrixCriteria[i][j] = 1;
+                    }
+                }
+            }
         }
 
         #endregion
