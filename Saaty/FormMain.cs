@@ -18,24 +18,16 @@ namespace Saaty
     public partial class FormMain : Form
     {
         DataSatty dataSatty;
-        FormMain formMainBasic;
-        bool noBasic;
-        bool closeByLanguageChanege;
         public FormMain()
         {
             InitializeComponent();
             dataSatty = new DataSatty();
-            noBasic = false;
-            closeByLanguageChanege = false;
         }
 
         public FormMain(DataSatty _dataSatty,FormMain _formMainBasic)
         {
             InitializeComponent();
             dataSatty = _dataSatty;
-            noBasic = true;
-            formMainBasic = _formMainBasic;
-            closeByLanguageChanege = false;
         }
 
         #region Strip Menu
@@ -82,39 +74,15 @@ namespace Saaty
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
-            if (!noBasic)
-            {
-                FormMain formMain = new FormMain(dataSatty, this);
-                formMain.Show();
-                Hide();
-            }
-            else
-            {
-                closeByLanguageChanege = true;
-                FormMain formMain = new FormMain(dataSatty, formMainBasic);
-                formMain.Show();
-                Close();
-            }
-
+            Controls.Clear();
+            InitializeComponent();
         }
 
         private void polishToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl");
-            if (noBasic)
-            {
-                closeByLanguageChanege = true;
-                formMainBasic.Show();
-                Close();
-            }
-        }
-
-        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (noBasic && !closeByLanguageChanege)
-            {
-                formMainBasic.Close();
-            }
+            Controls.Clear();
+            InitializeComponent();
         }
 
         #endregion
