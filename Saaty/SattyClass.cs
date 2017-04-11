@@ -147,7 +147,7 @@ namespace Saaty
 
         public void AddCriteria(string name, bool value, double precision)
         {
-            Criteria.Add(name,value,precision);
+            Criteria.Add(name, value, precision);
             Matrix.Criteria.Add(new List<double>());
             for (int i = 0; i < Criteria.Count; i++)
                 Matrix.Criteria[Criteria.Count - 1].Add(1);
@@ -160,6 +160,7 @@ namespace Saaty
                 for (int k = 0; k < Alternative.Count; k++)
                     Matrix.Alternative[Criteria.Count - 1][j].Add(1);
             }
+            Matrix.Data.Add(new List<double>());
         }
 
         public void RemoveCriteria(int id)
@@ -169,9 +170,10 @@ namespace Saaty
                 Matrix.Criteria[i].RemoveAt(id);
             Matrix.Criteria.RemoveAt(id);
             Criteria.RemoveAt(id);
+            Matrix.Data.RemoveAt(id);
         }
 
-        public void AddAlternative(string name)
+        public void AddAlternative(string name,List<double> criteriaList)
         {
             Alternative.Add(name);
             for (int i = 0; i < Criteria.Count; i++)
@@ -181,6 +183,10 @@ namespace Saaty
                     Matrix.Alternative[i][Alternative.Count - 1].Add(1);
                 for (int k = 0; k < Alternative.Count - 1; k++)
                     Matrix.Alternative[i][k].Add(1);
+            }
+            for (int i = 0; i < Criteria.Count; i++)
+            {
+                Matrix.Data[i].Add(criteriaList[i]);
             }
         }
 

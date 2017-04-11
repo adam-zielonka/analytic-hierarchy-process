@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 namespace Saaty
@@ -27,5 +28,22 @@ namespace Saaty
 
         }
 
+        private void buttonAccept_Click(object sender, System.EventArgs e)
+        {
+            List<double> criteriaList = new List<double>();
+            for (int i = 0; i < _satty.Criteria.Count; i++)
+            {
+                criteriaList.Add(double.Parse(dataGridView.Rows[i].Cells[1].Value.ToString()));
+            }
+            _satty.AddAlternative(textBoxAlternative.Text,criteriaList);
+            _formMain.tabPageStep3_Enter(sender,e);
+            _formMain.Save();
+            Close();
+        }
+
+        private void buttonCancel_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -210,11 +210,12 @@ namespace Saaty
 
         #region Step 3 Tab : Add Alternative 
 
-        private void tabPageStep3_Enter(object sender, EventArgs e)
+        public void tabPageStep3_Enter(object sender, EventArgs e)
         {
             dataGridViewAlternative.Rows.Clear();
             dataGridViewAlternative.Columns.Clear();
             dataGridViewAlternative.Columns.Add("name", "Nazwa");
+            dataGridViewAlternative.Columns.Add("data", "Dane");
             dataGridViewCriteria.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
             for (int j = 0; j < Satty.Alternative.Count; j++)
             {
@@ -225,6 +226,15 @@ namespace Saaty
         private void buttonAddAlternative_Click(object sender, EventArgs e)
         {
             FormAlternative formAlternative = new FormAlternative(Satty, this);
+            formAlternative.Show();
+        }
+
+        private void buttonEditAlternative_Click(object sender, EventArgs e)
+        {
+            FormAlternative formAlternative = new FormAlternative(Satty, this)
+            {
+                Text = @"Edytuj alternatywę"
+            };
             formAlternative.Show();
         }
 
@@ -239,8 +249,8 @@ namespace Saaty
         }
 
 
-        #endregion
 
+        #endregion
 
     }
 }
