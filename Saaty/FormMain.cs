@@ -20,20 +20,25 @@ namespace Saaty
         DataSatty dataSatty;
         TabManage tabManage;
 
-        List<TextBox> listTextBox;
-        List<Button> listButtonDel;
+        List<TextBox> listTextBoxCriteria;
+        List<TextBox> listTextBoxAlternative;
+        List<Button> listButtonDelCriteria;
+        List<Button> listButtonDelAlternative;
         public FormMain()
         {
             InitializeComponent();
             dataSatty = new DataSatty();
-            tabManage = new TabManage(3, tabControl, buttonNext, buttonBack);
-            listTextBox = new List<TextBox>();
-            listButtonDel = new List<Button>();
+            tabManage = new TabManage(6, tabControl, buttonNext, buttonBack);
+            listTextBoxCriteria = new List<TextBox>();
+            listTextBoxAlternative = new List<TextBox>();
+            listButtonDelCriteria = new List<Button>();
+            listButtonDelAlternative = new List<Button>();
         }
-        
+
         private void LoadData()
         {
-            LoadList(dataSatty.ListCriteria);
+            LoadList(dataSatty.ListCriteria, tabPageCriteria, listButtonDelCriteria, listTextBoxCriteria);
+            LoadList(dataSatty.ListAlternative, tabPageAlternative, listButtonDelAlternative, listTextBoxAlternative, false);
         }
 
         #region Strip Menu
@@ -97,20 +102,6 @@ namespace Saaty
         #endregion
 
         #region Start Tab
-        private void buttonCriteria_Click(object sender, EventArgs e)
-        {
-            FormManage formManage = new FormManage(dataSatty, buttonCriteria);
-            formManage.Text = "Zarządzaj Kryteriami";
-            formManage.Show();
-        }
-
-
-        private void buttonAlternative_Click(object sender, EventArgs e)
-        {
-            FormManage formManage = new FormManage(dataSatty, buttonAlternative, true);
-            formManage.Text = "Zarządzaj Alternatywami";
-            formManage.Show();
-        }
 
         private void buttonWeightCriteria_Click(object sender, EventArgs e)
         {
@@ -137,58 +128,86 @@ namespace Saaty
         }
         #endregion
 
-        #region Add Criteria Tab
+        #region TabsAddDel
 
-        private void LoadList(List<string> _list)
+        private void LoadList(List<string> _list, TabPage _tabPage, List<Button> _listButtonDel, List<TextBox> _listTextBox, bool _criteria = true)
         {
-            for (int i = 0; i < listTextBox.Count; i++)
+            for (int i = 0; i < _listTextBox.Count; i++)
             {
-                tabPageCriteria.Controls.Remove(listTextBox[i]);
-                tabPageCriteria.Controls.Remove(listButtonDel[i]);
+                _tabPage.Controls.Remove(_listTextBox[i]);
+                _tabPage.Controls.Remove(_listButtonDel[i]);
             }
-            listTextBox.Clear();
-            listButtonDel.Clear();
+            _listTextBox.Clear();
+            _listButtonDel.Clear();
             for (int i = 0; i < _list.Count; i++)
             {
-                listTextBox.Add(new TextBox());
-                listTextBox[listTextBox.Count - 1].Location = new Point(53, 37 + 25 * (listTextBox.Count - 1));
-                listTextBox[listTextBox.Count - 1].Size = new Size(360, 20);
-                listTextBox[listTextBox.Count - 1].Text = _list[i];
-                listTextBox[listTextBox.Count - 1].Enabled = false;
-                tabPageCriteria.Controls.Add(listTextBox[listTextBox.Count - 1]);
+                _listTextBox.Add(new TextBox());
+                _listTextBox[_listTextBox.Count - 1].Location = new Point(53, 37 + 25 * (_listTextBox.Count - 1));
+                _listTextBox[_listTextBox.Count - 1].Size = new Size(360, 20);
+                _listTextBox[_listTextBox.Count - 1].Text = _list[i];
+                _listTextBox[_listTextBox.Count - 1].Enabled = false;
+                _tabPage.Controls.Add(_listTextBox[_listTextBox.Count - 1]);
 
-                listButtonDel.Add(new Button());
-                listButtonDel[listButtonDel.Count - 1].Location = new Point(419, 35 + 25 * (listButtonDel.Count - 1));
-                listButtonDel[listButtonDel.Count - 1].Size = new Size(75, 23);
-                listButtonDel[listButtonDel.Count - 1].Text = "Usuń";
-                listButtonDel[listButtonDel.Count - 1].Click += new EventHandler(listButtonDel_Click);
-                tabPageCriteria.Controls.Add(listButtonDel[listButtonDel.Count - 1]);
+                _listButtonDel.Add(new Button());
+                _listButtonDel[_listButtonDel.Count - 1].Location = new Point(419, 35 + 25 * (_listButtonDel.Count - 1));
+                _listButtonDel[_listButtonDel.Count - 1].Size = new Size(75, 23);
+                _listButtonDel[_listButtonDel.Count - 1].Text = "Usuń";
+                if (_criteria)
+                    _listButtonDel[_listButtonDel.Count - 1].Click += new EventHandler(listButtonDelCriteria_Click);
+                else
+                    _listButtonDel[_listButtonDel.Count - 1].Click += new EventHandler(listButtonDelAlternative_Click);
+                _tabPage.Controls.Add(_listButtonDel[_listButtonDel.Count - 1]);
             }
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void buttonAddCriteria_Click(object sender, EventArgs e)
         {
-            if (textBoxAdd.Text != "")
+            if (textBoxAddCriteria.Text != "")
             {
-                dataSatty.AddCriteria(textBoxAdd.Text);
-                textBoxAdd.Text = "";
-                LoadList(dataSatty.ListCriteria);
+                dataSatty.AddCriteria(textBoxAddCriteria.Text);
+                textBoxAddCriteria.Text = "";
+                LoadList(dataSatty.ListCriteria, tabPageCriteria, listButtonDelCriteria, listTextBoxCriteria);
             }
         }
 
-        private void textBoxAdd_Enter(object sender, EventArgs e)
+        private void buttonAddAlternative_Click(object sender, EventArgs e)
         {
-            ActiveForm.AcceptButton = buttonAdd;
+            if (textBoxAddAlternative.Text != "")
+            {
+                dataSatty.AddAlternative(textBoxAddAlternative.Text);
+                textBoxAddAlternative.Text = "";
+                LoadList(dataSatty.ListAlternative, tabPageAlternative, listButtonDelAlternative, listTextBoxAlternative, false);
+            }
         }
 
-        private void listButtonDel_Click(object sender, EventArgs e)
+        private void textBoxAddCriteria_Enter(object sender, EventArgs e)
+        {
+            ActiveForm.AcceptButton = buttonAddCriteria;
+        }
+
+        private void textBoxAddAlternative_Enter(object sender, EventArgs e)
+        {
+            ActiveForm.AcceptButton = buttonAddAlternative;
+        }
+
+        private void listButtonDelCriteria_Click(object sender, EventArgs e)
         {
             Button buttonDel = (Button)sender;
             Point point = buttonDel.Location;
 
             dataSatty.RemoveCriteria((point.Y - 35) / 25);
-            LoadList(dataSatty.ListCriteria);
+            LoadList(dataSatty.ListCriteria, tabPageCriteria, listButtonDelCriteria, listTextBoxCriteria);
         }
+
+        private void listButtonDelAlternative_Click(object sender, EventArgs e)
+        {
+            Button buttonDel = (Button)sender;
+            Point point = buttonDel.Location;
+
+            dataSatty.RemoveAlternative((point.Y - 35) / 25);
+            LoadList(dataSatty.ListAlternative, tabPageAlternative, listButtonDelAlternative, listTextBoxAlternative, false);
+        }
+
 
         #endregion
 
@@ -207,7 +226,9 @@ namespace Saaty
         {
             tabManage.IndexChanged();
         }
+
         #endregion
+
     }
 
     public class TabManage
