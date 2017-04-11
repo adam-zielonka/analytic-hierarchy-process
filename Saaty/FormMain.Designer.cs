@@ -50,6 +50,7 @@
             this.dataGridViewCriteriaWeight = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
+            this.buttonAddAlternative = new System.Windows.Forms.Button();
             this.dataGridViewAlternative = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageStep4 = new System.Windows.Forms.TabPage();
@@ -260,7 +261,7 @@
             // 
             // buttonMatrix
             // 
-            this.buttonMatrix.Location = new System.Drawing.Point(406, 97);
+            this.buttonMatrix.Location = new System.Drawing.Point(168, 38);
             this.buttonMatrix.Name = "buttonMatrix";
             this.buttonMatrix.Size = new System.Drawing.Size(75, 23);
             this.buttonMatrix.TabIndex = 4;
@@ -270,7 +271,7 @@
             // 
             // buttonDownCriteria
             // 
-            this.buttonDownCriteria.Location = new System.Drawing.Point(405, 67);
+            this.buttonDownCriteria.Location = new System.Drawing.Point(87, 38);
             this.buttonDownCriteria.Name = "buttonDownCriteria";
             this.buttonDownCriteria.Size = new System.Drawing.Size(75, 23);
             this.buttonDownCriteria.TabIndex = 3;
@@ -280,7 +281,7 @@
             // 
             // buttonUpCriteria
             // 
-            this.buttonUpCriteria.Location = new System.Drawing.Point(405, 38);
+            this.buttonUpCriteria.Location = new System.Drawing.Point(6, 38);
             this.buttonUpCriteria.Name = "buttonUpCriteria";
             this.buttonUpCriteria.Size = new System.Drawing.Size(75, 23);
             this.buttonUpCriteria.TabIndex = 2;
@@ -296,13 +297,13 @@
             this.dataGridViewCriteriaWeight.AllowUserToResizeRows = false;
             this.dataGridViewCriteriaWeight.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCriteriaWeight.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCriteriaWeight.Location = new System.Drawing.Point(6, 38);
+            this.dataGridViewCriteriaWeight.Location = new System.Drawing.Point(6, 67);
             this.dataGridViewCriteriaWeight.MultiSelect = false;
             this.dataGridViewCriteriaWeight.Name = "dataGridViewCriteriaWeight";
             this.dataGridViewCriteriaWeight.ReadOnly = true;
             this.dataGridViewCriteriaWeight.RowHeadersVisible = false;
             this.dataGridViewCriteriaWeight.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCriteriaWeight.Size = new System.Drawing.Size(393, 272);
+            this.dataGridViewCriteriaWeight.Size = new System.Drawing.Size(474, 243);
             this.dataGridViewCriteriaWeight.TabIndex = 1;
             // 
             // label2
@@ -317,6 +318,7 @@
             // 
             // tabPageStep3
             // 
+            this.tabPageStep3.Controls.Add(this.buttonAddAlternative);
             this.tabPageStep3.Controls.Add(this.dataGridViewAlternative);
             this.tabPageStep3.Controls.Add(this.label3);
             this.tabPageStep3.Location = new System.Drawing.Point(4, 22);
@@ -328,21 +330,39 @@
             this.tabPageStep3.UseVisualStyleBackColor = true;
             this.tabPageStep3.Enter += new System.EventHandler(this.tabPageStep3_Enter);
             // 
+            // buttonAddAlternative
+            // 
+            this.buttonAddAlternative.Location = new System.Drawing.Point(6, 23);
+            this.buttonAddAlternative.Name = "buttonAddAlternative";
+            this.buttonAddAlternative.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddAlternative.TabIndex = 3;
+            this.buttonAddAlternative.Text = "Dodaj";
+            this.buttonAddAlternative.UseVisualStyleBackColor = true;
+            this.buttonAddAlternative.Click += new System.EventHandler(this.buttonAddAlternative_Click);
+            // 
             // dataGridViewAlternative
             // 
+            this.dataGridViewAlternative.AllowUserToAddRows = false;
+            this.dataGridViewAlternative.AllowUserToDeleteRows = false;
+            this.dataGridViewAlternative.AllowUserToResizeColumns = false;
+            this.dataGridViewAlternative.AllowUserToResizeRows = false;
+            this.dataGridViewAlternative.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAlternative.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAlternative.Location = new System.Drawing.Point(9, 21);
+            this.dataGridViewAlternative.Location = new System.Drawing.Point(6, 52);
             this.dataGridViewAlternative.Name = "dataGridViewAlternative";
-            this.dataGridViewAlternative.Size = new System.Drawing.Size(471, 289);
+            this.dataGridViewAlternative.ReadOnly = true;
+            this.dataGridViewAlternative.RowHeadersVisible = false;
+            this.dataGridViewAlternative.Size = new System.Drawing.Size(474, 258);
             this.dataGridViewAlternative.TabIndex = 2;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(6, 3);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(474, 67);
+            this.label3.Size = new System.Drawing.Size(275, 13);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Teraz musisz dodać alternatywy, które program porówna.\r\n\r\n";
+            this.label3.Text = "Teraz musisz dodać alternatywy, które program porówna.";
             // 
             // tabPageStep4
             // 
@@ -464,6 +484,7 @@
             this.tabPageStep2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriaWeight)).EndInit();
             this.tabPageStep3.ResumeLayout(false);
+            this.tabPageStep3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternative)).EndInit();
             this.tabPageResults.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
@@ -508,6 +529,7 @@
         public System.Windows.Forms.DataGridView dataGridViewCriteria;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridViewAlternative;
+        private System.Windows.Forms.Button buttonAddAlternative;
     }
 }
 

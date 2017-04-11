@@ -1,69 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Saaty
 {
     public partial class FormCriteria : Form
     {
-        DataSatty dataSatty;
-        FormMain formMain;
-        bool editMode;
-        int id;
+        SattyClass _satty;
+        FormMain _formMain;
+        bool _editMode;
+        int _id;
 
-        public FormCriteria(DataSatty _dataSatty, FormMain _formMain)
+        public FormCriteria(SattyClass satty, FormMain formMain)
         {
             InitializeComponent();
-            editMode = false;
-            dataSatty = _dataSatty;
-            formMain = _formMain;
-            id = _dataSatty.criteria.Name.Count();
+            _editMode = false;
+            _satty = satty;
+            _formMain = formMain;
+            _id = satty.Criteria.Count;
             comboBoxValueCriteria.SelectedIndex = 0;
             comboBoxPrecisionCriteria.SelectedIndex = 4;
         }
 
-        public FormCriteria(DataSatty _dataSatty, FormMain _formMain, int _id)
+        public FormCriteria(SattyClass satty, FormMain formMain, int id)
         {
             InitializeComponent();
-            editMode = true;
-            dataSatty = _dataSatty;
-            formMain = _formMain;
-            id = _id;
+            _editMode = true;
+            _satty = satty;
+            _formMain = formMain;
+            _id = id;
             int value = 0;
-            if (dataSatty.criteria.ValueType[_id]) value = 1;
-            textBoxNameCriteria.Text = dataSatty.criteria.Name[_id];
+            if (_satty.Criteria.ValueType[id]) value = 1;
+            textBoxNameCriteria.Text = _satty.Criteria.Name[id];
             comboBoxValueCriteria.SelectedIndex = value;
-            comboBoxPrecisionCriteria.Text = dataSatty.criteria.Precision[_id].ToString();
+            comboBoxPrecisionCriteria.Text = _satty.Criteria.Precision[id].ToString(CultureInfo.InvariantCulture);
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
             bool value = comboBoxValueCriteria.SelectedIndex == 1;
-            if (editMode)
+            if (_editMode)
             {
-                dataSatty.criteria.Name[id] = textBoxNameCriteria.Text;
-                dataSatty.criteria.ValueType[id] = value;
-                dataSatty.criteria.Precision[id] = double.Parse(comboBoxPrecisionCriteria.Text);
+                _satty.Criteria.Name[_id] = textBoxNameCriteria.Text;
+                _satty.Criteria.ValueType[_id] = value;
+                _satty.Criteria.Precision[_id] = double.Parse(comboBoxPrecisionCriteria.Text);
             }
             else
             {
-                dataSatty.AddCriteria(textBoxNameCriteria.Text, value, double.Parse(comboBoxPrecisionCriteria.Text));
+                _satty.AddCriteria(textBoxNameCriteria.Text, value, double.Parse(comboBoxPrecisionCriteria.Text));
             }
-            formMain.tabPageStep1_Enter(sender, e);
-            formMain.dataGridViewCriteria.Rows[id].Selected = true;
-            formMain.Save();
-            this.Close();
+            _formMain.tabPageStep1_Enter(sender, e);
+            _formMain.dataGridViewCriteria.Rows[_id].Selected = true;
+            _formMain.Save();
+            Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

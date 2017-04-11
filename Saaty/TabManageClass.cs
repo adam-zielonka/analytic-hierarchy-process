@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saaty
 {
-    class TabManage
+    public class TabManageClass
     {
         public int Index { get; set; }
 
@@ -17,26 +14,26 @@ namespace Saaty
 
         List<TabPage> listPage;
         List<bool> listPageStatus;
-        public TabManage(TabControl _tabControl, Button _next, Button _back)
+        public TabManageClass(TabControl tabControl, Button next, Button back)
         {
             Index = 0;
-            tabControl = _tabControl;
-            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
+            this.tabControl = tabControl;
+            this.tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
 
-            buttonNext = _next;
+            buttonNext = next;
             buttonNext.Click += buttonNext_Click;
 
-            buttonBack = _back;
+            buttonBack = back;
             buttonBack.Click += buttonBack_Click;
 
             listPage = new List<TabPage>();
             listPageStatus = new List<bool>();
-            for (int i = 0; i < _tabControl.TabCount; i++)
+            for (int i = 0; i < tabControl.TabCount; i++)
             {
-                listPage.Add(tabControl.TabPages[i]);
+                listPage.Add(this.tabControl.TabPages[i]);
                 listPageStatus.Add(false);
             }
-            tabControl.TabPages.Clear();
+            this.tabControl.TabPages.Clear();
             ShowTab(0);
         }
 
@@ -61,6 +58,16 @@ namespace Saaty
             }
         }
 
+        public void ShowTab(int id,int idSelectedTab)
+        {
+            if (!listPageStatus[id])
+            {
+                tabControl.TabPages.Add(listPage[id]);
+                listPageStatus[id] = true;
+                SetIndex(idSelectedTab);
+            }
+        }
+
         public void HideTab(int id)
         {
             if (listPageStatus[id])
@@ -75,9 +82,9 @@ namespace Saaty
 
         #region Manage
 
-        public void SetIndex(int _index)
+        public void SetIndex(int index)
         {
-            Index = _index;
+            Index = index;
             buttonBack.Enabled = true;
             buttonNext.Enabled = true;
 

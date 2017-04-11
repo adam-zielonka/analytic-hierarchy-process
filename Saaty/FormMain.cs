@@ -1,74 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Saaty
 {
     public partial class FormMain : Form
     {
-        DataSatty dataSatty;
-        TabManage tabManage;
-        OpenAndSave openAndSave;
+        public SattyClass Satty { get; set; }
+        public TabManageClass TabManage { get; set; }
+        public FileManageClass FileManage { get; set; }
 
         public FormMain()
         {
             InitializeComponent();
-            dataSatty = new DataSatty();
-            tabManage = new TabManage(tabControlMain, buttonNext, buttonBack);
-            openAndSave = new OpenAndSave(dataSatty);
+            Satty = new SattyClass();
+            TabManage = new TabManageClass(tabControlMain, buttonNext, buttonBack);
+            FileManage = new FileManageClass(Satty);
         }
 
-        public void Save()
-        {
-            openAndSave.Save();
-        }
+        public void Save() => FileManage.Save();
 
         #region Menu Strip
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataSatty.Clear();
-            tabManage.SetIndex(0);
-            openAndSave.New();
-            labelFileName.Text = fileMessage(openAndSave.GetFileName(), false);
+            Satty.Clear();
+            TabManage.SetIndex(0);
+            FileManage.New();
+            labelFileName.Text = FileMessage(FileManage.GetFileName(), false);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataSatty = (DataSatty)openAndSave.Open();
-            labelFileName.Text = fileMessage(openAndSave.GetFileName(), true);
+            Satty = (SattyClass)FileManage.Open();
+            labelFileName.Text = FileMessage(FileManage.GetFileName(), true);
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openAndSave.Save();
+            FileManage.Save();
         }
 
         #endregion
 
         #region Start Tab
 
-        private string fileMessage(string _fileName, bool open)
+        private string FileMessage(string fileName, bool open)
         {
             string fileMessageText = "";
-            string openOrNew;
-            if (open) openOrNew = "załadowany"; else openOrNew = "utworzony";
-            if (_fileName != "")
+            string openOrNew = open ? "załadowany" : "utworzony";
+            if (fileName != "")
             {
                 fileMessageText += "Projekt został " + openOrNew + ".";
                 fileMessageText += "\n\nTwoje postępy będą autoamtycznie zapisywane w pliku:\n";
-                fileMessageText += openAndSave.GetFileName();
+                fileMessageText += FileManage.GetFileName();
                 fileMessageText += "\n\nMożesz spokojnie przejść dalej.";
-                tabManage.HideTabs();
-                tabManage.ShowTab(1);
+                TabManage.HideTabs();
+                TabManage.ShowTab(1);
             }
             else
             {
@@ -79,15 +67,15 @@ namespace Saaty
 
         private void buttonNewProject_Click(object sender, EventArgs e)
         {
-            dataSatty.Clear();
-            openAndSave.New();
-            labelFileName.Text = fileMessage(openAndSave.GetFileName(), false);
+            Satty.Clear();
+            FileManage.New();
+            labelFileName.Text = FileMessage(FileManage.GetFileName(), false);
         }
 
         private void buttonOpenProject_Click(object sender, EventArgs e)
         {
-            dataSatty = (DataSatty)openAndSave.Open();
-            labelFileName.Text = fileMessage(openAndSave.GetFileName(), true);
+            Satty = (SattyClass)FileManage.Open();
+            labelFileName.Text = FileMessage(FileManage.GetFileName(), true);
         }
 
         #endregion
@@ -103,55 +91,52 @@ namespace Saaty
             dataGridViewCriteria.Columns.Add("precision", "Dokładność");
             for (int i = 0; i < dataGridViewCriteria.Columns.Count; i++)
                 dataGridViewCriteria.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            string value;
-            for (int i = 0; i < dataSatty.criteria.Name.Count; i++)
+            for (int i = 0; i < Satty.Criteria.Count; i++)
             {
-                if (dataSatty.criteria.ValueType[i]) value = "Im mniejsza tym lepiej";
-                else value = "Im większa tym lepiej";
-                dataGridViewCriteria.Rows.Add(dataSatty.criteria.Name[i], value, dataSatty.criteria.Precision[i]);
+                string value = Satty.Criteria.ValueType[i] ? "Im mniejsza tym lepiej" : "Im większa tym lepiej";
+                dataGridViewCriteria.Rows.Add(Satty.Criteria.Name[i], value, Satty.Criteria.Precision[i]);
             }
             if (dataGridViewCriteria.Rows.Count > 0)
             {
-                if (tabManage.Index == 0) tabManage.SetIndex(1);
-                tabManage.ShowTab(2);
-                tabManage.ShowTab(3);
+                TabManage.ShowTab(2, 1);
             }
         }
 
         private void buttonAddCriteria_Click(object sender, EventArgs e)
         {
-            FormCriteria formCriteria = new FormCriteria(dataSatty, this);
+            FormCriteria formCriteria = new FormCriteria(Satty, this);
             formCriteria.Show();
         }
 
         private void buttonEditCriteria_Click(object sender, EventArgs e)
         {
-            if (dataSatty.criteria.Name.Count != 0)
+            if (Satty.Criteria.Count != 0)
             {
-                FormCriteria formCriteria = new FormCriteria(dataSatty, this, dataGridViewCriteria.SelectedRows[0].Index);
-                formCriteria.Text = "Edytuj kryterium";
+                FormCriteria formCriteria = new FormCriteria(Satty, this, dataGridViewCriteria.SelectedRows[0].Index)
+                {
+                    Text = @"Edytuj kryterium"
+                };
                 formCriteria.Show();
             }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (dataSatty.criteria.Name.Count == 1)
+            switch (Satty.Criteria.Count)
             {
-                MessageBox.Show("Nie możesz usunąć wszystkich kryteriów.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (dataSatty.criteria.Name.Count == 0)
-            {
-
-            }
-            else
-            {
-                int id = dataGridViewCriteria.SelectedRows[0].Index;
-                dataSatty.RemoveCriteria(id);
-                id--;
-                tabPageStep1_Enter(sender, e);
-                if (id > 0) dataGridViewCriteria.Rows[id].Selected = true;
-                Save();
+                case 1:
+                    MessageBox.Show(@"Nie możesz usunąć wszystkich kryteriów.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 0:
+                    break;
+                default:
+                    int id = dataGridViewCriteria.SelectedRows[0].Index;
+                    Satty.RemoveCriteria(id);
+                    id--;
+                    tabPageStep1_Enter(sender, e);
+                    if (id > 0) dataGridViewCriteria.Rows[id].Selected = true;
+                    Save();
+                    break;
             }
         }
 
@@ -166,19 +151,13 @@ namespace Saaty
             dataGridViewCriteriaWeight.Columns.Add("id", "ID");
             dataGridViewCriteriaWeight.Columns.Add("name", "Nazwa");
             dataGridViewCriteriaWeight.Columns.Add("wight", "Ważność");
-            dataGridViewCriteriaWeight.Columns.Add("wightInt", "Ważność");
             dataGridViewCriteriaWeight.Columns[0].Visible = false;
-            dataGridViewCriteriaWeight.Columns[3].Visible = false;
             for (int i = 0; i < dataGridViewCriteriaWeight.Columns.Count; i++)
                 dataGridViewCriteriaWeight.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            for (int i = 0; i < dataSatty.criteria.Name.Count; i++)
-            {
-                string weight = "";
-                if (dataSatty.criteria.Weight[i] > 0) weight += dataSatty.criteria.Weight[i];
-                else weight += "1/" + Math.Abs(dataSatty.criteria.Weight[i]);
-                dataGridViewCriteriaWeight.Rows.Add(i, dataSatty.criteria.Name[i], weight, dataSatty.criteria.Weight[i]);
-            }
-            dataGridViewCriteriaWeight.Sort(dataGridViewCriteriaWeight.Columns[3], ListSortDirection.Descending);
+            for (int i = 0; i < Satty.Criteria.Count; i++)
+                dataGridViewCriteriaWeight.Rows.Add(i, Satty.Criteria.Name[i], Satty.Criteria.Weight[i]);
+            dataGridViewCriteriaWeight.Sort(dataGridViewCriteriaWeight.Columns[2], ListSortDirection.Descending);
+            TabManage.ShowTab(3, 2);
         }
 
         private void buttonUpCriteria_Click(object sender, EventArgs e)
@@ -186,7 +165,7 @@ namespace Saaty
             if (dataGridViewCriteriaWeight.Rows.Count != 0)
             {
                 int id = int.Parse(dataGridViewCriteriaWeight.Rows[dataGridViewCriteriaWeight.SelectedRows[0].Index].Cells[0].Value.ToString());
-                dataSatty.UpCriteria(id);
+                Satty.UpCriteria(id);
                 tabPageStep2_Enter(sender, e);
                 for (int i = 0; i < dataGridViewCriteriaWeight.RowCount; i++)
                 {
@@ -205,7 +184,7 @@ namespace Saaty
             if (dataGridViewCriteriaWeight.Rows.Count != 0)
             {
                 int id = int.Parse(dataGridViewCriteriaWeight.Rows[dataGridViewCriteriaWeight.SelectedRows[0].Index].Cells[0].Value.ToString());
-                dataSatty.DownCriteria(id);
+                Satty.DownCriteria(id);
                 tabPageStep2_Enter(sender, e);
                 for (int i = 0; i < dataGridViewCriteriaWeight.RowCount; i++)
                 {
@@ -221,42 +200,42 @@ namespace Saaty
 
         private void buttonMatrix_Click(object sender, EventArgs e)
         {
-            dataSatty.ZeroMatrix();
-            dataSatty.GenerateMatrix();
-            FormMatrix formMatrix = new FormMatrix(dataSatty);
+            Satty.ZeroMatrix();
+            Satty.GenerateMatrix();
+            FormMatrix formMatrix = new FormMatrix(Satty);
             formMatrix.Show();
         }
 
         #endregion
 
-        #region Step 3: 
+        #region Step 3 Tab : Add Alternative 
 
         private void tabPageStep3_Enter(object sender, EventArgs e)
         {
             dataGridViewAlternative.Rows.Clear();
             dataGridViewAlternative.Columns.Clear();
-
-            for (int i = 0; i < dataSatty.criteria.Name.Count; i++)
+            dataGridViewAlternative.Columns.Add("name", "Nazwa");
+            dataGridViewCriteria.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+            for (int j = 0; j < Satty.Alternative.Count; j++)
             {
-                dataGridViewAlternative.Columns.Add(dataSatty.criteria.Name[i], dataSatty.criteria.Name[i]);
-            }
-
-            for (int j = 0; j < dataSatty.alternative.Name.Count; j++)
-            {
-                dataGridViewAlternative.Rows.Add();
-                dataGridViewAlternative.Rows[j].HeaderCell.Value = dataSatty.alternative.Name[j];
+                dataGridViewAlternative.Rows.Add(Satty.Alternative.Name[j]);
             }
         }
 
-        #endregion
+        private void buttonAddAlternative_Click(object sender, EventArgs e)
+        {
+            FormAlternative formAlternative = new FormAlternative(Satty, this);
+            formAlternative.Show();
+        }
 
+        #endregion
 
         #region Results Tab
 
         private void buttonResults_Click(object sender, EventArgs e)
         {
-            dataSatty.Calculate();
-            MessageBox.Show(dataSatty.result.Name, "Wynik", MessageBoxButtons.OK);
+            Satty.Calculate();
+            MessageBox.Show(Satty.Result.Name, @"Wynik", MessageBoxButtons.OK);
         }
 
 

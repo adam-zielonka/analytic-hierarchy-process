@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Saaty
 {
     public partial class FormMatrix : Form
     {
-        public FormMatrix(DataSatty _dataSatty)
+        public FormMatrix(SattyClass satty)
         {
             InitializeComponent();
-            for (int i = 0; i < _dataSatty.criteria.Name.Count; i++)
-                dataGridView1.Columns.Add(i.ToString(), _dataSatty.criteria.Name[i].ToString());
-            for (int i = 0; i < _dataSatty.criteria.Name.Count; i++)
+            for (int i = 0; i < satty.Criteria.Count; i++)
+                dataGridView1.Columns.Add(i.ToString(), satty.Criteria.Name[i]);
+            for (int i = 0; i < satty.Criteria.Count; i++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].HeaderCell.Value = _dataSatty.criteria.Name[i].ToString();
+                dataGridView1.Rows[i].HeaderCell.Value = satty.Criteria.Name[i];
             }
-            for (int i = 0; i < _dataSatty.criteria.Name.Count; i++)
-                for (int j = 0; j < _dataSatty.criteria.Name.Count; j++)
-                    dataGridView1.Rows[i].Cells[j].Value = _dataSatty.matrix.Criteria[i][j];
+            for (int i = 0; i < satty.Criteria.Count; i++)
+                for (int j = 0; j < satty.Criteria.Count; j++)
+                    dataGridView1.Rows[i].Cells[j].Value = satty.Matrix.Criteria[i][j];
 
         }
     }
