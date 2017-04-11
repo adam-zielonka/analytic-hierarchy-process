@@ -47,17 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSatty.cs" />
-    <Compile Include="FormCriteria.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCriteria.Designer.cs">
-      <DependentUpon>FormCriteria.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManage.Designer.cs">
+      <DependentUpon>FormManage.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMatrix.cs">
       <SubType>Form</SubType>
@@ -73,11 +73,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormCriteria.resx">
-      <DependentUpon>FormCriteria.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain.en.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManage.resx">
+      <DependentUpon>FormManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMatrix.resx">
       <DependentUpon>FormMatrix.cs</DependentUpon>

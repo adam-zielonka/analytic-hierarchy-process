@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.buttonCriteria = new System.Windows.Forms.Button();
             this.buttonAlternative = new System.Windows.Forms.Button();
             this.buttonWeightCriteria = new System.Windows.Forms.Button();
@@ -36,6 +37,9 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.polishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonMatrixWeight = new System.Windows.Forms.Button();
             this.buttonWeightAlternative = new System.Windows.Forms.Button();
             this.buttonMatrixWeightAlternative = new System.Windows.Forms.Button();
@@ -44,43 +48,32 @@
             // 
             // buttonCriteria
             // 
-            this.buttonCriteria.Location = new System.Drawing.Point(12, 27);
+            resources.ApplyResources(this.buttonCriteria, "buttonCriteria");
             this.buttonCriteria.Name = "buttonCriteria";
-            this.buttonCriteria.Size = new System.Drawing.Size(145, 23);
-            this.buttonCriteria.TabIndex = 1;
-            this.buttonCriteria.Text = "Zarządzaj Kryteriami";
             this.buttonCriteria.UseVisualStyleBackColor = true;
             this.buttonCriteria.Click += new System.EventHandler(this.buttonCriteria_Click);
             // 
             // buttonAlternative
             // 
-            this.buttonAlternative.Location = new System.Drawing.Point(12, 56);
+            resources.ApplyResources(this.buttonAlternative, "buttonAlternative");
             this.buttonAlternative.Name = "buttonAlternative";
-            this.buttonAlternative.Size = new System.Drawing.Size(145, 23);
-            this.buttonAlternative.TabIndex = 2;
-            this.buttonAlternative.Text = "Zarządaj Alternatywami";
             this.buttonAlternative.UseVisualStyleBackColor = true;
             this.buttonAlternative.Click += new System.EventHandler(this.buttonAlternative_Click);
             // 
             // buttonWeightCriteria
             // 
-            this.buttonWeightCriteria.Location = new System.Drawing.Point(163, 27);
+            resources.ApplyResources(this.buttonWeightCriteria, "buttonWeightCriteria");
             this.buttonWeightCriteria.Name = "buttonWeightCriteria";
-            this.buttonWeightCriteria.Size = new System.Drawing.Size(75, 23);
-            this.buttonWeightCriteria.TabIndex = 3;
-            this.buttonWeightCriteria.Text = "Wagi";
             this.buttonWeightCriteria.UseVisualStyleBackColor = true;
             this.buttonWeightCriteria.Click += new System.EventHandler(this.buttonWeightCriteria_Click);
             // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.fileToolStripMenuItem,
+            this.languageToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(407, 24);
-            this.menuStrip.TabIndex = 4;
-            this.menuStrip.Text = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
@@ -89,65 +82,71 @@
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.fileToolStripMenuItem.Text = "Plik";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "Nowy";
+            resources.ApplyResources(this.newToolStripMenuItem, "newToolStripMenuItem");
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openToolStripMenuItem.Text = "Otwórz";
+            resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "Zapisz";
+            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.polishToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // polishToolStripMenuItem
+            // 
+            this.polishToolStripMenuItem.Name = "polishToolStripMenuItem";
+            resources.ApplyResources(this.polishToolStripMenuItem, "polishToolStripMenuItem");
+            this.polishToolStripMenuItem.Click += new System.EventHandler(this.polishToolStripMenuItem_Click);
             // 
             // buttonMatrixWeight
             // 
-            this.buttonMatrixWeight.Location = new System.Drawing.Point(244, 27);
+            resources.ApplyResources(this.buttonMatrixWeight, "buttonMatrixWeight");
             this.buttonMatrixWeight.Name = "buttonMatrixWeight";
-            this.buttonMatrixWeight.Size = new System.Drawing.Size(75, 23);
-            this.buttonMatrixWeight.TabIndex = 5;
-            this.buttonMatrixWeight.Text = "Matrix";
             this.buttonMatrixWeight.UseVisualStyleBackColor = true;
             this.buttonMatrixWeight.Click += new System.EventHandler(this.buttonMatrixWeight_Click);
             // 
             // buttonWeightAlternative
             // 
-            this.buttonWeightAlternative.Location = new System.Drawing.Point(163, 56);
+            resources.ApplyResources(this.buttonWeightAlternative, "buttonWeightAlternative");
             this.buttonWeightAlternative.Name = "buttonWeightAlternative";
-            this.buttonWeightAlternative.Size = new System.Drawing.Size(75, 23);
-            this.buttonWeightAlternative.TabIndex = 6;
-            this.buttonWeightAlternative.Text = "Wagi";
             this.buttonWeightAlternative.UseVisualStyleBackColor = true;
             this.buttonWeightAlternative.Click += new System.EventHandler(this.buttonWeightAlternative_Click);
             // 
             // buttonMatrixWeightAlternative
             // 
-            this.buttonMatrixWeightAlternative.Location = new System.Drawing.Point(245, 56);
+            resources.ApplyResources(this.buttonMatrixWeightAlternative, "buttonMatrixWeightAlternative");
             this.buttonMatrixWeightAlternative.Name = "buttonMatrixWeightAlternative";
-            this.buttonMatrixWeightAlternative.Size = new System.Drawing.Size(75, 23);
-            this.buttonMatrixWeightAlternative.TabIndex = 7;
-            this.buttonMatrixWeightAlternative.Text = "Matrix";
             this.buttonMatrixWeightAlternative.UseVisualStyleBackColor = true;
             this.buttonMatrixWeightAlternative.Click += new System.EventHandler(this.buttonMatrixWeightAlternative_Click);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 288);
             this.Controls.Add(this.buttonMatrixWeightAlternative);
             this.Controls.Add(this.buttonWeightAlternative);
             this.Controls.Add(this.buttonMatrixWeight);
@@ -157,7 +156,7 @@
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FormMain";
-            this.Text = "Metoda analizy hierarchii Saaty’ego";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -177,5 +176,8 @@
         private System.Windows.Forms.Button buttonWeightAlternative;
         private System.Windows.Forms.Button buttonMatrixWeightAlternative;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem polishToolStripMenuItem;
     }
 }
