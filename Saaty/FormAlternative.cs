@@ -17,6 +17,7 @@ namespace Saaty
             _satty = satty;
             _formMain = formMain;
             _editMode = false;
+            _id = _satty.Alternative.Count;
 
             dataGridView.Rows.Clear();
             dataGridView.Columns.Clear();
@@ -49,56 +50,53 @@ namespace Saaty
 
             for (int j = 0; j < _satty.Criteria.Count; j++)
             {
-                dataGridView.Rows.Add(_satty.Criteria.Name[j], _satty.Matrix.Data[j][id]);
+                if (_satty.Matrix.Data[j][id] != double.MaxValue)
+                {
+                    dataGridView.Rows.Add(_satty.Criteria.Name[j], _satty.Matrix.Data[j][id]);
+                }
+                else
+                {
+                    dataGridView.Rows.Add(_satty.Criteria.Name[j]);
+                }
             }
 
         }
 
         private void buttonAccept_Click(object sender, System.EventArgs e)
         {
-            if (!_editMode)
+            bool error = false;
+            List<double> criteriaList = new List<double>();
+
+            if (textBoxAlternative.Text == "")
+                error = true;
+
+            for (int i = 0; i < _satty.Criteria.Count; i++)
             {
-                bool error = false;
-                List<double> criteriaList = new List<double>();
-
-                if (textBoxAlternative.Text == "")
-                    error = true;
-
-                for (int i = 0; i < _satty.Criteria.Count; i++)
+                double value;
+                string s = dataGridView.Rows[i].Cells[1].Value?.ToString();
+                if (double.TryParse(s, out value))
                 {
-                    double value;
-                    string s = dataGridView.Rows[i].Cells[1].Value?.ToString();
-                    if (double.TryParse(s, out value))
-                    {
-                        criteriaList.Add(value);
-                    }
-                    else
-                        error = true;
-                }
-                if (!error)
-                {
-                    _satty.AddAlternative(textBoxAlternative.Text, criteriaList);
-                    _formMain.tabPageStep3_Enter(sender, e);
-                    _formMain.Save();
-                    Close();
+                    criteriaList.Add(value);
                 }
                 else
+                    error = true;
+            }
+            if (!error)
+            {
+                if (!_editMode)
+                    _satty.AddAlternative(textBoxAlternative.Text, criteriaList);
+                else
                 {
-                    MessageBox.Show(@"Nie wszystkie dane są wprowadzone dobrze.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _satty.EditAlternative(_id, textBoxAlternative.Text, criteriaList);
                 }
+                _formMain.tabPageStep3_Enter(sender, e);
+                _formMain.dataGridViewAlternative.Rows[_id].Selected = true;
+                _formMain.Save();
+                Close();
             }
             else
             {
-                List<double> criteriaList = new List<double>();
-                for (int i = 0; i < _satty.Criteria.Count; i++)
-                {
-                    _satty.Matrix.Data[i][_id] = double.Parse(dataGridView.Rows[i].Cells[1].Value.ToString());
-                }
-                _satty.Alternative.Name[_id] = textBoxAlternative.Text;
-                
-                _formMain.tabPageStep3_Enter(sender, e);
-                _formMain.Save();
-                Close();
+                MessageBox.Show(@"Nie wszystkie dane są wprowadzone dobrze.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

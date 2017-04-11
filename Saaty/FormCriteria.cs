@@ -10,6 +10,7 @@ namespace Saaty
         FormMain _formMain;
         bool _editMode;
         int _id;
+        bool _EnterEntered = false;
 
         public FormCriteria(SattyClass satty, FormMain formMain)
         {
@@ -19,7 +20,6 @@ namespace Saaty
             _formMain = formMain;
             _id = satty.Criteria.Count;
             comboBoxValueCriteria.SelectedIndex = 0;
-            comboBoxPrecisionCriteria.SelectedIndex = 4;
         }
 
         public FormCriteria(SattyClass satty, FormMain formMain, int id)
@@ -33,27 +33,26 @@ namespace Saaty
             if (_satty.Criteria.ValueType[id]) value = 1;
             textBoxNameCriteria.Text = _satty.Criteria.Name[id];
             comboBoxValueCriteria.SelectedIndex = value;
-            comboBoxPrecisionCriteria.Text = _satty.Criteria.Precision[id].ToString(CultureInfo.InvariantCulture);
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
             bool value = comboBoxValueCriteria.SelectedIndex == 1;
-            if(textBoxNameCriteria.Text != "")
+            if (textBoxNameCriteria.Text != "")
             {
                 if (_editMode)
                 {
                     _satty.Criteria.Name[_id] = textBoxNameCriteria.Text;
                     _satty.Criteria.ValueType[_id] = value;
-                    _satty.Criteria.Precision[_id] = double.Parse(comboBoxPrecisionCriteria.Text);
                 }
                 else
                 {
-                    _satty.AddCriteria(textBoxNameCriteria.Text, value, double.Parse(comboBoxPrecisionCriteria.Text));
+                    _satty.AddCriteria(textBoxNameCriteria.Text, value);
                 }
                 _formMain.tabPageStep1_Enter(sender, e);
                 _formMain.dataGridViewCriteria.Rows[_id].Selected = true;
                 _formMain.Save();
+                _formMain.TabManage.HideTab(4, 1);
                 Close();
             }
             else
@@ -66,6 +65,23 @@ namespace Saaty
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void textBoxNameCriteria_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (_EnterEntered)
+                e.Handled = true;
+        }
+
+        private void textBoxNameCriteria_KeyDown(object sender, KeyEventArgs e)
+        {
+            _EnterEntered = false;
+
+            if(e.KeyCode == Keys.Enter)
+            {
+                _EnterEntered = true;
+                buttonAccept_Click(sender, e);
+            }
         }
     }
 }

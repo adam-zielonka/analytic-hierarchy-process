@@ -200,7 +200,7 @@ namespace Saaty
         private void buttonMatrix_Click(object sender, EventArgs e)
         {
             Satty.ZeroMatrix();
-            Satty.GenerateMatrix();
+            Satty.GenerateMatrixCriteria();
             FormMatrix formMatrix = new FormMatrix(Satty);
             formMatrix.Show();
         }
@@ -214,14 +214,30 @@ namespace Saaty
             dataGridViewAlternative.Rows.Clear();
             dataGridViewAlternative.Columns.Clear();
             dataGridViewAlternative.Columns.Add("name", "Nazwa");
+            dataGridViewAlternative.Columns.Add("status", "Stan");
             dataGridViewCriteria.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+            string status = @"OK";
+            bool error = false;
             for (int j = 0; j < Satty.Alternative.Count; j++)
             {
-                dataGridViewAlternative.Rows.Add(Satty.Alternative.Name[j]);
+                status = @"OK";
+                for (int i = 0; i < Satty.Criteria.Count; i++)
+                {
+                    if (Satty.Matrix.Data[i][j] == double.MaxValue)
+                    {
+                        status = @"Nie wszystkie dane są uzupełnione";
+                        error = true;
+                    }
+                }
+                dataGridViewAlternative.Rows.Add(Satty.Alternative.Name[j], status);
             }
-            if (dataGridViewAlternative.Rows.Count > 0)
+            if (dataGridViewAlternative.Rows.Count > 0 && error == false)
             {
                 TabManage.ShowTab(4, 3);
+            }
+            else
+            {
+                TabManage.HideTab(4, 3);
             }
         }
 
@@ -249,7 +265,6 @@ namespace Saaty
             switch (Satty.Alternative.Count)
             {
                 case 1:
-                    //MessageBox.Show(@"Nie możesz usunąć wszystkich alternatyw.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     id = dataGridViewAlternative.SelectedRows[0].Index;
                     Satty.RemoveAlternative(id);
                     TabManage.HideTab(4);
@@ -284,9 +299,10 @@ namespace Saaty
         private void tabPageResults_Enter(object sender, EventArgs e)
         {
             Satty.ZeroMatrix();
-            Satty.GenerateMatrix();
+            Satty.GenerateMatrixCriteria();
             Satty.GenerateMatrixAlternative();
             Satty.Calculate();
+            Save();
 
             dataGridViewResults.Rows.Clear();
             dataGridViewResults.Columns.Clear();

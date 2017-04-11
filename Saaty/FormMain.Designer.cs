@@ -40,6 +40,7 @@
             this.labelResults = new System.Windows.Forms.Label();
             this.dataGridViewResults = new System.Windows.Forms.DataGridView();
             this.tabPageStep3 = new System.Windows.Forms.TabPage();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.buttonMatrixAlternative = new System.Windows.Forms.Button();
             this.buttonEditAlternative = new System.Windows.Forms.Button();
             this.buttonAddAlternative = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.buttonNewProject = new System.Windows.Forms.Button();
             this.richTextBoxStart = new System.Windows.Forms.RichTextBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.buttonDel = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.tabPageResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
@@ -199,6 +199,16 @@
             this.tabPageStep3.Text = "Krok 3.";
             this.tabPageStep3.UseVisualStyleBackColor = true;
             this.tabPageStep3.Enter += new System.EventHandler(this.tabPageStep3_Enter);
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.Location = new System.Drawing.Point(169, 21);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(75, 23);
+            this.buttonDel.TabIndex = 6;
+            this.buttonDel.Text = "Usuń";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonMatrixAlternative
             // 
@@ -493,16 +503,6 @@
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.TabStop = false;
             // 
-            // buttonDel
-            // 
-            this.buttonDel.Location = new System.Drawing.Point(169, 21);
-            this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(75, 23);
-            this.buttonDel.TabIndex = 6;
-            this.buttonDel.Text = "Usuń";
-            this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,7 +548,6 @@
         private System.Windows.Forms.Button buttonMatrixAlternative;
         private System.Windows.Forms.Button buttonEditAlternative;
         private System.Windows.Forms.Button buttonAddAlternative;
-        private System.Windows.Forms.DataGridView dataGridViewAlternative;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPageStep2;
         private System.Windows.Forms.Button buttonMatrix;
@@ -573,6 +572,7 @@
         private System.Windows.Forms.DataGridView dataGridViewResults;
         private System.Windows.Forms.Label labelResults;
         private System.Windows.Forms.Button buttonDel;
+        public System.Windows.Forms.DataGridView dataGridViewAlternative;
     }
 }
 

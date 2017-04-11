@@ -50,9 +50,9 @@
             // 
             // comboBoxCriteria
             // 
-            this.comboBoxCriteria.Dock = System.Windows.Forms.DockStyle.Top;
+            this.comboBoxCriteria.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBoxCriteria.FormattingEnabled = true;
-            this.comboBoxCriteria.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxCriteria.Location = new System.Drawing.Point(0, 413);
             this.comboBoxCriteria.Name = "comboBoxCriteria";
             this.comboBoxCriteria.Size = new System.Drawing.Size(555, 21);
             this.comboBoxCriteria.TabIndex = 1;

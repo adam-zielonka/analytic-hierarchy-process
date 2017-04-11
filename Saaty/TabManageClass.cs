@@ -78,6 +78,16 @@ namespace Saaty
             }
         }
 
+        public void HideTab(int id, int idSelectedTab)
+        {
+            if (listPageStatus[id])
+            {
+                tabControl.TabPages.Remove(listPage[id]);
+                listPageStatus[id] = false;
+                SetIndex(idSelectedTab);
+            }
+        }
+
         #endregion
 
         #region Manage
