@@ -43,8 +43,7 @@ namespace Saaty
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
-            bool value = false;
-            if (comboBoxValueCriteria.SelectedIndex == 1) value = true;
+            bool value = comboBoxValueCriteria.SelectedIndex == 1;
             if (editMode)
             {
                 dataSatty.ListCriteria[id] = textBoxNameCriteria.Text;

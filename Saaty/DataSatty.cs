@@ -17,7 +17,7 @@ namespace Saaty
         public List<double> ListFactorCriteria { get; set; }
         public List<List<double>> ListFactorAlternative { get; set; }
         public List<double> ListResult { get; set; }
-        public int ResultID { get; set; }
+        public int ResultId { get; set; }
         public string ResultName { get; set; }
 
         public DataSatty()
@@ -125,19 +125,19 @@ namespace Saaty
             ListFactorCriteria.Clear();
             ListFactorAlternative.Clear();
             ListResult.Clear();
-            ResultID = -1;
+            ResultId = -1;
             ResultName = "No data to calculate";
         }
 
         private void SetResult()
         {
-            ResultID = 0;
+            ResultId = 0;
             for (int i = 1; i < ListResult.Count; i++)
             {
-                if (ListResult[i] > ListResult[ResultID])
-                    ResultID = i;
+                if (ListResult[i] > ListResult[ResultId])
+                    ResultId = i;
             }
-            ResultName = ListAlternative[ResultID];
+            ResultName = ListAlternative[ResultId];
         }
 
         private void CalculateFactorCriteria()

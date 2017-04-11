@@ -110,7 +110,6 @@ namespace Saaty
                 else value = "Im większa tym lepiej";
                 dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i], value, dataSatty.ListCriteriaPrecision[i]);
             }
-            //if (dataSatty.ListCriteria.Count > 0) tabManage.ShowTab(2);
         }
 
         private void buttonAddCriteria_Click(object sender, EventArgs e)
@@ -151,7 +150,18 @@ namespace Saaty
 
         #region Step 2 Tab : Wieght Criteria
 
-
+        private void tabPageStep2_Enter(object sender, EventArgs e)
+        {
+            dataGridViewCriteria.Rows.Clear();
+            dataGridViewCriteria.Columns.Clear();
+            dataGridViewCriteria.Columns.Add("name", "Nazwa");
+            for (int i = 0; i < dataGridViewCriteria.Columns.Count; i++)
+                dataGridViewCriteria.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            for (int i = 0; i < dataSatty.ListCriteria.Count; i++)
+            {
+                dataGridViewCriteria.Rows.Add(dataSatty.ListCriteria[i]);
+            }
+        }
 
         #endregion
 
@@ -164,6 +174,7 @@ namespace Saaty
         }
 
         #endregion
+
 
     }
 }

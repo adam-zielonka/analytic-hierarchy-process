@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageStart = new System.Windows.Forms.TabPage();
+            this.labelFileName = new System.Windows.Forms.Label();
             this.labelStart = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonOpenProject = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelFileName = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -98,6 +98,13 @@
             this.tabPageStart.TabIndex = 0;
             this.tabPageStart.Text = "Start";
             this.tabPageStart.UseVisualStyleBackColor = true;
+            // 
+            // labelFileName
+            // 
+            this.labelFileName.Location = new System.Drawing.Point(175, 148);
+            this.labelFileName.Name = "labelFileName";
+            this.labelFileName.Size = new System.Drawing.Size(305, 162);
+            this.labelFileName.TabIndex = 9;
             // 
             // labelStart
             // 
@@ -239,6 +246,7 @@
             this.tabPageStep2.TabIndex = 1;
             this.tabPageStep2.Text = "Krok 2.";
             this.tabPageStep2.UseVisualStyleBackColor = true;
+            this.tabPageStep2.Enter += new System.EventHandler(this.tabPageStep2_Enter);
             // 
             // dataGridViewCriteriaWeight
             // 
@@ -363,13 +371,6 @@
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.saveToolStripMenuItem.Text = "Zapisz";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // labelFileName
-            // 
-            this.labelFileName.Location = new System.Drawing.Point(175, 148);
-            this.labelFileName.Name = "labelFileName";
-            this.labelFileName.Size = new System.Drawing.Size(305, 162);
-            this.labelFileName.TabIndex = 9;
             // 
             // FormMain
             // 

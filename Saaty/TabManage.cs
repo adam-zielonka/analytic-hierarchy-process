@@ -11,9 +11,9 @@ namespace Saaty
     {
         public int Index { get; set; }
 
-        readonly TabControl tabControl;
-        readonly Button buttonNext;
-        readonly Button buttonBack;
+        TabControl tabControl;
+        Button buttonNext;
+        Button buttonBack;
 
         List<TabPage> listPage;
         List<bool> listPageStatus;
