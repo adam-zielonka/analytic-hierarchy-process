@@ -40,9 +40,9 @@
             this.dataGridViewCriteria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCriteria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Criteria});
-            this.dataGridViewCriteria.Location = new System.Drawing.Point(13, 13);
+            this.dataGridViewCriteria.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewCriteria.Name = "dataGridViewCriteria";
-            this.dataGridViewCriteria.Size = new System.Drawing.Size(291, 235);
+            this.dataGridViewCriteria.Size = new System.Drawing.Size(292, 236);
             this.dataGridViewCriteria.TabIndex = 0;
             // 
             // Criteria
@@ -52,9 +52,9 @@
             // 
             // buttonSaveCriteria
             // 
-            this.buttonSaveCriteria.Location = new System.Drawing.Point(13, 254);
+            this.buttonSaveCriteria.Location = new System.Drawing.Point(12, 254);
             this.buttonSaveCriteria.Name = "buttonSaveCriteria";
-            this.buttonSaveCriteria.Size = new System.Drawing.Size(291, 23);
+            this.buttonSaveCriteria.Size = new System.Drawing.Size(292, 23);
             this.buttonSaveCriteria.TabIndex = 1;
             this.buttonSaveCriteria.Text = "Zapisz Kryteria";
             this.buttonSaveCriteria.UseVisualStyleBackColor = true;

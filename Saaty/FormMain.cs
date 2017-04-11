@@ -14,13 +14,14 @@ namespace Saaty
     {
         public List<String> ListCriteria { get; set; }
         public List<String> ListAlternative { get; set; }
-        public float [][] Matrix;
+        public List<List<float>> Matrix;
 
         public FormMain()
         {
             InitializeComponent();
             ListCriteria = new List<string>();
             ListAlternative = new List<string>();
+            
         }
 
         private void buttonCriteria_Click(object sender, EventArgs e)
@@ -41,9 +42,22 @@ namespace Saaty
         private void buttonWeightCriteria_Click(object sender, EventArgs e)
         {
             buttonCriteria.Enabled = false;
+            Matrix = new List<List<float>>();
+            for (int i = 0; i < ListCriteria.Count; i++)
+            {
+                Matrix.Add(new List<float>());
+                for (int j = 0; j < ListCriteria.Count; j++)
+                    Matrix[i].Add(1);
+            }
             FormWeight formWeight = new FormWeight(ListCriteria,Matrix);
             formWeight.Show();
 
+        }
+
+        private void buttonMatrixWeight_Click(object sender, EventArgs e)
+        {
+            FormMatrix formMatrix = new FormMatrix(ListCriteria, Matrix);
+            formMatrix.Show();
         }
     }
 }

@@ -15,8 +15,8 @@ namespace Saaty
         private List<string> _listCriteria;
         private List<Label> labelCriteriaList;
         private List<ComboBox> comboBoxWeightList;
-        private float[][] _matrix;
-        public FormWeight(List<string> listCriteria, float[][] matrix)
+        private List<List<float>> _matrix;
+        public FormWeight(List<string> listCriteria, List<List<float>> matrix)
         {
             InitializeComponent();
             _listCriteria = listCriteria;
@@ -41,7 +41,7 @@ namespace Saaty
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Oba elementy są równoznaczne");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma niewielką przewagę nad drugim");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma umiarkowaną przewagę nad drugim");
-                    comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma silną przewagę nad drugim");
+                    comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma umiarkowanie silną przewagę nad drugim");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma znaczną przewagę nad drugim");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma silną przewagę nad drugim");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma bardzo silną przewagę nad drugim");
@@ -49,7 +49,7 @@ namespace Saaty
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Pierwszy element ma absolutną przewagę nad drugim");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma niewielką przewagę nad pierwszym");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma umiarkowaną przewagę nad pierwszym");
-                    comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma silną przewagę nad pierwszym");
+                    comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma umiarkowanie silną przewagę nad pierwszym");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma znaczną przewagę nad pierwszym");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma silną przewagę nad pierwszym");
                     comboBoxWeightList[comboBoxWeightList.Count - 1].Items.Add("Drugi element ma bardzo silną przewagę nad pierwszym");
@@ -73,10 +73,85 @@ namespace Saaty
             {
                 for (int j = i + 1; j < _listCriteria.Count; j++)
                 {
-                    //comboBoxWeightList[i].Text
+                    switch (comboBoxWeightList[number].Text)
+                    {
+                        case "Oba elementy są równoznaczne":
+                            _matrix[i][j] = 1;
+                            _matrix[j][i] = 1;
+                            break;
+                        case "Pierwszy element ma niewielką przewagę nad drugim":
+                            _matrix[i][j] = 2;
+                            _matrix[j][i] = (float)1 / 2;
+                            break;
+                        case "Pierwszy element ma umiarkowaną przewagę nad drugim":
+                            _matrix[i][j] = 3;
+                            _matrix[j][i] = (float)1 / 3;
+                            break;
+                        case "Pierwszy element ma umiarkowanie silną przewagę nad drugim":
+                            _matrix[i][j] = 4;
+                            _matrix[j][i] = (float)1 / 4;
+                            break;
+                        case "Pierwszy element ma znaczną przewagę nad drugim":
+                            _matrix[i][j] = 5;
+                            _matrix[j][i] = (float)1 / 5;
+                            break;
+                        case "Pierwszy element ma silną przewagę nad drugim":
+                            _matrix[i][j] = 6;
+                            _matrix[j][i] = (float)1 / 6;
+                            break;
+                        case "Pierwszy element ma bardzo silną przewagę nad drugim":
+                            _matrix[i][j] = 7;
+                            _matrix[j][i] = (float)1 / 7;
+                            break;
+                        case "Pierwszy element ma bardzo silną, ale nie absolutną przewagę nad drugim":
+                            _matrix[i][j] = 8;
+                            _matrix[j][i] = (float)1 / 8;
+                            break;
+                        case "Pierwszy element ma absolutną przewagę nad drugim":
+                            _matrix[i][j] = 9;
+                            _matrix[j][i] = (float)1 / 9;
+                            break;
+                        case "Drugi element ma niewielką przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 2;
+                            _matrix[j][i] = 2;
+                            break;
+                        case "Drugi element ma umiarkowaną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 3;
+                            _matrix[j][i] = 3;
+                            break;
+                        case "Drugi element ma umiarkowanie silną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 4;
+                            _matrix[j][i] = 4;
+                            break;
+                        case "Drugi element ma znaczną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 5;
+                            _matrix[j][i] = 5;
+                            break;
+                        case "Drugi element ma silną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 6;
+                            _matrix[j][i] = 6;
+                            break;
+                        case "Drugi element ma bardzo silną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 7;
+                            _matrix[j][i] = 7;
+                            break;
+                        case "Drugi element ma bardzo silną, ale nie absolutną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 8;
+                            _matrix[j][i] = 8;
+                            break;
+                        case "Drugi element ma absolutną przewagę nad pierwszym":
+                            _matrix[i][j] = (float)1 / 9;
+                            _matrix[j][i] = 9;
+                            break;
+                        default:
+                            _matrix[i][j] = 0;
+                            _matrix[j][i] = 0;
+                            break;
+                    }
                     number++;
                 }
             }
+            Close();
         }
     }
 }

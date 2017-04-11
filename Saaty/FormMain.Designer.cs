@@ -34,6 +34,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otwórzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonMatrixWeight = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,14 +89,25 @@
             // otwórzToolStripMenuItem
             // 
             this.otwórzToolStripMenuItem.Name = "otwórzToolStripMenuItem";
-            this.otwórzToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.otwórzToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.otwórzToolStripMenuItem.Text = "Otwórz";
+            // 
+            // buttonMatrixWeight
+            // 
+            this.buttonMatrixWeight.Location = new System.Drawing.Point(244, 27);
+            this.buttonMatrixWeight.Name = "buttonMatrixWeight";
+            this.buttonMatrixWeight.Size = new System.Drawing.Size(75, 23);
+            this.buttonMatrixWeight.TabIndex = 5;
+            this.buttonMatrixWeight.Text = "Matrix";
+            this.buttonMatrixWeight.UseVisualStyleBackColor = true;
+            this.buttonMatrixWeight.Click += new System.EventHandler(this.buttonMatrixWeight_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 288);
+            this.Controls.Add(this.buttonMatrixWeight);
             this.Controls.Add(this.buttonWeightCriteria);
             this.Controls.Add(this.buttonAlternative);
             this.Controls.Add(this.buttonCriteria);
@@ -117,5 +129,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem otwórzToolStripMenuItem;
+        private System.Windows.Forms.Button buttonMatrixWeight;
     }
 }
