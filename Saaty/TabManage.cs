@@ -7,24 +7,31 @@ using System.Windows.Forms;
 
 namespace Saaty
 {
-
     class TabManage
     {
         public int Index { get; set; }
         public int Size { get; set; }
-        TabControl tabControl;
-        Button buttonNext;
-        Button buttonBack;
-        public TabManage(int _size, TabControl _tabControl, Button _next, Button _back)
+
+        readonly TabControl tabControl;
+        readonly Button buttonNext;
+        readonly Button buttonBack;
+        public TabManage(TabControl _tabControl, Button _next, Button _back)
         {
             Index = 0;
-            Size = _size;
-            tabControl = _tabControl;
-            buttonNext = _next;
-            buttonBack = _back;
+            Size = _tabControl.TabCount;
 
+            tabControl = _tabControl;
+            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
+
+            buttonNext = _next;
+            buttonNext.Click += buttonNext_Click;
+
+            buttonBack = _back;
+            buttonBack.Click += buttonBack_Click;
             buttonBack.Enabled = false;
         }
+
+        #region Manage
 
         public void SetIndex(int _index)
         {
@@ -109,6 +116,26 @@ namespace Saaty
             }
         }
 
+        #endregion
+
+        #region Events
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            Next();
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            Back();
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IndexChanged();
+        }
+
+        #endregion;
 
     }
 }

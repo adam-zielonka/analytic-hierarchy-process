@@ -10,11 +10,11 @@ namespace Saaty
     {
         public List<string> ListCriteria { get; set; }
         public List<string> ListAlternative { get; set; }
-        public List<List<float>> MatrixCriteria { get; set; }
-        public List<List<List<float>>> MatrixAlternative { get; set; }
-        public List<float> ListFactorCriteria { get; set; }
-        public List<List<float>> ListFactorAlternative { get; set; }
-        public List<float> ListResult { get; set; }
+        public List<List<double>> MatrixCriteria { get; set; }
+        public List<List<List<double>>> MatrixAlternative { get; set; }
+        public List<double> ListFactorCriteria { get; set; }
+        public List<List<double>> ListFactorAlternative { get; set; }
+        public List<double> ListResult { get; set; }
         public int ResultID { get; set; }
         public string ResultName { get; set; }
 
@@ -22,11 +22,11 @@ namespace Saaty
         {
             ListCriteria = new List<string>();
             ListAlternative = new List<string>();
-            MatrixAlternative = new List<List<List<float>>>();
-            MatrixCriteria = new List<List<float>>();
-            ListFactorCriteria = new List<float>();
-            ListFactorAlternative = new List<List<float>>();
-            ListResult = new List<float>();
+            MatrixAlternative = new List<List<List<double>>>();
+            MatrixCriteria = new List<List<double>>();
+            ListFactorCriteria = new List<double>();
+            ListFactorAlternative = new List<List<double>>();
+            ListResult = new List<double>();
             ClearCalculate();
         }
 
@@ -44,15 +44,15 @@ namespace Saaty
         public void AddCriteria(string _name)
         {
             ListCriteria.Add(_name);
-            MatrixCriteria.Add(new List<float>());
+            MatrixCriteria.Add(new List<double>());
             for (int i = 0; i < ListCriteria.Count; i++)
                 MatrixCriteria[ListCriteria.Count - 1].Add(1);
             for (int i = 0; i < ListCriteria.Count - 1; i++)
                 MatrixCriteria[i].Add(1);
-            MatrixAlternative.Add(new List<List<float>>());
+            MatrixAlternative.Add(new List<List<double>>());
             for (int j = 0; j < ListAlternative.Count; j++)
             {
-                MatrixAlternative[ListCriteria.Count - 1].Add(new List<float>());
+                MatrixAlternative[ListCriteria.Count - 1].Add(new List<double>());
                 for (int k = 0; k < ListAlternative.Count; k++)
                     MatrixAlternative[ListCriteria.Count - 1][j].Add(1);
             }
@@ -72,7 +72,7 @@ namespace Saaty
             ListAlternative.Add(_name);
             for (int i = 0; i < ListCriteria.Count; i++)
             {
-                MatrixAlternative[i].Add(new List<float>());
+                MatrixAlternative[i].Add(new List<double>());
                 for (int k = 0; k < ListAlternative.Count; k++)
                     MatrixAlternative[i][ListAlternative.Count - 1].Add(1);
                 for (int k = 0; k < ListAlternative.Count - 1; k++)
@@ -121,11 +121,11 @@ namespace Saaty
 
         private void SetResult()
         {
-            float max = ListResult.Max();
-            for (ResultID = 0; ResultID < ListResult.Count; ResultID++)
+            ResultID = 0;
+            for (int i = 1; i < ListResult.Count; i++)
             {
-                if (ListResult[ResultID] == max)
-                    break;
+                if (ListResult[i] > ListResult[ResultID])
+                    ResultID = i;
             }
             ResultName = ListAlternative[ResultID];
         }
@@ -136,7 +136,7 @@ namespace Saaty
             for (int i = 0; i < ListCriteria.Count; i++)
                 ListFactorCriteria.Add(1);
 
-            float denominator = 0;
+            double denominator = 0;
 
             for (int i = 0; i < ListCriteria.Count; i++)
             {
@@ -144,7 +144,7 @@ namespace Saaty
                 {
                     ListFactorCriteria[i] *= MatrixCriteria[i][j];
                 }
-                ListFactorCriteria[i] = (float)Math.Pow(ListFactorCriteria[i], 1.0 / ListCriteria.Count);
+                ListFactorCriteria[i] = Math.Pow(ListFactorCriteria[i], 1.0 / ListCriteria.Count);
                 denominator += ListFactorCriteria[i];
             }
 
@@ -160,21 +160,21 @@ namespace Saaty
             ListFactorAlternative.Clear();
             for (int k = 0; k < ListCriteria.Count; k++)
             {
-                ListFactorAlternative.Add(new List<float>());
+                ListFactorAlternative.Add(new List<double>());
                 for (int i = 0; i < ListAlternative.Count; i++)
                     ListFactorAlternative[k].Add(1);
             }
 
             for (int k = 0; k < ListCriteria.Count; k++)
             {
-                float denominator = 0;
+                double denominator = 0;
                 for (int i = 0; i < ListAlternative.Count; i++)
                 {
                     for (int j = 0; j < ListAlternative.Count; j++)
                     {
                         ListFactorAlternative[k][i] *= MatrixAlternative[k][i][j];
                     }
-                    ListFactorAlternative[k][i] = (float)Math.Pow(ListFactorAlternative[k][i], 1.0 / ListAlternative.Count);
+                    ListFactorAlternative[k][i] = Math.Pow(ListFactorAlternative[k][i], 1.0 / ListAlternative.Count);
                     denominator += ListFactorAlternative[k][i];
                 }
 
@@ -200,6 +200,5 @@ namespace Saaty
         }
 
         #endregion
-
     }
 }
