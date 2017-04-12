@@ -52,7 +52,7 @@
     <Compile Include="FormAlternative.Designer.cs">
       <DependentUpon>FormAlternative.cs</DependentUpon>
     </Compile>
-    <Compile Include="SattyClass.cs" />
+    <Compile Include="SaatyClass.cs" />
     <Compile Include="FormCriteria.cs">
       <SubType>Form</SubType>
     </Compile>
