@@ -7,17 +7,17 @@ namespace Saaty
     public partial class FormAlternative : Form
     {
         private FormMain _formMain;
-        private SattyClass _satty;
+        private SaatyClass _saaty;
         private bool _editMode;
         private int _id;
 
-        public FormAlternative(SattyClass satty, FormMain formMain)
+        public FormAlternative(SaatyClass saaty, FormMain formMain)
         {
             InitializeComponent();
-            _satty = satty;
+            _saaty = saaty;
             _formMain = formMain;
             _editMode = false;
-            _id = _satty.Alternative.Count;
+            _id = _saaty.Alternative.Count;
 
             dataGridView.Rows.Clear();
             dataGridView.Columns.Clear();
@@ -25,22 +25,22 @@ namespace Saaty
             dataGridView.Columns[0].ReadOnly = true;
             dataGridView.Columns.Add("alternativeData", "Dane");
 
-            for (int j = 0; j < _satty.Criteria.Count; j++)
+            for (int j = 0; j < _saaty.Criteria.Count; j++)
             {
-                dataGridView.Rows.Add(_satty.Criteria.Name[j]);
+                dataGridView.Rows.Add(_saaty.Criteria.Name[j]);
             }
 
         }
 
-        public FormAlternative(SattyClass satty, FormMain formMain, int id)
+        public FormAlternative(SaatyClass saaty, FormMain formMain, int id)
         {
             InitializeComponent();
-            _satty = satty;
+            _saaty = saaty;
             _formMain = formMain;
             _editMode = true;
             _id = id;
 
-            textBoxAlternative.Text = _satty.Alternative.Name[id];
+            textBoxAlternative.Text = _saaty.Alternative.Name[id];
 
             dataGridView.Rows.Clear();
             dataGridView.Columns.Clear();
@@ -48,15 +48,15 @@ namespace Saaty
             dataGridView.Columns[0].ReadOnly = true;
             dataGridView.Columns.Add("alternativeData", "Dane");
 
-            for (int j = 0; j < _satty.Criteria.Count; j++)
+            for (int j = 0; j < _saaty.Criteria.Count; j++)
             {
-                if (_satty.Matrix.Data[j][id] != double.MaxValue)
+                if (_saaty.Matrix.Data[j][id] != double.MaxValue)
                 {
-                    dataGridView.Rows.Add(_satty.Criteria.Name[j], _satty.Matrix.Data[j][id]);
+                    dataGridView.Rows.Add(_saaty.Criteria.Name[j], _saaty.Matrix.Data[j][id]);
                 }
                 else
                 {
-                    dataGridView.Rows.Add(_satty.Criteria.Name[j]);
+                    dataGridView.Rows.Add(_saaty.Criteria.Name[j]);
                 }
             }
 
@@ -70,7 +70,7 @@ namespace Saaty
             if (textBoxAlternative.Text == "")
                 error = true;
 
-            for (int i = 0; i < _satty.Criteria.Count; i++)
+            for (int i = 0; i < _saaty.Criteria.Count; i++)
             {
                 double value;
                 string s = dataGridView.Rows[i].Cells[1].Value?.ToString();
@@ -84,10 +84,10 @@ namespace Saaty
             if (!error)
             {
                 if (!_editMode)
-                    _satty.AddAlternative(textBoxAlternative.Text, criteriaList);
+                    _saaty.AddAlternative(textBoxAlternative.Text, criteriaList);
                 else
                 {
-                    _satty.EditAlternative(_id, textBoxAlternative.Text, criteriaList);
+                    _saaty.EditAlternative(_id, textBoxAlternative.Text, criteriaList);
                 }
                 _formMain.tabPageStep3_Enter(sender, e);
                 _formMain.dataGridViewAlternative.Rows[_id].Selected = true;

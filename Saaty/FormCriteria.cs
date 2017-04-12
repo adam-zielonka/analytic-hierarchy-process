@@ -6,32 +6,32 @@ namespace Saaty
 {
     public partial class FormCriteria : Form
     {
-        SattyClass _satty;
+        SaatyClass _saaty;
         FormMain _formMain;
         bool _editMode;
         int _id;
         bool _EnterEntered = false;
 
-        public FormCriteria(SattyClass satty, FormMain formMain)
+        public FormCriteria(SaatyClass saaty, FormMain formMain)
         {
             InitializeComponent();
             _editMode = false;
-            _satty = satty;
+            _saaty = saaty;
             _formMain = formMain;
-            _id = satty.Criteria.Count;
+            _id = saaty.Criteria.Count;
             comboBoxValueCriteria.SelectedIndex = 0;
         }
 
-        public FormCriteria(SattyClass satty, FormMain formMain, int id)
+        public FormCriteria(SaatyClass saaty, FormMain formMain, int id)
         {
             InitializeComponent();
             _editMode = true;
-            _satty = satty;
+            _saaty = saaty;
             _formMain = formMain;
             _id = id;
             int value = 0;
-            if (_satty.Criteria.ValueType[id]) value = 1;
-            textBoxNameCriteria.Text = _satty.Criteria.Name[id];
+            if (_saaty.Criteria.ValueType[id]) value = 1;
+            textBoxNameCriteria.Text = _saaty.Criteria.Name[id];
             comboBoxValueCriteria.SelectedIndex = value;
         }
 
@@ -42,12 +42,12 @@ namespace Saaty
             {
                 if (_editMode)
                 {
-                    _satty.Criteria.Name[_id] = textBoxNameCriteria.Text;
-                    _satty.Criteria.ValueType[_id] = value;
+                    _saaty.Criteria.Name[_id] = textBoxNameCriteria.Text;
+                    _saaty.Criteria.ValueType[_id] = value;
                 }
                 else
                 {
-                    _satty.AddCriteria(textBoxNameCriteria.Text, value);
+                    _saaty.AddCriteria(textBoxNameCriteria.Text, value);
                 }
                 _formMain.tabPageStep1_Enter(sender, e);
                 _formMain.dataGridViewCriteria.Rows[_id].Selected = true;

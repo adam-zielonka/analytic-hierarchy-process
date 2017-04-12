@@ -6,16 +6,16 @@ namespace Saaty
 {
     public partial class FormMain : Form
     {
-        public SattyClass Satty { get; set; }
+        public SaatyClass Saaty { get; set; }
         public TabManageClass TabManage { get; set; }
         public FileManageClass FileManage { get; set; }
 
         public FormMain()
         {
             InitializeComponent();
-            Satty = new SattyClass();
+            Saaty = new SaatyClass();
             TabManage = new TabManageClass(tabControlMain, buttonNext, buttonBack);
-            FileManage = new FileManageClass(Satty);
+            FileManage = new FileManageClass(Saaty);
         }
 
         public void Save() => FileManage.Save();
@@ -24,7 +24,7 @@ namespace Saaty
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Satty.Clear();
+            Saaty.Clear();
             TabManage.SetIndex(0);
             FileManage.New();
             labelFileName.Text = FileMessage(FileManage.GetFileName(), false);
@@ -32,7 +32,7 @@ namespace Saaty
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Satty = (SattyClass)FileManage.Open();
+            Saaty = (SaatyClass)FileManage.Open();
             labelFileName.Text = FileMessage(FileManage.GetFileName(), true);
         }
 
@@ -67,14 +67,14 @@ namespace Saaty
 
         private void buttonNewProject_Click(object sender, EventArgs e)
         {
-            Satty.Clear();
+            Saaty.Clear();
             FileManage.New();
             labelFileName.Text = FileMessage(FileManage.GetFileName(), false);
         }
 
         private void buttonOpenProject_Click(object sender, EventArgs e)
         {
-            Satty = (SattyClass)FileManage.Open();
+            Saaty = (SaatyClass)FileManage.Open();
             labelFileName.Text = FileMessage(FileManage.GetFileName(), true);
         }
 
@@ -90,10 +90,10 @@ namespace Saaty
             dataGridViewCriteria.Columns.Add("value", "Wartość");
             for (int i = 0; i < dataGridViewCriteria.Columns.Count; i++)
                 dataGridViewCriteria.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            for (int i = 0; i < Satty.Criteria.Count; i++)
+            for (int i = 0; i < Saaty.Criteria.Count; i++)
             {
-                string value = Satty.Criteria.ValueType[i] ? "Im mniejsza tym lepiej" : "Im większa tym lepiej";
-                dataGridViewCriteria.Rows.Add(Satty.Criteria.Name[i], value);
+                string value = Saaty.Criteria.ValueType[i] ? "Im mniejsza tym lepiej" : "Im większa tym lepiej";
+                dataGridViewCriteria.Rows.Add(Saaty.Criteria.Name[i], value);
             }
             if (dataGridViewCriteria.Rows.Count > 0)
             {
@@ -103,15 +103,15 @@ namespace Saaty
 
         private void buttonAddCriteria_Click(object sender, EventArgs e)
         {
-            FormCriteria formCriteria = new FormCriteria(Satty, this);
+            FormCriteria formCriteria = new FormCriteria(Saaty, this);
             formCriteria.Show();
         }
 
         private void buttonEditCriteria_Click(object sender, EventArgs e)
         {
-            if (Satty.Criteria.Count != 0)
+            if (Saaty.Criteria.Count != 0)
             {
-                FormCriteria formCriteria = new FormCriteria(Satty, this, dataGridViewCriteria.SelectedRows[0].Index)
+                FormCriteria formCriteria = new FormCriteria(Saaty, this, dataGridViewCriteria.SelectedRows[0].Index)
                 {
                     Text = @"Edytuj kryterium"
                 };
@@ -121,7 +121,7 @@ namespace Saaty
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            switch (Satty.Criteria.Count)
+            switch (Saaty.Criteria.Count)
             {
                 case 1:
                     MessageBox.Show(@"Nie możesz usunąć wszystkich kryteriów.", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -130,7 +130,7 @@ namespace Saaty
                     break;
                 default:
                     int id = dataGridViewCriteria.SelectedRows[0].Index;
-                    Satty.RemoveCriteria(id);
+                    Saaty.RemoveCriteria(id);
                     id--;
                     tabPageStep1_Enter(sender, e);
                     if (id > 0) dataGridViewCriteria.Rows[id].Selected = true;
@@ -153,8 +153,8 @@ namespace Saaty
             dataGridViewCriteriaWeight.Columns[0].Visible = false;
             for (int i = 0; i < dataGridViewCriteriaWeight.Columns.Count; i++)
                 dataGridViewCriteriaWeight.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            for (int i = 0; i < Satty.Criteria.Count; i++)
-                dataGridViewCriteriaWeight.Rows.Add(i, Satty.Criteria.Name[i], Satty.Criteria.Weight[i]);
+            for (int i = 0; i < Saaty.Criteria.Count; i++)
+                dataGridViewCriteriaWeight.Rows.Add(i, Saaty.Criteria.Name[i], Saaty.Criteria.Weight[i]);
             dataGridViewCriteriaWeight.Sort(dataGridViewCriteriaWeight.Columns[2], ListSortDirection.Descending);
             TabManage.ShowTab(3, 2);
         }
@@ -164,7 +164,7 @@ namespace Saaty
             if (dataGridViewCriteriaWeight.Rows.Count != 0)
             {
                 int id = int.Parse(dataGridViewCriteriaWeight.Rows[dataGridViewCriteriaWeight.SelectedRows[0].Index].Cells[0].Value.ToString());
-                Satty.UpCriteria(id);
+                Saaty.UpCriteria(id);
                 tabPageStep2_Enter(sender, e);
                 for (int i = 0; i < dataGridViewCriteriaWeight.RowCount; i++)
                 {
@@ -183,7 +183,7 @@ namespace Saaty
             if (dataGridViewCriteriaWeight.Rows.Count != 0)
             {
                 int id = int.Parse(dataGridViewCriteriaWeight.Rows[dataGridViewCriteriaWeight.SelectedRows[0].Index].Cells[0].Value.ToString());
-                Satty.DownCriteria(id);
+                Saaty.DownCriteria(id);
                 tabPageStep2_Enter(sender, e);
                 for (int i = 0; i < dataGridViewCriteriaWeight.RowCount; i++)
                 {
@@ -199,9 +199,9 @@ namespace Saaty
 
         private void buttonMatrix_Click(object sender, EventArgs e)
         {
-            Satty.ZeroMatrix();
-            Satty.GenerateMatrixCriteria();
-            FormMatrix formMatrix = new FormMatrix(Satty)
+            Saaty.ZeroMatrix();
+            Saaty.GenerateMatrixCriteria();
+            FormMatrix formMatrix = new FormMatrix(Saaty)
             {
                 Text = @"Macierz Kryteriów"
             };
@@ -221,18 +221,18 @@ namespace Saaty
             dataGridViewCriteria.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
             string status = @"OK";
             bool error = false;
-            for (int j = 0; j < Satty.Alternative.Count; j++)
+            for (int j = 0; j < Saaty.Alternative.Count; j++)
             {
                 status = @"OK";
-                for (int i = 0; i < Satty.Criteria.Count; i++)
+                for (int i = 0; i < Saaty.Criteria.Count; i++)
                 {
-                    if (Satty.Matrix.Data[i][j] == double.MaxValue)
+                    if (Saaty.Matrix.Data[i][j] == double.MaxValue)
                     {
                         status = @"Nie wszystkie dane są uzupełnione";
                         error = true;
                     }
                 }
-                dataGridViewAlternative.Rows.Add(Satty.Alternative.Name[j], status);
+                dataGridViewAlternative.Rows.Add(Saaty.Alternative.Name[j], status);
             }
             if (dataGridViewAlternative.Rows.Count > 0 && error == false)
             {
@@ -246,15 +246,15 @@ namespace Saaty
 
         private void buttonAddAlternative_Click(object sender, EventArgs e)
         {
-            FormAlternative formAlternative = new FormAlternative(Satty, this);
+            FormAlternative formAlternative = new FormAlternative(Saaty, this);
             formAlternative.Show();
         }
 
         private void buttonEditAlternative_Click(object sender, EventArgs e)
         {
-            if (Satty.Alternative.Count != 0)
+            if (Saaty.Alternative.Count != 0)
             {
-                FormAlternative formAlternative = new FormAlternative(Satty, this, dataGridViewAlternative.SelectedRows[0].Index)
+                FormAlternative formAlternative = new FormAlternative(Saaty, this, dataGridViewAlternative.SelectedRows[0].Index)
                 {
                     Text = @"Edytuj alternatywę"
                 };
@@ -265,11 +265,11 @@ namespace Saaty
         private void buttonDel_Click(object sender, EventArgs e)
         {
             int id;
-            switch (Satty.Alternative.Count)
+            switch (Saaty.Alternative.Count)
             {
                 case 1:
                     id = dataGridViewAlternative.SelectedRows[0].Index;
-                    Satty.RemoveAlternative(id);
+                    Saaty.RemoveAlternative(id);
                     TabManage.HideTab(4);
                     tabPageStep3_Enter(sender, e);
                     Save();
@@ -278,7 +278,7 @@ namespace Saaty
                     break;
                 default:
                     id = dataGridViewAlternative.SelectedRows[0].Index;
-                    Satty.RemoveAlternative(id);
+                    Saaty.RemoveAlternative(id);
                     id--;
                     tabPageStep3_Enter(sender, e);
                     if (id > 0) dataGridViewAlternative.Rows[id].Selected = true;
@@ -289,9 +289,9 @@ namespace Saaty
 
         private void buttonMatrixAlternative_Click(object sender, EventArgs e)
         {
-            Satty.ZeroMatrix();
-            Satty.GenerateMatrixAlternative();
-            FormMatrix formMatrix = new FormMatrix(Satty, true)
+            Saaty.ZeroMatrix();
+            Saaty.GenerateMatrixAlternative();
+            FormMatrix formMatrix = new FormMatrix(Saaty, true)
             {
                 Text = @"Macierze Alternatyw"
             };
@@ -300,7 +300,7 @@ namespace Saaty
 
         private void buttonDataAlternative_Click(object sender, EventArgs e)
         {
-            FormMatrix formMatrix = new FormMatrix(Satty, 123)
+            FormMatrix formMatrix = new FormMatrix(Saaty, 123)
             {
                 Text = @"Dane Alternatyw"
             };
@@ -314,10 +314,10 @@ namespace Saaty
 
         private void tabPageResults_Enter(object sender, EventArgs e)
         {
-            Satty.ZeroMatrix();
-            Satty.GenerateMatrixCriteria();
-            Satty.GenerateMatrixAlternative();
-            Satty.Calculate();
+            Saaty.ZeroMatrix();
+            Saaty.GenerateMatrixCriteria();
+            Saaty.GenerateMatrixAlternative();
+            Saaty.Calculate();
             Save();
 
             dataGridViewResults.Rows.Clear();
@@ -326,9 +326,9 @@ namespace Saaty
             dataGridViewResults.Columns.Add("value", "Wartosć");
             dataGridViewResults.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
             dataGridViewResults.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-            for (int j = 0; j < Satty.Alternative.Count; j++)
+            for (int j = 0; j < Saaty.Alternative.Count; j++)
             {
-                dataGridViewResults.Rows.Add(Satty.Alternative.Name[j], Satty.Result.Results[j]);
+                dataGridViewResults.Rows.Add(Saaty.Alternative.Name[j], Saaty.Result.Results[j]);
             }
             dataGridViewResults.Sort(dataGridViewResults.Columns[1], ListSortDirection.Descending);
             dataGridViewResults.Rows[0].Selected = true;

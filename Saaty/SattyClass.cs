@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Saaty
 {
-    public class SattyClass
+    public class SaatyClass
     {
         #region Inside Class
 
@@ -93,7 +93,7 @@ namespace Saaty
         public MatrixClass Matrix { get; set; }
         public ResultClass Result { get; set; }
 
-        public SattyClass()
+        public SaatyClass()
         {
             Criteria = new CriteriaClass
             {
