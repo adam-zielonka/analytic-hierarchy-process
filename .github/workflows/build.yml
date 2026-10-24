@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: microsoft/setup-msbuild@v3
       - uses: NuGet/setup-nuget@v2
       - run: nuget install Microsoft.NETFramework.ReferenceAssemblies.net452 -Version 1.0.3 -OutputDirectory .ci-packages
