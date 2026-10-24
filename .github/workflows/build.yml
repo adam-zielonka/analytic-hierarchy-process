@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: microsoft/setup-msbuild@v3
-      - uses: NuGet/setup-nuget@v2
+      - uses: NuGet/setup-nuget@v4
       - run: nuget install Microsoft.NETFramework.ReferenceAssemblies.net452 -Version 1.0.3 -OutputDirectory .ci-packages
       - shell: pwsh
         run: |
